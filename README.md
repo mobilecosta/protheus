@@ -1,13 +1,14 @@
-Projeto para integração com as Api do Protheus
+<h2> Interface com operações em bases de dados relacionais </h2> 
 
-Pré-requisitos
+Este projeto tem um mecanismo de logim integrado as API's de segurança do Protheus (TOTVS), além disso fornece uma estrutura para listagem dos usuarios cadastrados na base do Protheus.
 
-Para começar a utilizar o PO UI é pré-requisito ter o Node.js instalado (versão 12.13.0 ou acima) e o seu gerenciador de pacote favorito na versão mais atual. Caso você ainda não tenha instalado o pacote @angular/cli, instale-o via npm ou yarn.
+Implementações a serem feitas:
 
-Instalando com npm:
+Criar um CRUD no cadastro de clientes
+(INCLUIR, ALTERAR, APAGAR)
 
-npm i -g @angular/cli@^12
+Podemos começar por aqui, com o passo a passo:
 
-Caso prefira instalar com o yarn:
+https://po-ui.io/guides/getting-started
 
-yarn global add @angular/cli@
+![alt text](https://res.cloudinary.com/practicaldev/image/fetch/s--O2cjB-id--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://thepracticaldev.s3.amazonaws.com/i/a3exuz06e9h212pandfr.png)
