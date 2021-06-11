@@ -9,8 +9,6 @@ import { SharedModule } from './shared/shared.module';
 import { LoginModule } from './login/login.module';
 import { AuthInterceptor } from './auth/auth-config.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { PoModule } from '@po-ui/ng-components';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -19,8 +17,6 @@ import { RouterModule } from '@angular/router';
     SharedModule,
     HomeModule,
     LoginModule,
-    PoModule,
-    RouterModule.forRoot([]),
   ],
   declarations: [
     AppComponent

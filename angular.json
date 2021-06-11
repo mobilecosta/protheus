@@ -26,14 +26,13 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              {
-                "glob": "**/*",
-                "input": "node_modules/@po-ui/style/images",
-                "output": "assets/images"
-              }
+			  {
+				"glob": "**\/*",
+				"input": "node_modules/@po-ui/style/images",
+				"output": "assets/images"
+			  }
             ],
             "styles": [
-              "./node_modules/@po-ui/style/css/po-theme-default.min.css",
               "node_modules/@totvs/po-theme/css/po-theme-default.min.css",
               "src/styles.scss"
             ],
@@ -97,14 +96,13 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              {
-                "glob": "**/*",
-                "input": "node_modules/@po-ui/style/images",
-                "output": "assets/images"
-              }
+			  {
+				"glob": "**\/*",
+				"input": "node_modules/@po-ui/style/images",
+				"output": "assets/images"
+			  }
             ],
             "styles": [
-              "./node_modules/@po-ui/style/css/po-theme-default.min.css",
               "node_modules/@totvs/po-theme/css/po-theme-default.min.css",
               "src/styles.scss"
             ],
