@@ -15,6 +15,7 @@ export class HomeComponent {
   menus: Array<PoMenuItem> = [
     { label: 'Home', link: '/home', icon: 'po-icon-home', shortLabel: 'Principal' },
     { label: 'Usuarios', link: './users', icon: 'po-icon-finance', shortLabel: 'Usuários' },
+    { label: 'ConsultaCNPJ', link: './cnpj', icon: 'po-icon po-icon-company', shortLabel: 'ConsultaCNPJ' },
     { label: 'Logout', action: this.logout.bind(this), icon: 'po-icon-users', shortLabel: 'Logout'  }
   ];
 
