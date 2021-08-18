@@ -12,11 +12,7 @@ const homeRoutes: Routes = [
 	  loadChildren: () => import('../grid/grid.module').then(m => m.GridModule) },
       { path: 'users',
       loadChildren: () => import('../grid/grid.module').then(m => m.GridModule) },
-      { path:'', component:CnpjComponent},
-    
-      {path:'cnpj',
-     loadChildren: () => import('../cnpj/cnpj.component').then(m =>m.CnpjComponent)
-      }
+      { path:'cpnj', component: CnpjComponent },
     ] }
 
 ];

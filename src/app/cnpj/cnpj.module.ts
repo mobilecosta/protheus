@@ -1,20 +1,25 @@
 import { CnpjComponent } from "./cnpj.component";
-import { NgModule } from "@angular/core";
+import { NgModule, ViewChild } from "@angular/core";
 import { AppComponent } from "../app.component";
+import { CnpjRoutingModule } from "./cpnj-routing.module";
+import { PoModule, PoButtonModule } from '@po-ui/ng-components';
+import { PoFieldModule } from '@po-ui/ng-components';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
     imports: [
-        CnpjComponent,
-        NgModule
-      
+        CnpjRoutingModule,
+        PoModule,
+        PoFieldModule,
+        FormsModule, ReactiveFormsModule, PoButtonModule
     ],
     declarations: [
-        AppComponent,
-      
+        CnpjComponent
     ],
     providers: []
   })
-  export class HomeModule { }
+
+  export class CnpjModule { }
 
 
 

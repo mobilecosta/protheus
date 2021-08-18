@@ -24,13 +24,14 @@
     "@po-ui/ng-storage": "^3.10.0",
     "@po-ui/ng-templates": "^3.10.0",
     "@totvs/po-theme": "^3.10.0",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
     "jwt-decode": "^3.0.0",
+    "path": "^0.12.7",
     "rxjs": "~6.6.0",
     "ts-md5": "^1.2.7",
     "tslib": "^2.0.3",
-    "zone.js": "~0.10.2",
-    "express": "^4.17.1",
-    "path": "^0.12.7"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1001.7",
