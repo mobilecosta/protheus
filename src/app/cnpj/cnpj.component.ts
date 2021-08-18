@@ -36,11 +36,10 @@ conultarcnpj(){
 
 
   const cnpj = this.form.controls['cnpj'].value;
-  console.log(cnpj)
   var url = environment.apicnpj + cnpj;
 
   this.httpClient.get(url).subscribe((res)=>{
-    this.poNotification.success(`NPJ Válido: ${cnpj} | Razao Social: ${res.razao_social}`)
+    this.poNotification.success(`NPJ Válido: ${cnpj} | Razao Social: ${res['razao_social']}`)
   }, (res)=>{
     this.poNotification.error("CNPJ inválido")
   })
