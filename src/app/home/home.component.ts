@@ -28,7 +28,8 @@ export class HomeComponent {
 	// delete daqui apagando as duas delcarações de items
 	var items = [
     { label: 'Usuarios', link: './users', icon: 'po-icon-finance', shortLabel: 'Usuários' },
-    { label: 'ConsultaCNPJ', link: './cnpj', icon: 'po-icon po-icon-company', shortLabel: 'ConsultaCNPJ' },
+    { label: 'CNPJ', link: './cnpj', icon: 'po-icon po-icon-company', shortLabel: 'Consulta CNPJ' },,
+    { label: 'Teste', link: './cnpj', icon: 'po-icon po-icon-company', shortLabel: 'Consulta CNPJ' },
     { label: 'Logout', action: this.logout.bind(this), icon: 'po-icon-users', shortLabel: 'Logout'  }
 	]
 	items.forEach((value, index)=>{
