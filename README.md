@@ -23,6 +23,8 @@ Obs.: IMPORTANTE - Verifique se ja tem instalado Angular nodejs/npm, o Angula pr
         o 14.x refere a versão que você quer, você pode mudar para uma mais atual ou antiga.
            é necessário ter o curl instalado na sua maquina
            
+Siga as as instruções dessse site:
+  https://computingforgeeks.com/how-to-install-nodejs-on-ubuntu-debian-linux-mint/           
 #2 - Instale o Angular =/> 12
 
 #3- Siga as instruções no link a baixo: 
