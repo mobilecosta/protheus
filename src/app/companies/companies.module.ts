@@ -1,26 +1,22 @@
-import { CompaniesComponent } from "./companies.component";
-import { NgModule, ViewChild } from "@angular/core";
-import { AppComponent } from "../app.component";
-import { CnpjRoutingModule } from "./companies-routing.module";
-import { PoModule, PoButtonModule } from '@po-ui/ng-components';
-import { PoFieldModule } from '@po-ui/ng-components';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgModule } from '@angular/core';
+
+import { SharedModule } from '../shared/shared.module';
+
+import { GridRoutingModule } from './companies-routing.module';
+import { GridFormComponent } from './grid-form/grid-form.component';
+import { GridListComponent } from './grid-list/grid-list.component';
+import { GridViewComponent } from './grid-view/grid-view.component';
 
 @NgModule({
-    imports: [
-        CnpjRoutingModule,
-        PoModule,
-        PoFieldModule,
-        FormsModule, ReactiveFormsModule, PoButtonModule
-    ],
-    declarations: [
-        CompaniesComponent
-    ],
-    providers: []
+  declarations: [
+    GridFormComponent,
+    GridListComponent,
+    GridViewComponent
+  ],
+  imports: [
+    SharedModule,
+
+    GridRoutingModule
+  ]
 })
-
 export class CompaniesModule { }
-
-
-
-

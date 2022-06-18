@@ -1,0 +1,35 @@
+<po-page-edit
+  (p-save)="save()"
+  (p-cancel)="cancel()"
+  [p-title]="title"
+  [p-disable-submit]="formCliente.invalid">
+
+  <form #formCliente="ngForm">
+
+    <po-divider class="po-sm-12" p-label="Dados pessoais"></po-divider>
+
+    <po-input class="po-md-5"
+      name="id"
+      [(ngModel)]="grid.id"
+      p-label="Código"
+      [p-disabled]="true">
+    </po-input>
+
+    <po-input class="po-md-5"
+      name="userName"
+      [(ngModel)]="grid.userName"
+      p-required
+      p-label="Usuário">
+    </po-input>
+
+    <po-input class="po-md-5"
+      name="displayName"
+      [(ngModel)]="grid.displayName"
+      p-required
+      p-label="Nome Completo">
+    </po-input>
+
+    
+  </form>
+
+</po-page-edit>
