@@ -1,7 +1,7 @@
-import { CnpjComponent } from "./cnpj.component";
+import { CompaniesComponent } from "./companies.component";
 import { NgModule, ViewChild } from "@angular/core";
 import { AppComponent } from "../app.component";
-import { CnpjRoutingModule } from "./cpnj-routing.module";
+import { CnpjRoutingModule } from "./companies-routing.module";
 import { PoModule, PoButtonModule } from '@po-ui/ng-components';
 import { PoFieldModule } from '@po-ui/ng-components';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -14,7 +14,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
         FormsModule, ReactiveFormsModule, PoButtonModule
     ],
     declarations: [
-        CnpjComponent
+        CompaniesComponent
     ],
     providers: []
 })

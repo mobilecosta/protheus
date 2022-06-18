@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CnpjComponent } from './cnpj.component';
+import { CompaniesComponent } from './companies.component';
 
 describe('CnpjComponent', () => {
-  let component: CnpjComponent;
-  let fixture: ComponentFixture<CnpjComponent>;
+  let component: CompaniesComponent;
+  let fixture: ComponentFixture<CompaniesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CnpjComponent ]
+      declarations: [CompaniesComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CnpjComponent);
+    fixture = TestBed.createComponent(CompaniesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
