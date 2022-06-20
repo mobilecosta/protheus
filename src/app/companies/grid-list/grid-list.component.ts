@@ -45,8 +45,8 @@ export class GridListComponent implements OnInit, OnDestroy {
 
   public readonly columns: Array<PoTableColumn> = [
     { property: 'id', label: 'Código' },
-    { property: 'userName', label: 'Usuário' },
-    { property: 'displayName', label: 'Nome Completo' }
+    { property: 'userName', label: 'Nome Fantasia' },
+    { property: 'displayName', label: 'Razão Social' }
   ];
 
   public readonly disclaimerGroup: PoDisclaimerGroup = {
