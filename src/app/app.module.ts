@@ -9,8 +9,6 @@ import { SharedModule } from './shared/shared.module';
 import { LoginModule } from './login/login.module';
 import { AuthInterceptor } from './auth/auth-config.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CnpjComponent } from './cnpj/cnpj.component';
-import { CnpjModule } from './cnpj/cnpj.module';
 
 @NgModule({
   imports: [
@@ -19,7 +17,6 @@ import { CnpjModule } from './cnpj/cnpj.module';
     SharedModule,
     HomeModule,
     LoginModule,
-    CnpjModule
     
   ],
   declarations: [
