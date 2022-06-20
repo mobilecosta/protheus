@@ -8,11 +8,15 @@ const homeRoutes: Routes = [
   { path: '', component: HomeComponent,
     children: [
       { path: '', component: HomeDashboardComponent },
-      { path: 'grid',
-	  loadChildren: () => import('../grid/grid.module').then(m => m.GridModule) },
-      { path: 'users',
+
+
+        { path: 'users',
       loadChildren: () => import('../grid/grid.module').then(m => m.GridModule) },
-      { path:'cpnj', component: CnpjComponent },
+
+          { path: 'companies',
+      loadChildren: () => import('../companies/companies.module').then(m => m.CompaniesModule) },
+
+          
     ] }
 
 ];
