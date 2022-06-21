@@ -13,10 +13,11 @@ const homeRoutes: Routes = [
         { path: 'users',
       loadChildren: () => import('../grid/grid.module').then(m => m.GridModule) },
 
-          { path: 'companies',
+        { path: 'companies',
       loadChildren: () => import('../companies/companies.module').then(m => m.CompaniesModule) },
 
-          
+      { path: 'nfe',
+      loadChildren: () => import('../nfe/nfe.module').then(m => m.NfeModule) },
     ] }
 
 ];
