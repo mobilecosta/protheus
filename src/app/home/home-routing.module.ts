@@ -5,20 +5,24 @@ import { HomeDashboardComponent } from './home-dashboard/home-dashboard.componen
 import { HomeComponent } from './home.component';
 
 const homeRoutes: Routes = [
-  { path: '', component: HomeComponent,
+  {
+    path: '', component: HomeComponent,
     children: [
       { path: '', component: HomeDashboardComponent },
 
 
-        { path: 'users',
-      loadChildren: () => import('../grid/grid.module').then(m => m.GridModule) },
-
+      {
+        path: 'users',
+        loadChildren: () => import('../grid/grid.module').then(m => m.GridModule)
+      },
+      
         { path: 'companies',
       loadChildren: () => import('../companies/companies.module').then(m => m.CompaniesModule) },
 
       { path: 'nfe',
       loadChildren: () => import('../nfe/nfe.module').then(m => m.NfeModule) },
     ] }
+
 
 ];
 
