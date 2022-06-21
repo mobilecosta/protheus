@@ -15,13 +15,21 @@ const homeRoutes: Routes = [
         path: 'users',
         loadChildren: () => import('../grid/grid.module').then(m => m.GridModule)
       },
-      
-        { path: 'companies',
-      loadChildren: () => import('../companies/companies.module').then(m => m.CompaniesModule) },
 
-      { path: 'nfe',
-      loadChildren: () => import('../nfe/nfe.module').then(m => m.NfeModule) },
-    ] }
+      {
+        path: 'companies',
+        loadChildren: () => import('../companies/companies.module').then(m => m.CompaniesModule)
+      },
+      {
+        path: 'nfe',
+        loadChildren: () => import('../nfe/nfe.module').then(m => m.NfeModule)
+      },
+      {
+        path: 'cnpj',
+        loadChildren: () => import('../cnpj/cnpj.module').then(m => m.CnpjModule)
+      },
+    ]
+  }
 
 
 ];

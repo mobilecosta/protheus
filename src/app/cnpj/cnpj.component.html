@@ -1,8 +1,12 @@
-<div class="po-wrapper">
-    <form [formGroup]='form'>
-        <po-input name="input" p-label="Digite seu cpnj" mask="[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}"
-            formControlName='cnpj'> </po-input>
-        <po-button p-tyoe="primary" p-label="Consultar" (click)='conultarcnpj()'>Consultar</po-button>
-    </form>
-    <router-outlet></router-outlet>
-</div>
+<po-page-detail>
+
+    <div class="po-wrapper">
+        <form [formGroup]='form'>
+            <po-input name="input" p-label="Digite seu cpnj" mask="[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}"
+                formControlName='cnpj'> </po-input>
+            <po-button p-tyoe="primary" p-label="Consultar" (click)='conultarcnpj()'>Consultar</po-button>
+        </form>
+        <router-outlet></router-outlet>
+    </div>
+
+</po-page-detail>
