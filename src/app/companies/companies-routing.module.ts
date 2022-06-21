@@ -27,4 +27,4 @@ const routes: Routes = [
     }
   ]
 })
-export class GridRoutingModule { }
+export class CompaniesRoutingModule { }

@@ -16,10 +16,6 @@ const routes: Routes = [
   {
     path: 'cnpj',
     loadChildren: () => import('./cnpj/cnpj.module').then(m => m.CnpjModule)
-  },
-  {
-    path: 'companies',
-    loadChildren: () => import('./companies/companies.module').then(m => m.CompaniesModule)
   }
 
 

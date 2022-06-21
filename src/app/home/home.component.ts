@@ -29,7 +29,7 @@ export class HomeComponent {
 		var items = [
 			{ label: 'Usuarios', link: './users', icon: 'po-icon-finance', shortLabel: 'Usuários' },
 			{ label: 'CNPJ', link: './cnpj', icon: 'po-icon po-icon-company', shortLabel: 'Consulta CNPJ' }, ,
-			{ label: 'Empresas', link: './companies', icon: 'po-icon po-icon-agro-business', shortLabel: 'Companis' },
+			{ label: 'Empresas', link: './companies', icon: 'po-icon po-icon-agro-business', shortLabel: 'Companies' },
 			{ label: 'Logout', action: this.logout.bind(this), icon: 'po-icon-users', shortLabel: 'Logout' }
 		]
 		items.forEach((value, index) => {
