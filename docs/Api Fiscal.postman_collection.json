@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "70986a37-5967-4665-b71e-4db7e4d74446",
+		"name": "Api Fiscal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1755482"
+	},
+	"item": [
+		{
+			"name": "Empresas",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.sandbox.nuvemfiscal.com.br/empresas",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sandbox",
+						"nuvemfiscal",
+						"com",
+						"br"
+					],
+					"path": [
+						"empresas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cnpj",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.sandbox.nuvemfiscal.com.br/cnpj/09266010000148",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sandbox",
+						"nuvemfiscal",
+						"com",
+						"br"
+					],
+					"path": [
+						"cnpj",
+						"09266010000148"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empresas Post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cpf_cnpj\": \"10480616000160\",\r\n  \"created_at\": \"2022-05-04T23:11:32.526Z\",\r\n  \"updated_at\": \"2022-05-04T23:11:32.526Z\",\r\n  \"inscricao_estadual\": \"626.394.828.117\",\r\n  \"inscricao_municipal\": \"188290\",\r\n  \"nome_razao_social\": \"JFR TECNOLOGIA\",\r\n  \"nome_fantasia\": \"CONCEITHO\",\r\n  \"fone\": \"11 23240346\",\r\n  \"email\": \"mobile.costa@gmail.com\",\r\n  \"endereco\": {\r\n    \"logradouro\": \"RUA COROADOS\", \r\n    \"numero\": \"315\",\r\n    \"complemento\": \"\",\r\n    \"bairro\": \"VILA PIRES\",\r\n    \"codigo_municipio\": \"3547809\",\r\n    \"cidade\": \"SANTO ANDRE\",\r\n    \"uf\": \"SP\",\r\n    \"codigo_pais\": \"0105\",\r\n    \"pais\": \"BRASIL\",\r\n    \"cep\": \"09195410\"\r\n  },\r\n  \"optante_simples_nacional\": true,\r\n  \"regime_tributacao\": 0,\r\n  \"regime_especial_tributacao\": 0,\r\n  \"incentivo_fiscal\": true,\r\n  \"incentivador_cultural\": true,\r\n  \"nfe\": {\r\n    \"ambiente\": \"homologacao\"\r\n  },\r\n  \"mdfe\": {\r\n    \"ambiente\": \"homologacao\"\r\n  },\r\n  \"cte\": {\r\n    \"ambiente\": \"homologacao\"\r\n  },\r\n  \"cte_os\": {\r\n    \"ambiente\": \"homologacao\"\r\n  },\r\n  \"nfse\": {\r\n    \"rps\": {\r\n      \"lote\": 0,\r\n      \"serie\": \"RPS\",\r\n      \"numero\": 0\r\n    },  \r\n    \"prefeitura\": {\r\n      \"login\": \"\",\r\n      \"senha\": \"\",\r\n      \"token\": \"\"\r\n    },\r\n    \"ambiente\": \"homologacao\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.sandbox.nuvemfiscal.com.br/empresas",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sandbox",
+						"nuvemfiscal",
+						"com",
+						"br"
+					],
+					"path": [
+						"empresas"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

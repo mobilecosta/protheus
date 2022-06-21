@@ -16,7 +16,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class GridListComponent implements OnInit, OnDestroy {
 
-  private readonly url: string = environment.api + 'empresas';
+  private readonly url: string = environment.api + 'users';
 
   private gridRemoveSub: Subscription;
   private gridSub: Subscription;
@@ -45,13 +45,13 @@ export class GridListComponent implements OnInit, OnDestroy {
 
   public readonly columns: Array<PoTableColumn> = [
     { property: 'id', label: 'Código' },
-    { property: 'nome_fantasia', label: 'Nome Fantasia' },
-    { property: 'nome_razao_social', label: 'Razão Social' }
+    { property: 'userName', label: 'Usuário' },
+    { property: 'displayName', label: 'Nome Completo' }
   ];
 
   public readonly disclaimerGroup: PoDisclaimerGroup = {
     change: this.onChangeDisclaimerGroup.bind(this),
-    disclaimers: [],
+    disclaimers: [ ],
     title: 'Filtros aplicados em nossa pesquisa'
   };
 
@@ -77,9 +77,9 @@ export class GridListComponent implements OnInit, OnDestroy {
   @ViewChild('table', { static: true }) table: PoTableComponent;
   authService: any;
 
-  constructor(private httpClient: HttpClient, private router: Router,
-    private poNotification: PoNotificationService,
-    private auth: AuthService) { }
+  constructor(private httpClient: HttpClient, private router: Router, 
+              private poNotification: PoNotificationService,
+              private auth: AuthService) { }
 
   ngOnInit() {
     this.order = "id";
@@ -141,7 +141,7 @@ export class GridListComponent implements OnInit, OnDestroy {
     this.loadData(params);
   }
 
-  private loadData(params: { page?: number, search?: string } = {}) {
+  private loadData(params: { page?: number, search?: string } = { }) {
     this.loading = true;
 
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
@@ -178,7 +178,7 @@ export class GridListComponent implements OnInit, OnDestroy {
 
   private onConfirmAdvancedFilter() {
     const addDisclaimers = (property: string, value: string, label: string) =>
-      value && this.disclaimerGroup.disclaimers.push({ property, value, label: `${label}: ${value}` });
+      value && this.disclaimerGroup.disclaimers.push({property, value, label: `${label}: ${value}`});
 
     this.disclaimerGroup.disclaimers = [];
 
@@ -194,7 +194,7 @@ export class GridListComponent implements OnInit, OnDestroy {
   }
 
   private onRemoveGrid(record) {
-    this.gridRemoveSub = this.httpClient.delete(`${this.url}?id=eq.${record.id}`, { headers: this.headers })
+    this.gridRemoveSub = this.httpClient.delete(`${this.url}?id=eq.${record.id}`, { headers: this.headers } )
       .subscribe(() => {
         this.poNotification.warning('Registro ' + record.id + ' apagado com sucesso.');
 
@@ -213,5 +213,4 @@ export class GridListComponent implements OnInit, OnDestroy {
 
   private onViewGrid(record) {
     this.router.navigateByUrl(`/grid/view/${record.id}`);
-  }
-}
+  }}

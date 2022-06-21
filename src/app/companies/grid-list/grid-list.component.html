@@ -1,27 +1,13 @@
-<po-page-list
-  p-title="Listagem"
-  [p-actions]="actions"
-  [p-disclaimer-group]="disclaimerGroup"
-  [p-filter]="filter">
+<po-page-list p-title="Listagem" [p-actions]="actions" [p-disclaimer-group]="disclaimerGroup" [p-filter]="filter">
 
-  <po-table #table
-    p-selectable
-    p-sort="true"
-    [p-actions]="tableActions"
-    [p-columns]="columns"
-    [p-items]="grid"
-    [p-loading]="loading"
-    [p-show-more-disabled]="!hasNext"
-    (p-sort-by)="sortBy($event)"
+  <po-table #table p-selectable p-sort="true" [p-actions]="tableActions" [p-columns]="columns" [p-items]="grid"
+    [p-loading]="loading" [p-show-more-disabled]="!hasNext" (p-sort-by)="sortBy($event)"
     (p-show-more)="showMore($event)">
   </po-table>
 
 </po-page-list>
 
-<po-modal
-  #advancedFilter
-  p-title="Busca avançada"
-  [p-primary-action]="advancedFilterPrimaryAction"
+<po-modal #advancedFilter p-title="Busca avançada" [p-primary-action]="advancedFilterPrimaryAction"
   [p-secondary-action]="advancedFilterSecondaryAction">
 
   <form #f="ngForm">

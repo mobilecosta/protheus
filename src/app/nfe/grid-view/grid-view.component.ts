@@ -15,7 +15,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class GridViewComponent implements OnDestroy, OnInit {
 
-  private readonly url: string = environment.api + '/empresas';
+  private readonly url: string = environment.api + '/nfe';
 
   private gridRemoveSub: Subscription;
   private gridSub: Subscription;

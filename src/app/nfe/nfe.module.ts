@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from './../shared/shared.module';
 
-import { CompaniesRoutingModule } from './companies-routing.module';
+import { GridRoutingModule } from './nfe-routing.module';
 import { GridFormComponent } from './grid-form/grid-form.component';
 import { GridListComponent } from './grid-list/grid-list.component';
 import { GridViewComponent } from './grid-view/grid-view.component';
@@ -16,7 +16,7 @@ import { GridViewComponent } from './grid-view/grid-view.component';
   imports: [
     SharedModule,
 
-    CompaniesRoutingModule
+    GridRoutingModule
   ]
 })
-export class CompaniesModule { }
+export class NfeModule { }

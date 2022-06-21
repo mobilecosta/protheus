@@ -12,16 +12,7 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
-  },
-  {
-    path: 'cnpj',
-    loadChildren: () => import('./cnpj/cnpj.module').then(m => m.CnpjModule)
-  },
-  {
-    path: 'companies',
-    loadChildren: () => import('./companies/companies.module').then(m => m.CompaniesModule)
   }
-
 
 ];
 
