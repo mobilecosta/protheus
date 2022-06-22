@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from './../shared/shared.module';
 
 import { CompaniesRoutingModule } from './companies-routing.module';
-import { GridFormComponent } from './grid-form/grid-form.component';
-import { GridListComponent } from './grid-list/grid-list.component';
-import { GridViewComponent } from './grid-view/grid-view.component';
+import { ClienteFormComponent } from './cliente-form/cliente-form.component';
+import { ClienteListComponent } from './cliente-list/cliente-list.component';
+import { ClienteViewComponent } from './cliente-view/cliente-view.component';
 
 @NgModule({
   declarations: [
-    GridFormComponent,
-    GridListComponent,
-    GridViewComponent
+    ClienteFormComponent,
+    ClienteListComponent,
+    ClienteViewComponent
   ],
   imports: [
     SharedModule,

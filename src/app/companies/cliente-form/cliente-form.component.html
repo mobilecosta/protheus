@@ -9,27 +9,26 @@
     <po-divider class="po-sm-12" p-label="Dados pessoais"></po-divider>
 
     <po-input class="po-md-5"
-      name="id"
-      [(ngModel)]="grid.id"
+      name="sfj_pessoa"
+      [(ngModel)]="cliente.sfj_pessoa"
       p-label="Código"
       [p-disabled]="true">
     </po-input>
 
     <po-input class="po-md-5"
-      name="userName"
-      [(ngModel)]="grid.userName"
+      name="sfj_nome"
+      [(ngModel)]="cliente.sfj_nome"
       p-required
-      p-label="Usuário">
+      p-label="Nome completo">
     </po-input>
 
     <po-input class="po-md-5"
-      name="displayName"
-      [(ngModel)]="grid.displayName"
-      p-required
-      p-label="Nome Completo">
+      name="sfj_fone"
+      [(ngModel)]="cliente.sfj_fone"
+      p-label="Telefone"
+      p-mask="(99) 99999?-9999">
     </po-input>
 
-    
   </form>
 
 </po-page-edit>

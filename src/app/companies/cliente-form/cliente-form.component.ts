@@ -7,25 +7,26 @@ import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 import { PoNotificationService, PoSelectOption } from '@po-ui/ng-components';
+import { PoStorageService } from '@po-ui/ng-storage';
 import { AuthService } from 'src/app/auth/auth.service';
 
 const actionInsert = 'insert';
 const actionUpdate = 'update';
 
 @Component({
-  selector: 'app-grid-form',
-  templateUrl: './grid-form.component.html'
+  selector: 'app-cliente-form',
+  templateUrl: './cliente-form.component.html'
 })
-export class GridFormComponent implements OnDestroy, OnInit {
+export class ClienteFormComponent implements OnDestroy, OnInit {
 
-  private readonly url: string = environment.api + '/users';
+  private readonly url: string = environment.apicompanies + '/empresas';
 
   private action: string = actionInsert;
-  private gridSub: Subscription;
+  private clienteSub: Subscription;
   private paramsSub: Subscription;
   private headers: HttpHeaders;
 
-  public grid: any = { };
+  public cliente: any = { };
 
   constructor(
     private poNotification: PoNotificationService,
@@ -37,33 +38,33 @@ export class GridFormComponent implements OnDestroy, OnInit {
   ngOnDestroy() {
     this.paramsSub.unsubscribe();
 
-    if (this.gridSub) {
-      this.gridSub.unsubscribe();
+    if (this.clienteSub) {
+      this.clienteSub.unsubscribe();
     }
   }
 
   ngOnInit() {
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
     this.paramsSub = this.route.params.subscribe(params => {
-      if (params['id']) {
-        this.loadData(params['id']);
+      if (params['nome_razao_social']) {
+        this.loadData(params['nome_razao_social']);
         this.action = actionUpdate;
       }
     });
   }
 
   cancel() {
-    this.router.navigateByUrl('/grid');
+    this.router.navigateByUrl('/empresas');
   }
 
   save() {
-    const record = {...this.grid};
+    const cliente = {...this.cliente};
 
-    this.gridSub = this.isUpdateOperation
-      ? this.httpClient.put(`${this.url}?id=eq.${record.id}`, record, { headers: this.headers } )
-        .subscribe(() => this.navigateToList('Registro atualizado com sucesso'))
-      : this.httpClient.post(this.url, record, { headers: this.headers } )
-        .subscribe(() => this.navigateToList('Registro cadastrado com sucesso'));
+    this.clienteSub = this.isUpdateOperation
+      ? this.httpClient.put(`${this.url}?nome_razao_social=eq.${cliente.nome_razao_social}`, cliente, { headers: this.headers } )
+        .subscribe(() => this.navigateToList('Cliente atualizado com sucesso'))
+      : this.httpClient.post(this.url, cliente, { headers: this.headers } )
+        .subscribe(() => this.navigateToList('Cliente cadastrado com sucesso'));
   }
 
   get isUpdateOperation() {
@@ -71,23 +72,23 @@ export class GridFormComponent implements OnDestroy, OnInit {
   }
 
   get title() {
-    return this.isUpdateOperation ? 'Atualizando' : 'Novo';
+    return this.isUpdateOperation ? 'Atualizando empresas' : 'Nova empresa';
   }
 
-  private loadData(id) {
-    this.gridSub = this.httpClient.get(`${this.url}?id=eq.${id}`, { headers: this.headers })
+  private loadData(nome_razao_social) {
+    this.clienteSub = this.httpClient.get(`${this.url}?nome_razao_social=eq.${nome_razao_social}`, { headers: this.headers })
       .pipe(
         map((cliente: any) => {
           return cliente[0];
         })
       )
-      .subscribe(response => this.grid = response);
+      .subscribe(response => this.cliente = response);
   }
 
   private navigateToList(msg: string) {
     this.poNotification.success(msg);
 
-    this.router.navigateByUrl('/grid');
+    this.router.navigateByUrl('/empresas');
   }
 
 }
