@@ -60,7 +60,7 @@ export class ClienteListComponent implements OnInit, OnDestroy {
 
   public readonly disclaimerGroup: PoDisclaimerGroup = {
     change: this.onChangeDisclaimerGroup.bind(this),
-    disclaimers: [ ],
+    disclaimers: [],
     title: 'Filtros aplicados em nossa pesquisa'
   };
 
@@ -85,14 +85,14 @@ export class ClienteListComponent implements OnInit, OnDestroy {
   public cpf_cnpj: string;
   public nome_razao_social: string;
   public fone: string;
-  
+
   @ViewChild('advancedFilter', { static: true }) advancedFilter: PoModalComponent;
   @ViewChild('table', { static: true }) table: PoTableComponent;
   authService: any;
 
-  constructor(private httpClient: HttpClient, private router: Router, 
-              private poNotification: PoNotificationService,
-              private auth: AuthService) { }
+  constructor(private httpClient: HttpClient, private router: Router,
+    private poNotification: PoNotificationService,
+    private auth: AuthService) { }
 
   ngOnInit() {
     this.order = "cpf_cnpj";
@@ -154,10 +154,11 @@ export class ClienteListComponent implements OnInit, OnDestroy {
     this.loadData(params);
   }
 
-  private loadData(params: { page?: number, search?: string } = { }) {
+  private loadData(params: { page?: number, search?: string } = {}) {
     this.loading = true;
 
-    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
+    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
     this.headers.append('Range', (this.offset - 1) + '-' + (this.limit - 1))
 
     this.clientesSub = this.httpClient.get(this.url, { headers: this.headers, params: <any>params })
@@ -168,7 +169,7 @@ export class ClienteListComponent implements OnInit, OnDestroy {
         // public cpf_cnpj: string;
         // public nome_razao_social: string;
         // public fone: string;
-        
+
       });
   }
 
@@ -195,7 +196,7 @@ export class ClienteListComponent implements OnInit, OnDestroy {
 
   private onConfirmAdvancedFilter() {
     const addDisclaimers = (property: string, value: string, label: string) =>
-      value && this.disclaimerGroup.disclaimers.push({property, value, label: `${label}: ${value}`});
+      value && this.disclaimerGroup.disclaimers.push({ property, value, label: `${label}: ${value}` });
 
     this.disclaimerGroup.disclaimers = [];
 
@@ -211,7 +212,7 @@ export class ClienteListComponent implements OnInit, OnDestroy {
   }
 
   private onRemoveCliente(cliente) {
-    this.clienteRemoveSub = this.httpClient.delete(`${this.url}?cpf_cnpj=eq.${cliente.cpf_cnpj}`, { headers: this.headers } )
+    this.clienteRemoveSub = this.httpClient.delete(`${this.url}?cpf_cnpj=eq.${cliente.cpf_cnpj}`, { headers: this.headers })
       .subscribe(() => {
         this.poNotification.warning('Cliente ' + cliente.cpf_cnpj + ' apagado com sucesso.');
 
@@ -230,4 +231,5 @@ export class ClienteListComponent implements OnInit, OnDestroy {
 
   private onViewCliente(cliente) {
     this.router.navigateByUrl(`/cliente/view/${cliente.cpf_cnpj}`);
-  }}
+  }
+}

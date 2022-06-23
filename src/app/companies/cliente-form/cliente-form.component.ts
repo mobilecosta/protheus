@@ -26,7 +26,7 @@ export class ClienteFormComponent implements OnDestroy, OnInit {
   private paramsSub: Subscription;
   private headers: HttpHeaders;
 
-  public cliente: any = { };
+  public cliente: any = {};
 
   constructor(
     private poNotification: PoNotificationService,
@@ -44,7 +44,8 @@ export class ClienteFormComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
-    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
+    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
     this.paramsSub = this.route.params.subscribe(params => {
       if (params['nome_razao_social']) {
         this.loadData(params['nome_razao_social']);
@@ -58,12 +59,12 @@ export class ClienteFormComponent implements OnDestroy, OnInit {
   }
 
   save() {
-    const cliente = {...this.cliente};
+    const cliente = { ...this.cliente };
 
     this.clienteSub = this.isUpdateOperation
-      ? this.httpClient.put(`${this.url}?nome_razao_social=eq.${cliente.nome_razao_social}`, cliente, { headers: this.headers } )
+      ? this.httpClient.put(`${this.url}?nome_razao_social=eq.${cliente.nome_razao_social}`, cliente, { headers: this.headers })
         .subscribe(() => this.navigateToList('Cliente atualizado com sucesso'))
-      : this.httpClient.post(this.url, cliente, { headers: this.headers } )
+      : this.httpClient.post(this.url, cliente, { headers: this.headers })
         .subscribe(() => this.navigateToList('Cliente cadastrado com sucesso'));
   }
 

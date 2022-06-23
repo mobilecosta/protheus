@@ -1,8 +1,8 @@
-<po-page-list p-title="Lista de clientes" [p-actions]="actions" [p-disclaimer-group]="disclaimerGroup"
+<po-page-list p-title="Lista de empresas" [p-actions]="actions" [p-disclaimer-group]="disclaimerGroup"
   [p-filter]="filter">
 
-  <po-table #table p-selectable p-sort="true" [p-actions]="tableActions" [p-columns]="columns" [p-items]="clientes"
-    [p-loading]="loading" [p-show-more-disabled]="!hasNext" (p-sort-by)="sortBy($event)"
+  <po-table #table p-selectable p-sort="true" [p-actions]="tableActions" [p-columns]="columns"
+    [p-items]="nome_razao_social" [p-loading]="loading" [p-show-more-disabled]="!hasNext" (p-sort-by)="sortBy($event)"
     (p-show-more)="showMore($event)">
   </po-table>
 
