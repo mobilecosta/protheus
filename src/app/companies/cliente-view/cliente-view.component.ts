@@ -33,6 +33,7 @@ export class ClienteViewComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
     this.paramsSub = this.route.params.subscribe(params => this.loadData(params['nome_razao_social']));
   }
 
@@ -50,11 +51,11 @@ export class ClienteViewComponent implements OnDestroy, OnInit {
   }
 
   edit() {
-    this.router.navigateByUrl(`empresas/edit/${this.cliente.nome_razao_social}`);
+    this.router.navigateByUrl(`empresas/edit/${this.cliente.cpf_cnpj}`);
   }
 
   remove() {
-    this.clienteRemoveSub = this.httpClient.delete(`${this.url}?nome_razao_social=eq.${this.cliente.nome_razao_social}`, { headers: this.headers })
+    this.clienteRemoveSub = this.httpClient.delete(`${this.url}?nome_razao_social=eq.${this.cliente.cpf_cnpj}`, { headers: this.headers })
       .subscribe(() => {
         this.poNotification.warning('Cadastro do cliente apagado com sucesso.');
 

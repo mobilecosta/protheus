@@ -204,11 +204,11 @@ export class ClienteListComponent implements OnInit, OnDestroy {
   }
 
   private onEditCliente(cliente) {
-    this.router.navigateByUrl(`/cliente/edit/${cliente.cpf_cnpj}`);
+    this.router.navigateByUrl(`/empresas/${cliente.cpf_cnpj}`);
   }
 
   private onNewCliente() {
-    this.router.navigateByUrl('/cliente/new');
+    this.router.navigateByUrl('/empresas');
   }
 
   private onRemoveCliente(cliente) {
