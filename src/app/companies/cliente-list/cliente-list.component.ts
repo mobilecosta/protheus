@@ -158,12 +158,12 @@ export class ClienteListComponent implements OnInit, OnDestroy {
     this.loading = true;
 
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
-    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
-    this.headers.append('Range', (this.offset - 1) + '-' + (this.limit - 1))
+    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
+    // this.headers.append('Range', (this.offset - 1) + '-' + (this.limit - 1))
 
     this.clientesSub = this.httpClient.get(this.url, { headers: this.headers, params: <any>params })
       .subscribe((response: any) => {
-        this.nome_razao_social = response;
+        this.nome_razao_social = response.data;
         this.hasNext = this.nome_razao_social.length == this.limit;
         this.loading = false;
         // public cpf_cnpj: string;
@@ -230,6 +230,6 @@ export class ClienteListComponent implements OnInit, OnDestroy {
   }
 
   private onViewCliente(cliente) {
-    this.router.navigateByUrl(`/cliente/view/${cliente.cpf_cnpj}`);
+    this.router.navigateByUrl(`/empresas/${cliente.cpf_cnpj}`)
   }
 }
