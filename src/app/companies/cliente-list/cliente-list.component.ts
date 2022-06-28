@@ -52,12 +52,6 @@ export class ClienteListComponent implements OnInit, OnDestroy {
     { property: 'fone', label: 'Telefone' }
   ];
 
-  // public readonly columns: Array<PoTableColumn> = [
-  //   { property: 'sfj_pessoa', label: 'Código' },
-  //   { property: 'sfj_nome', label: 'Nome' },
-  //   { property: 'sfj_fone', label: 'Telefone' }
-  // ];
-
   public readonly disclaimerGroup: PoDisclaimerGroup = {
     change: this.onChangeDisclaimerGroup.bind(this),
     disclaimers: [],
@@ -71,19 +65,16 @@ export class ClienteListComponent implements OnInit, OnDestroy {
     placeholder: 'Pesquisa rápida ...'
   };
 
-
   public readonly tableActions: Array<PoTableAction> = [
     { action: this.onViewCliente.bind(this), label: 'Visualizar' },
     { action: this.onEditCliente.bind(this), label: 'Editar' },
     { action: this.onRemoveCliente.bind(this), label: 'Remover', type: 'danger', separator: true }
   ];
 
-  // public clientes: Array<any> = [];
+  public empresasData: string;
   public hasNext: boolean = false;
   public loading: boolean = true;
-  // public sfj_nome: string;
   public cpf_cnpj: string;
-  public nome_razao_social: string;
   public fone: string;
 
   @ViewChild('advancedFilter', { static: true }) advancedFilter: PoModalComponent;
@@ -163,8 +154,8 @@ export class ClienteListComponent implements OnInit, OnDestroy {
 
     this.clientesSub = this.httpClient.get(this.url, { headers: this.headers, params: <any>params })
       .subscribe((response: any) => {
-        this.nome_razao_social = response.data;
-        this.hasNext = this.nome_razao_social.length == this.limit;
+        this.empresasData = response.data;
+        this.hasNext = this.empresasData.length == this.limit;
         this.loading = false;
         // public cpf_cnpj: string;
         // public nome_razao_social: string;
@@ -216,7 +207,7 @@ export class ClienteListComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.poNotification.warning('Cliente ' + cliente.cpf_cnpj + ' apagado com sucesso.');
 
-        this.nome_razao_social.slice(this.nome_razao_social.indexOf(cliente), 1);
+        this.empresasData.slice(this.empresasData.indexOf(cliente), 1);
       });
   }
 
