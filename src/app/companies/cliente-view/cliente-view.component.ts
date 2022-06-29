@@ -32,9 +32,9 @@ export class ClienteViewComponent implements OnDestroy, OnInit {
     private auth: AuthService) { }
 
   ngOnInit() {
-    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
-    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
-    this.paramsSub = this.route.params.subscribe(params => this.loadData(params['nome_razao_social']));
+    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
+    this.paramsSub = this.route.params.subscribe(params => this.loadData(params['cpf_cnpj']));
   }
 
   ngOnDestroy() {
