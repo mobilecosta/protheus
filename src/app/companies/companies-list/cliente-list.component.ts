@@ -168,7 +168,7 @@ export class ClienteListComponent implements OnInit, OnDestroy {
 
     this.clientesSub = this.httpClient.get(this.url, { headers: this.headers, params: <any>params })
       .subscribe((response: any) => {
-        // this.empresasData = response.data;
+        this.empresasData = response.data.nome_razao_social;
         this.enderecoData = response.data;
         // this.hasNext = this.empresasData.length == this.limit;
         // this.hasNext = this.enderecoData.length == this.limit;
@@ -212,12 +212,12 @@ export class ClienteListComponent implements OnInit, OnDestroy {
     this.advancedFilter.close();
   }
 
-  private onEditCliente(cliente) {
-    this.router.navigateByUrl(`/empresas/${cliente.cpf_cnpj}`);
+  private onEditCliente(empresas) {
+    this.router.navigateByUrl(`/edit/${empresas.cpf_cnpj}`);
   }
 
   private onNewCliente() {
-    this.router.navigateByUrl('/empresas');
+    this.router.navigateByUrl('/new');
   }
 
   private onRemoveCliente(cliente) {
@@ -232,13 +232,13 @@ export class ClienteListComponent implements OnInit, OnDestroy {
   private onRemoveClientes() {
     const selectedClientes = this.table.getSelectedRows();
 
-    selectedClientes.forEach(cliente => {
-      this.onRemoveCliente(cliente);
+    selectedClientes.forEach(empresa => {
+      this.onRemoveCliente(empresa);
     });
 
   }
 
-  private onViewCliente(cliente) {
-    this.router.navigateByUrl(`/empresas/${cliente.cpf_cnpj}`)
+  private onViewCliente(empresa) {
+    this.router.navigateByUrl(`/empresas/${empresa.cpf_cnpj}`)
   }
 }
