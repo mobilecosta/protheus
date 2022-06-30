@@ -15,9 +15,9 @@ import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-cliente-list',
-  templateUrl: './cliente-list.component.html'
+  templateUrl: './companies-list.component.html'
 })
-export class ClienteListComponent implements OnInit, OnDestroy {
+export class CompaniesListComponent implements OnInit, OnDestroy {
 
   private readonly url: string = environment.apicompanies + '/empresas';
 
@@ -168,7 +168,7 @@ export class ClienteListComponent implements OnInit, OnDestroy {
 
     this.clientesSub = this.httpClient.get(this.url, { headers: this.headers, params: <any>params })
       .subscribe((response: any) => {
-        this.empresasData = response.data.nome_razao_social;
+        // this.empresasData = response.data.nome_razao_social;
         this.enderecoData = response.data;
         // this.hasNext = this.empresasData.length == this.limit;
         // this.hasNext = this.enderecoData.length == this.limit;
@@ -239,6 +239,6 @@ export class ClienteListComponent implements OnInit, OnDestroy {
   }
 
   private onViewCliente(empresa) {
-    this.router.navigateByUrl(`/empresas/${empresa.cpf_cnpj}`)
+    this.router.navigateByUrl(`/view/${empresa.cpf_cnpj}`)
   }
 }

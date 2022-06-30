@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
   api: 'https://api.conceitho.com/api/protheus/',
+  apiNvFiscal: 'https://api.sandbox.nuvemfiscal.com.br/',
   // apicompanies: 'https://api.sandbox.nuvemfiscal.com.br',
   // padrão npm run serve 
   apicompanies: 'http://localhost:3000', 
