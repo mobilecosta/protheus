@@ -11,11 +11,11 @@ import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-cliente-view',
-  templateUrl: './cliente-view.component.html'
+  templateUrl: './companies-view.component.html'
 })
-export class ClienteViewComponent implements OnDestroy, OnInit {
+export class CompaniesViewComponent implements OnDestroy, OnInit {
 
-  private readonly url: string = environment.apicompanies + '/empresas';
+  private readonly url: string = environment.apiNvFiscal + '/empresas';
 
   private clienteRemoveSub: Subscription;
   private clienteSub: Subscription;
@@ -23,7 +23,7 @@ export class ClienteViewComponent implements OnDestroy, OnInit {
   private headers: HttpHeaders;
 
   empresa: any = {};
-
+ 
   constructor(
     private httpClient: HttpClient,
     private route: ActivatedRoute,
@@ -49,13 +49,13 @@ export class ClienteViewComponent implements OnDestroy, OnInit {
   back() {
     this.router.navigateByUrl('empresas');
   }
-
+  // botão 
   edit() {
     this.router.navigateByUrl(`empresas/edit/${this.empresa.cpf_cnpj}`);
   }
 
   remove() {
-    this.clienteRemoveSub = this.httpClient.delete(`${this.url}?nome_razao_social=eq.${this.empresa.cpf_cnpj}`, { headers: this.headers })
+    this.clienteRemoveSub = this.httpClient.delete(`${this.url}?cpf_cnpj=eq.${this.empresa.cpf_cnpj}`, { headers: this.headers })
       .subscribe(() => {
         this.poNotification.warning('Cadastro do cliente apagado com sucesso.');
 

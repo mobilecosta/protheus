@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ClienteFormComponent } from './companies-form/cliente-form.component';
-import { ClienteListComponent } from './companies-list/cliente-list.component';
-import { ClienteViewComponent } from './companies-view/cliente-view.component';
+import { CompaniesFormComponent } from './companies-form/companies-form.component';
+import { CompaniesListComponent } from './companies-list/companies-list.component';
+import { CompaniesViewComponent } from './companies-view/companies-view.component';
 
 const routes: Routes = [
-  { path: '', component: ClienteListComponent },
-  { path: 'new', component: ClienteFormComponent },
-  { path: 'view/:cpf_cnpj', component: ClienteViewComponent },
-  { path: 'edit/:cpf_cnpj', component: ClienteFormComponent }
+  { path: '', component: CompaniesListComponent },
+  { path: 'new', component: CompaniesFormComponent },
+  { path: 'view/:cpf_cnpj', component: CompaniesViewComponent },
+  { path: 'edit/:cpf_cnpj', component: CompaniesFormComponent }
 ];
 
 @NgModule({

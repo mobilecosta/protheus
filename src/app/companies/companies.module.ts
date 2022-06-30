@@ -3,15 +3,15 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
 
 import { CompaniesRoutingModule } from './companies-routing.module';
-import { ClienteFormComponent } from './companies-form/cliente-form.component';
-import { ClienteListComponent } from './companies-list/cliente-list.component';
-import { ClienteViewComponent } from './companies-view/cliente-view.component';
+import { CompaniesFormComponent } from './companies-form/companies-form.component';
+import { CompaniesListComponent } from './companies-list/companies-list.component';
+import { CompaniesViewComponent } from './companies-view/companies-view.component';
 
 @NgModule({
   declarations: [
-    ClienteFormComponent,
-    ClienteListComponent,
-    ClienteViewComponent
+    CompaniesFormComponent,
+    CompaniesListComponent,
+    CompaniesViewComponent
   ],
   imports: [
     SharedModule,
