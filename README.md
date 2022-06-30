@@ -1,5 +1,16 @@
 <h2> Interface com operações em bases de dados relacionais </h2> 
 
+
+
+Notas: 
+
+App gateway-poui com json mockup
+
+https://github.com/mobilecosta/gateway-poui/
+
+
+
+
 Este projeto tem um mecanismo de login integrado as API's de segurança do Protheus (TOTVS), além disso fornece uma estrutura para listagem dos usuarios cadastrados na base do Protheus.
 
 Implementações a serem feitas:

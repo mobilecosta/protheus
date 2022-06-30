@@ -1,30 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginService } from '../login/login.service';
-import { AuthInterceptor } from '../auth/auth-config.interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { GridFormComponent } from './grid-form/grid-form.component';
-import { GridListComponent } from './grid-list/grid-list.component';
-import { GridViewComponent } from './grid-view/grid-view.component';
+import { CompaniesFormComponent } from './companies-form/companies-form.component';
+import { CompaniesListComponent } from './companies-list/companies-list.component';
+import { CompaniesViewComponent } from './companies-view/companies-view.component';
 
 const routes: Routes = [
-  { path: '', component: GridListComponent },
-  { path: 'new', component: GridFormComponent },
-  { path: 'view/:id', component: GridViewComponent },
-  { path: 'edit/:id', component: GridFormComponent }
+  { path: '', component: CompaniesListComponent },
+  { path: 'new', component: CompaniesFormComponent },
+  { path: 'view/:cpf_cnpj', component: CompaniesViewComponent },
+  { path: 'edit/:cpf_cnpj', component: CompaniesFormComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-  providers: [
-    LoginService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
-  ]
+  exports: [RouterModule]
 })
 export class CompaniesRoutingModule { }

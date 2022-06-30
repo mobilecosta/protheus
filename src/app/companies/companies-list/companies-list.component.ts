@@ -2,24 +2,27 @@ import { environment } from 'src/environments/environment'
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { PoStorageService } from '@po-ui/ng-storage';
+
 import { Subscription } from 'rxjs';
 
 import {
-  PoDisclaimer, PoDisclaimerGroup, PoTableAction, PoTableColumn, PoTableComponent,
-  PoModalComponent, PoModalAction, PoNotificationService, PoPageFilter, PoPageAction
+  PoCheckboxGroupOption, PoRadioGroupOption, PoDisclaimer, PoDisclaimerGroup,
+  PoModalComponent, PoModalAction, PoNotificationService, PoPageFilter, PoPageAction,
+  PoTableAction, PoTableColumn, PoTableComponent
 } from '@po-ui/ng-components';
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
-  selector: 'app-grid-list',
-  templateUrl: './grid-list.component.html'
+  selector: 'app-cliente-list',
+  templateUrl: './companies-list.component.html'
 })
-export class GridListComponent implements OnInit, OnDestroy {
+export class CompaniesListComponent implements OnInit, OnDestroy {
 
-  private readonly url: string = environment.api + 'empresas';
+  private readonly url: string = environment.apicompanies + '/empresas';
 
-  private gridRemoveSub: Subscription;
-  private gridSub: Subscription;
+  private clienteRemoveSub: Subscription;
+  private clientesSub: Subscription;
   private offset: number = 1;
   private limit: number = 13;
   private order: string;
@@ -28,8 +31,8 @@ export class GridListComponent implements OnInit, OnDestroy {
   private headers: HttpHeaders;
 
   public readonly actions: Array<PoPageAction> = [
-    { action: this.onNewGrid.bind(this), label: 'Cadastrar', icon: 'po-icon-user-add' },
-    { action: this.onRemoveGrid.bind(this), label: 'Remover Registros' },
+    { action: this.onNewCliente.bind(this), label: 'Cadastrar', icon: 'po-icon-user-add' },
+    { action: this.onRemoveClientes.bind(this), label: 'Remover empresas' },
     { action: this.ngOnInit(), label: 'Pagina Inicial' }
   ];
 
@@ -44,10 +47,23 @@ export class GridListComponent implements OnInit, OnDestroy {
   };
 
   public readonly columns: Array<PoTableColumn> = [
-    { property: 'id', label: 'Código' },
-    { property: 'nome_fantasia', label: 'Nome Fantasia' },
-    { property: 'nome_razao_social', label: 'Razão Social' }
-  ];
+    { property: 'endereco_logradouro', label: 'Endereço' },
+    { property: 'endereco_numero', label: 'Numero' },
+    // { property: 'cpf_cnpj', label: 'CPF ou CNPJ' },
+    { property: 'endereco_bairro', label: 'Bairro' },
+    { property: 'endereco_cidade', label: 'Cidade' },
+    { property: 'endereco_codigo_municipio', label: 'Código município' },
+    { property: 'endereco_cidade', label: 'Cidade' },
+    { property: 'endereco_uf', label: 'UF' },
+    { property: 'endereco_codigo_pais', label: 'Código Pais' },
+    { property: 'endereco_pais', label: 'Pais' },
+    { property: 'endereco_cep', label: 'CEP' },
+  ];  
+  // public readonly columns: Array<PoTableColumn> = [
+  //   { property: 'cpf_cnpj', label: 'CPF ou CNPJ' },
+  //   { property: 'nome_razao_social', label: 'Razão social' },
+  //   { property: 'fone', label: 'Telefone' }
+  // ];
 
   public readonly disclaimerGroup: PoDisclaimerGroup = {
     change: this.onChangeDisclaimerGroup.bind(this),
@@ -62,16 +78,18 @@ export class GridListComponent implements OnInit, OnDestroy {
     placeholder: 'Pesquisa rápida ...'
   };
 
-
   public readonly tableActions: Array<PoTableAction> = [
-    { action: this.onViewGrid.bind(this), label: 'Visualizar' },
-    { action: this.onEditGrid.bind(this), label: 'Editar' },
-    { action: this.onRemoveGrid.bind(this), label: 'Remover', type: 'danger', separator: true }
+    { action: this.onViewCliente.bind(this), label: 'Visualizar' },
+    { action: this.onEditCliente.bind(this), label: 'Editar' },
+    { action: this.onRemoveCliente.bind(this), label: 'Remover', type: 'danger', separator: true }
   ];
 
-  public grid: Array<any> = [];
+  public empresasData: string;
+  public enderecoData: string;
   public hasNext: boolean = false;
   public loading: boolean = true;
+  public cpf_cnpj: string;
+  public fone: string;
 
   @ViewChild('advancedFilter', { static: true }) advancedFilter: PoModalComponent;
   @ViewChild('table', { static: true }) table: PoTableComponent;
@@ -82,7 +100,7 @@ export class GridListComponent implements OnInit, OnDestroy {
     private auth: AuthService) { }
 
   ngOnInit() {
-    this.order = "id";
+    this.order = "cpf_cnpj";
     let params: any = {
       offset: 1,
       limit: this.limit,
@@ -93,10 +111,10 @@ export class GridListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.gridSub.unsubscribe();
+    this.clientesSub.unsubscribe();
 
-    if (this.gridRemoveSub) {
-      this.gridRemoveSub.unsubscribe();
+    if (this.clienteRemoveSub) {
+      this.clienteRemoveSub.unsubscribe();
     };
   }
 
@@ -144,21 +162,30 @@ export class GridListComponent implements OnInit, OnDestroy {
   private loadData(params: { page?: number, search?: string } = {}) {
     this.loading = true;
 
-    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
-    this.headers.append('Range', (this.offset - 1) + '-' + (this.limit - 1))
+    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
+    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'esyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
+    // this.headers.append('Range', (this.offset - 1) + '-' + (this.limit - 1))
 
-    this.gridSub = this.httpClient.get(this.url, { headers: this.headers, params: <any>params })
+    this.clientesSub = this.httpClient.get(this.url, { headers: this.headers, params: <any>params })
       .subscribe((response: any) => {
-        this.grid = response.resources;
-        this.hasNext = this.grid.length == this.limit;
+        // this.empresasData = response.data.nome_razao_social;
+        this.enderecoData = response.data;
+        // this.hasNext = this.empresasData.length == this.limit;
+        // this.hasNext = this.enderecoData.length == this.limit;
         this.loading = false;
+        console.log(this.enderecoData)
+        console.log(this.empresasData)
+        // public cpf_cnpj: string;
+        // public nome_razao_social: string;
+        // public fone: string;
+
       });
   }
 
   private onActionSearch() {
     this.disclaimerGroup.disclaimers = [{
       label: `Pesquisa rápida: ${this.searchTerm}`,
-      property: 'sfj_nome',
+      property: 'cpf_cnpj',
       value: 'like.*' + this.searchTerm + '*'
     }];
   }
@@ -185,33 +212,33 @@ export class GridListComponent implements OnInit, OnDestroy {
     this.advancedFilter.close();
   }
 
-  private onEditGrid(record) {
-    this.router.navigateByUrl(`/grid/edit/${record.id}`);
+  private onEditCliente(empresas) {
+    this.router.navigateByUrl(`/edit/${empresas.cpf_cnpj}`);
   }
 
-  private onNewGrid() {
-    this.router.navigateByUrl('/grid/new');
+  private onNewCliente() {
+    this.router.navigateByUrl('/new');
   }
 
-  private onRemoveGrid(record) {
-    this.gridRemoveSub = this.httpClient.delete(`${this.url}?id=eq.${record.id}`, { headers: this.headers })
+  private onRemoveCliente(cliente) {
+    this.clienteRemoveSub = this.httpClient.delete(`${this.url}?cpf_cnpj=eq.${cliente.cpf_cnpj}`, { headers: this.headers })
       .subscribe(() => {
-        this.poNotification.warning('Registro ' + record.id + ' apagado com sucesso.');
+        this.poNotification.warning('Cliente ' + cliente.cpf_cnpj + ' apagado com sucesso.');
 
-        this.grid.splice(this.grid.indexOf(record), 1);
+        this.empresasData.slice(this.empresasData.indexOf(cliente), 1);
       });
   }
 
-  private onRemoveRegs() {
+  private onRemoveClientes() {
     const selectedClientes = this.table.getSelectedRows();
 
-    selectedClientes.forEach(cliente => {
-      this.onRemoveGrid(cliente);
+    selectedClientes.forEach(empresa => {
+      this.onRemoveCliente(empresa);
     });
 
   }
 
-  private onViewGrid(record) {
-    this.router.navigateByUrl(`/grid/view/${record.id}`);
+  private onViewCliente(empresa) {
+    this.router.navigateByUrl(`/view/${empresa.cpf_cnpj}`)
   }
 }
