@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 const actionInsert = 'insert';
 const actionUpdate = 'update';
 
+
 @Component({
   selector: 'app-cliente-form',
   templateUrl: './companies-form.component.html'
@@ -26,7 +27,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   private paramsSub: Subscription;
   private headers: HttpHeaders;
 
-  public empresa  : any = {};
+  public empresa: any = {};
 
   constructor(
     private poNotification: PoNotificationService,
@@ -55,7 +56,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   }
 
   cancel() {
-    this.router.navigateByUrl('/empresas');
+    this.router.navigateByUrl('/companies');
   }
 
   save() {
@@ -77,10 +78,10 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   }
 
   private loadData(cpf_cnpj) {
-    this.empresaSub = this.httpClient.get(`${this.url}?cpf_cnpj=eq.${cpf_cnpj}`, { headers: this.headers })
+    this.empresaSub = this.httpClient.get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
       .pipe(
         map((cliente: any) => {
-          return cliente[0];
+          return cliente;
         })
       )
       .subscribe(response => this.empresa = response);

@@ -58,7 +58,7 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
     { property: 'endereco_codigo_pais', label: 'Código Pais' },
     { property: 'endereco_pais', label: 'Pais' },
     { property: 'endereco_cep', label: 'CEP' },
-  ];  
+  ];
   // public readonly columns: Array<PoTableColumn> = [
   //   { property: 'cpf_cnpj', label: 'CPF ou CNPJ' },
   //   { property: 'nome_razao_social', label: 'Razão social' },
@@ -217,7 +217,7 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
   }
 
   private onNewCliente() {
-    this.router.navigateByUrl('/new');
+    this.router.navigateByUrl('companies/new');
   }
 
   private onRemoveCliente(cliente) {

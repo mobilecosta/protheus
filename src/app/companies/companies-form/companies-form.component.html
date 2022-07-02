@@ -4,15 +4,33 @@
 
     <po-divider class="po-sm-12" p-label="Dados Empresarial"></po-divider>
 
-    <po-input class="po-md-5" name="nome_razao_social" [(ngModel)]="empresa.cpf_cnpj" p-label="Código"
+    <po-input class="po-md-5" name="endereco_logradouro" [(ngModel)]="empresa.cpf_cnpj" p-label="Código"
       [p-disabled]="true">
     </po-input>
-
-    <po-input class="po-md-5" name="nome_razao_social" [(ngModel)]="empresa.cpf_cnpj" p-required
-      p-label="Nome completo">
+    <po-input class="po-md-5" name="endereco_logradouro" [(ngModel)]="empresa.endereco_logradouro" p-required
+      p-label="Endreco">
+    </po-input>
+    <po-input class="po-md-5" name="endereco_numero" [(ngModel)]="empresa.endereco_numero" p-required p-label="Numero">
+    </po-input>
+    <po-input class="po-md-5" name="endereco_bairro" [(ngModel)]="empresa.endereco_bairro" p-required p-label="Bairro">
+    </po-input>
+    <po-input class="po-md-5" name="endereco_cidade" [(ngModel)]="empresa.endereco_cidade" p-required p-label="Cidade">
+    </po-input>
+    <po-input class="po-md-5" name="endereco_codigo_municipio" [(ngModel)]="empresa.endereco_codigo_municipio"
+      p-required p-label="COD Municipio">
+    </po-input>
+    <po-input class="po-md-5" name="endereco_uf" [(ngModel)]="empresa.endereco_uf" p-required p-label="UF">
+    </po-input>
+    <po-input class="po-md-5" name="endereco_codigo_pais" [(ngModel)]="empresa.endereco_codigo_pais" p-required
+      p-label="COD PAIS">
+    </po-input>
+    <po-input class="po-md-5" name="endereco_pais" [(ngModel)]="empresa.endereco_pais" p-required p-label="PAIS">
+    </po-input>
+    <po-input class="po-md-5" name="endereco_cep" [(ngModel)]="empresa.endereco_cep" p-required p-label="CEP">
     </po-input>
 
-    <po-input class="po-md-5" name="sfj_fone" [(ngModel)]="empresa.cpf_cnpj" p-label="Telefone"
+
+    <po-input class="po-md-5" name="empresa.fone" [(ngModel)]="empresa.fone" p-label="Telefone"
       p-mask="(99) 99999?-9999">
     </po-input>
 
