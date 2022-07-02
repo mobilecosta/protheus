@@ -15,7 +15,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class CompaniesViewComponent implements OnDestroy, OnInit {
 
-  private readonly url: string = environment.apiNvFiscal + '/empresas';
+  private readonly url: string = environment.apicompanies + '/empresas';
 
   private clienteRemoveSub: Subscription;
   private clienteSub: Subscription;
@@ -23,7 +23,7 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
   private headers: HttpHeaders;
 
   empresa: any = {};
- 
+
   constructor(
     private httpClient: HttpClient,
     private route: ActivatedRoute,
@@ -47,7 +47,7 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
   }
 
   back() {
-    this.router.navigateByUrl('empresas');
+    this.router.navigateByUrl('companies');
   }
   // botão 
   edit() {
@@ -55,7 +55,7 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
   }
 
   remove() {
-    this.clienteRemoveSub = this.httpClient.delete(`${this.url}?cpf_cnpj=eq.${this.empresa.cpf_cnpj}`, { headers: this.headers })
+    this.clienteRemoveSub = this.httpClient.delete(`${this.url}/${this.empresa.cpf_cnpj}`, { headers: this.headers })
       .subscribe(() => {
         this.poNotification.warning('Cadastro do cliente apagado com sucesso.');
 
@@ -64,13 +64,10 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
   }
 
   private loadData(id) {
-    this.clienteSub = this.httpClient.get(`${this.url}?nome_razao_social=eq.${id}`, { headers: this.headers })
-      .pipe(
-        map((empresa: any) => {
-          return empresa[0];
-        })
-      )
-      .subscribe(response => this.empresa = response);
+    this.clienteSub = this.httpClient.get(`${this.url}/${id}`, { headers: this.headers })
+      .subscribe(response => this.empresa = response
+      );
+
   }
 
 }

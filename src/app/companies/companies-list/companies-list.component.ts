@@ -213,7 +213,7 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
   }
 
   private onEditCliente(empresas) {
-    this.router.navigateByUrl(`/edit/${empresas.cpf_cnpj}`);
+    this.router.navigateByUrl(`companies/edit/${empresas.cpf_cnpj}`);
   }
 
   private onNewCliente() {
@@ -239,6 +239,6 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
   }
 
   private onViewCliente(empresa) {
-    this.router.navigateByUrl(`/view/${empresa.cpf_cnpj}`)
+    this.router.navigateByUrl(`companies/view/${empresa.cpf_cnpj}`)
   }
 }

@@ -63,7 +63,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     const empresa = { ...this.empresa };
 
     this.empresaSub = this.isUpdateOperation
-      ? this.httpClient.put(`${this.url}?cpf_cnpj=eq.${empresa.nome_razao_social}`, empresa, { headers: this.headers })
+      ? this.httpClient.put(`${this.url}/${empresa.nome_razao_social}`, empresa, { headers: this.headers })
         .subscribe(() => this.navigateToList('Cliente atualizado com sucesso'))
       : this.httpClient.post(this.url, empresa, { headers: this.headers })
         .subscribe(() => this.navigateToList('Cliente cadastrado com sucesso'));
