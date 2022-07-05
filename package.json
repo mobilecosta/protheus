@@ -13,7 +13,6 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^10.1.6",
-    "@angular/cli": "^10.2.0",
     "@angular/common": "^10.1.6",
     "@angular/compiler": "^10.1.6",
     "@angular/core": "^10.1.6",
@@ -25,13 +24,14 @@
     "@po-ui/ng-storage": "^3.10.0",
     "@po-ui/ng-templates": "^3.10.0",
     "@totvs/po-theme": "^3.10.0",
-    "express": "^4.17.1",
+    "express": "^4.18.1",
     "fs": "^0.0.1-security",
     "jwt-decode": "^3.0.0",
+    "nvm": "^0.0.4",
     "path": "^0.12.7",
     "rxjs": "~6.6.0",
-    "ts-md5": "^1.2.7",
-    "tslib": "^2.0.3",
+    "ts-md5": "^1.2.11",
+    "tslib": "^2.4.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -39,23 +39,23 @@
     "@angular/compiler-cli": "^10.1.6",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^12.19.3",
+    "@types/node": "^12.20.55",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",
-    "karma-chrome-launcher": "~3.1.0",
+    "karma-chrome-launcher": "^3.1.1",
     "karma-coverage-istanbul-reporter": "~3.0.2",
-    "karma-jasmine": "~4.0.0",
+    "karma-jasmine": "^4.0.2",
     "karma-jasmine-html-reporter": "^1.5.0",
     "prisma": "^4.0.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "^4.0.5"
+    "typescript": "^3.9.5"
   },
   "engines": {
-    "node": "14.16.0",
-    "npm": "6.14.11"
+    "node": "14.19.0",
+    "npm": "7.5.61"
   }
 }
