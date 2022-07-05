@@ -173,8 +173,8 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
         // this.hasNext = this.empresasData.length == this.limit;
         // this.hasNext = this.enderecoData.length == this.limit;
         this.loading = false;
-        console.log(this.enderecoData)
-        console.log(this.empresasData)
+        // console.log(this.enderecoData)
+        // console.log(this.empresasData)
         // public cpf_cnpj: string;
         // public nome_razao_social: string;
         // public fone: string;
@@ -220,12 +220,12 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('companies/new');
   }
 
-  private onRemoveCliente(cliente) {
-    this.clienteRemoveSub = this.httpClient.delete(`${this.url}?cpf_cnpj=eq.${cliente.cpf_cnpj}`, { headers: this.headers })
+  private onRemoveCliente(empresa) {
+    this.clienteRemoveSub = this.httpClient.delete(`${this.url}?cpf_cnpj=eq.${empresa.cpf_cnpj}`, { headers: this.headers })
       .subscribe(() => {
-        this.poNotification.warning('Cliente ' + cliente.cpf_cnpj + ' apagado com sucesso.');
+        this.poNotification.warning('Cliente ' + empresa.cpf_cnpj + ' apagado com sucesso.');
 
-        this.empresasData.slice(this.empresasData.indexOf(cliente), 1);
+        this.empresasData.slice(this.empresasData.indexOf(empresa), 1);
       });
   }
 
@@ -239,6 +239,8 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
   }
 
   private onViewCliente(empresa) {
+    console.log(empresa);
+    
     this.router.navigateByUrl(`companies/view/${empresa.cpf_cnpj}`)
   }
 }

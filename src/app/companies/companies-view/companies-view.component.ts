@@ -34,7 +34,8 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
   ngOnInit() {
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
-    this.paramsSub = this.route.params.subscribe(params => this.loadData(params['cpf_cnpj']));
+    this.paramsSub = this.route.params.subscribe(params => this.loadData(params['cpf_cnpj'])
+      );
   }
 
   ngOnDestroy() {
@@ -63,10 +64,11 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
       });
   }
 
-  private loadData(id) {
-    this.clienteSub = this.httpClient.get(`${this.url}/${id}`, { headers: this.headers })
+  private loadData(cpf_cnpj) {
+    this.clienteSub = this.httpClient.get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
       .subscribe(response => this.empresa = response
       );
+      console.log("Resultado do log é: " + cpf_cnpj)
 
   }
 

@@ -79,11 +79,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
 
   private loadData(cpf_cnpj) {
     this.empresaSub = this.httpClient.get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
-      .pipe(
-        map((cliente: any) => {
-          return cliente;
-        })
-      )
+
       .subscribe(response => this.empresa = response);
   }
 
