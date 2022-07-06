@@ -25,6 +25,10 @@ const homeRoutes: Routes = [
         loadChildren: () => import('../nfe/nfe.module').then(m => m.NfeModule)
       },
       {
+        path: 'nfse',
+        loadChildren: () => import('../nfse/nfse.module').then(m => m.NfSeModule)
+      },
+      {
         path: 'cnpj',
         loadChildren: () => import('../cnpj/cnpj.module').then(m => m.CnpjModule)
       },

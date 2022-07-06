@@ -31,6 +31,7 @@ export class HomeComponent {
 			{ label: 'CNPJ', link: './cnpj', icon: 'po-icon po-icon-company', shortLabel: 'CNPJ' },
 			{ label: 'Empresas', link: './companies', icon: 'po-icon po-icon-agro-business', shortLabel: 'Companies' },
 			{ label: 'nfe', link: './nfe', icon: 'po-icon po-icon-sale', shortLabel: 'nfe' },
+			{ label: 'NFSe', link: './nfse', icon: 'po-icon po-icon-sale', shortLabel: 'nfse' },
 			{ label: 'Logout', action: this.logout.bind(this), icon: 'po-icon-users', shortLabel: 'Logout' }
 
 		]
@@ -49,9 +50,9 @@ export class HomeComponent {
 				res.forEach((value, index)=>{
 					//this.menus.push({label: value['label'], link: value['link'], icon: value['icon'], shortLabel: value['shortLabel']})
 				})
-			}, (res) =>{poNotification.error('API Server Error')})  
+			}, (res) =>{poNotification.error('API Server Error')})
 			* */
-		// até aqui 
+		// até aqui
 
 	}
 	logout(): void {
