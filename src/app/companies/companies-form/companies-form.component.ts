@@ -13,20 +13,21 @@ import { AuthService } from 'src/app/auth/auth.service';
 const actionInsert = 'insert';
 const actionUpdate = 'update';
 
+
 @Component({
   selector: 'app-cliente-form',
-  templateUrl: './cliente-form.component.html'
+  templateUrl: './companies-form.component.html'
 })
-export class ClienteFormComponent implements OnDestroy, OnInit {
+export class CompaniesFormComponent implements OnDestroy, OnInit {
 
   private readonly url: string = environment.apicompanies + '/empresas';
 
   private action: string = actionInsert;
-  private clienteSub: Subscription;
+  private empresaSub: Subscription;
   private paramsSub: Subscription;
   private headers: HttpHeaders;
 
-  public cliente: any = {};
+  public empresa: any = {};
 
   constructor(
     private poNotification: PoNotificationService,
@@ -38,33 +39,33 @@ export class ClienteFormComponent implements OnDestroy, OnInit {
   ngOnDestroy() {
     this.paramsSub.unsubscribe();
 
-    if (this.clienteSub) {
-      this.clienteSub.unsubscribe();
+    if (this.empresaSub) {
+      this.empresaSub.unsubscribe();
     }
   }
 
   ngOnInit() {
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
-    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
+    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
     this.paramsSub = this.route.params.subscribe(params => {
-      if (params['nome_razao_social']) {
-        this.loadData(params['nome_razao_social']);
+      if (params['cpf_cnpj']) {
+        this.loadData(params['cpf_cnpj']);
         this.action = actionUpdate;
       }
     });
   }
 
   cancel() {
-    this.router.navigateByUrl('/empresas');
+    this.router.navigateByUrl('/companies');
   }
 
   save() {
-    const cliente = { ...this.cliente };
+    const empresa = { ...this.empresa };
 
-    this.clienteSub = this.isUpdateOperation
-      ? this.httpClient.put(`${this.url}?nome_razao_social=eq.${cliente.nome_razao_social}`, cliente, { headers: this.headers })
+    this.empresaSub = this.isUpdateOperation
+      ? this.httpClient.put(`${this.url}/${empresa.nome_razao_social}`, empresa, { headers: this.headers })
         .subscribe(() => this.navigateToList('Cliente atualizado com sucesso'))
-      : this.httpClient.post(this.url, cliente, { headers: this.headers })
+      : this.httpClient.post(this.url, empresa, { headers: this.headers })
         .subscribe(() => this.navigateToList('Cliente cadastrado com sucesso'));
   }
 
@@ -76,14 +77,14 @@ export class ClienteFormComponent implements OnDestroy, OnInit {
     return this.isUpdateOperation ? 'Atualizando empresas' : 'Nova empresa';
   }
 
-  private loadData(nome_razao_social) {
-    this.clienteSub = this.httpClient.get(`${this.url}?nome_razao_social=eq.${nome_razao_social}`, { headers: this.headers })
+  private loadData(cpf_cnpj) {
+    this.empresaSub = this.httpClient.get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
       .pipe(
         map((cliente: any) => {
-          return cliente[0];
+          return cliente;
         })
       )
-      .subscribe(response => this.cliente = response);
+      .subscribe(response => this.empresa = response);
   }
 
   private navigateToList(msg: string) {

@@ -11,9 +11,9 @@ import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-cliente-view',
-  templateUrl: './cliente-view.component.html'
+  templateUrl: './companies-view.component.html'
 })
-export class ClienteViewComponent implements OnDestroy, OnInit {
+export class CompaniesViewComponent implements OnDestroy, OnInit {
 
   private readonly url: string = environment.apicompanies + '/empresas';
 
@@ -22,7 +22,7 @@ export class ClienteViewComponent implements OnDestroy, OnInit {
   private paramsSub: Subscription;
   private headers: HttpHeaders;
 
-  cliente: any = {};
+  empresa: any = {};
 
   constructor(
     private httpClient: HttpClient,
@@ -32,8 +32,9 @@ export class ClienteViewComponent implements OnDestroy, OnInit {
     private auth: AuthService) { }
 
   ngOnInit() {
-    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
-    this.paramsSub = this.route.params.subscribe(params => this.loadData(params['nome_razao_social']));
+    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
+    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
+    this.paramsSub = this.route.params.subscribe(params => this.loadData(params['cpf_cnpj']));
   }
 
   ngOnDestroy() {
@@ -46,15 +47,15 @@ export class ClienteViewComponent implements OnDestroy, OnInit {
   }
 
   back() {
-    this.router.navigateByUrl('empresas');
+    this.router.navigateByUrl('companies');
   }
-
+  // botão 
   edit() {
-    this.router.navigateByUrl(`empresas/edit/${this.cliente.nome_razao_social}`);
+    this.router.navigateByUrl(`empresas/edit/${this.empresa.cpf_cnpj}`);
   }
 
   remove() {
-    this.clienteRemoveSub = this.httpClient.delete(`${this.url}?nome_razao_social=eq.${this.cliente.nome_razao_social}`, { headers: this.headers })
+    this.clienteRemoveSub = this.httpClient.delete(`${this.url}/${this.empresa.cpf_cnpj}`, { headers: this.headers })
       .subscribe(() => {
         this.poNotification.warning('Cadastro do cliente apagado com sucesso.');
 
@@ -63,13 +64,10 @@ export class ClienteViewComponent implements OnDestroy, OnInit {
   }
 
   private loadData(id) {
-    this.clienteSub = this.httpClient.get(`${this.url}?nome_razao_social=eq.${id}`, { headers: this.headers })
-      .pipe(
-        map((cliente: any) => {
-          return cliente[0];
-        })
-      )
-      .subscribe(response => this.cliente = response);
+    this.clienteSub = this.httpClient.get(`${this.url}/${id}`, { headers: this.headers })
+      .subscribe(response => this.empresa = response
+      );
+
   }
 
 }

@@ -15,9 +15,9 @@ import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-cliente-list',
-  templateUrl: './cliente-list.component.html'
+  templateUrl: './companies-list.component.html'
 })
-export class ClienteListComponent implements OnInit, OnDestroy {
+export class CompaniesListComponent implements OnInit, OnDestroy {
 
   private readonly url: string = environment.apicompanies + '/empresas';
 
@@ -47,15 +47,22 @@ export class ClienteListComponent implements OnInit, OnDestroy {
   };
 
   public readonly columns: Array<PoTableColumn> = [
-    { property: 'cpf_cnpj', label: 'CPF ou CNPJ' },
-    { property: 'nome_razao_social', label: 'Razão social' },
-    { property: 'fone', label: 'Telefone' }
+    { property: 'endereco_logradouro', label: 'Endereço' },
+    { property: 'endereco_numero', label: 'Numero' },
+    // { property: 'cpf_cnpj', label: 'CPF ou CNPJ' },
+    { property: 'endereco_bairro', label: 'Bairro' },
+    { property: 'endereco_cidade', label: 'Cidade' },
+    { property: 'endereco_codigo_municipio', label: 'Código município' },
+    { property: 'endereco_cidade', label: 'Cidade' },
+    { property: 'endereco_uf', label: 'UF' },
+    { property: 'endereco_codigo_pais', label: 'Código Pais' },
+    { property: 'endereco_pais', label: 'Pais' },
+    { property: 'endereco_cep', label: 'CEP' },
   ];
-
   // public readonly columns: Array<PoTableColumn> = [
-  //   { property: 'sfj_pessoa', label: 'Código' },
-  //   { property: 'sfj_nome', label: 'Nome' },
-  //   { property: 'sfj_fone', label: 'Telefone' }
+  //   { property: 'cpf_cnpj', label: 'CPF ou CNPJ' },
+  //   { property: 'nome_razao_social', label: 'Razão social' },
+  //   { property: 'fone', label: 'Telefone' }
   // ];
 
   public readonly disclaimerGroup: PoDisclaimerGroup = {
@@ -71,19 +78,17 @@ export class ClienteListComponent implements OnInit, OnDestroy {
     placeholder: 'Pesquisa rápida ...'
   };
 
-
   public readonly tableActions: Array<PoTableAction> = [
     { action: this.onViewCliente.bind(this), label: 'Visualizar' },
     { action: this.onEditCliente.bind(this), label: 'Editar' },
     { action: this.onRemoveCliente.bind(this), label: 'Remover', type: 'danger', separator: true }
   ];
 
-  // public clientes: Array<any> = [];
+  public empresasData: string;
+  public enderecoData: string;
   public hasNext: boolean = false;
   public loading: boolean = true;
-  // public sfj_nome: string;
   public cpf_cnpj: string;
-  public nome_razao_social: string;
   public fone: string;
 
   @ViewChild('advancedFilter', { static: true }) advancedFilter: PoModalComponent;
@@ -158,14 +163,18 @@ export class ClienteListComponent implements OnInit, OnDestroy {
     this.loading = true;
 
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
-    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
-    this.headers.append('Range', (this.offset - 1) + '-' + (this.limit - 1))
+    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'esyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
+    // this.headers.append('Range', (this.offset - 1) + '-' + (this.limit - 1))
 
     this.clientesSub = this.httpClient.get(this.url, { headers: this.headers, params: <any>params })
       .subscribe((response: any) => {
-        this.nome_razao_social = response;
-        this.hasNext = this.nome_razao_social.length == this.limit;
+        // this.empresasData = response.data.nome_razao_social;
+        this.enderecoData = response.data;
+        // this.hasNext = this.empresasData.length == this.limit;
+        // this.hasNext = this.enderecoData.length == this.limit;
         this.loading = false;
+        console.log(this.enderecoData)
+        console.log(this.empresasData)
         // public cpf_cnpj: string;
         // public nome_razao_social: string;
         // public fone: string;
@@ -203,12 +212,12 @@ export class ClienteListComponent implements OnInit, OnDestroy {
     this.advancedFilter.close();
   }
 
-  private onEditCliente(cliente) {
-    this.router.navigateByUrl(`/cliente/edit/${cliente.cpf_cnpj}`);
+  private onEditCliente(empresas) {
+    this.router.navigateByUrl(`companies/edit/${empresas.cpf_cnpj}`);
   }
 
   private onNewCliente() {
-    this.router.navigateByUrl('/cliente/new');
+    this.router.navigateByUrl('companies/new');
   }
 
   private onRemoveCliente(cliente) {
@@ -216,20 +225,20 @@ export class ClienteListComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.poNotification.warning('Cliente ' + cliente.cpf_cnpj + ' apagado com sucesso.');
 
-        this.nome_razao_social.slice(this.nome_razao_social.indexOf(cliente), 1);
+        this.empresasData.slice(this.empresasData.indexOf(cliente), 1);
       });
   }
 
   private onRemoveClientes() {
     const selectedClientes = this.table.getSelectedRows();
 
-    selectedClientes.forEach(cliente => {
-      this.onRemoveCliente(cliente);
+    selectedClientes.forEach(empresa => {
+      this.onRemoveCliente(empresa);
     });
 
   }
 
-  private onViewCliente(cliente) {
-    this.router.navigateByUrl(`/cliente/view/${cliente.cpf_cnpj}`);
+  private onViewCliente(empresa) {
+    this.router.navigateByUrl(`companies/view/${empresa.cpf_cnpj}`)
   }
 }

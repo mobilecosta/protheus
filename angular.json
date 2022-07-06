@@ -14,9 +14,14 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
+        
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "rxjs-compat",
+              "lodash"            
+           ],
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
