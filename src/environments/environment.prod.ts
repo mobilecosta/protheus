@@ -4,4 +4,5 @@ export const environment = {
   apicnpj: 'https://brasilapi.com.br/api/cnpj/v1/',
   apimenu: '',
   apicompanies: 'http://localhost:3000',
+  apinmockup: 'http://localhost:3000',
 };
