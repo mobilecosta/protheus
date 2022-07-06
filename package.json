@@ -32,6 +32,7 @@
     "rxjs": "~6.6.0",
     "ts-md5": "^1.2.11",
     "tslib": "^2.4.0",
+    "vercel": "^26.0.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -48,11 +49,10 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "^4.0.2",
     "karma-jasmine-html-reporter": "^1.5.0",
-    "prisma": "^4.0.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.7"
   },
   "engines": {
     "node": "14.17.6",
