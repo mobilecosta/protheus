@@ -63,10 +63,12 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     const empresa = { ...this.empresa };
 
     this.empresaSub = this.isUpdateOperation
-      ? this.httpClient.put(`${this.url}/${empresa.nome_razao_social}`, empresa, { headers: this.headers })
+      ? this.httpClient.put(`${this.url}/${empresa.cpf_cnpj}`, empresa.cpf_cnpj, { headers: this.headers })
         .subscribe(() => this.navigateToList('Cliente atualizado com sucesso'))
       : this.httpClient.post(this.url, empresa, { headers: this.headers })
         .subscribe(() => this.navigateToList('Cliente cadastrado com sucesso'));
+        console.log("Cuspindo log:" + this.url + "/" +empresa.cpf_cnpj);
+        console.log("Cuspindo log:" + this.url);
   }
 
   get isUpdateOperation() {
@@ -81,12 +83,13 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     this.empresaSub = this.httpClient.get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
 
       .subscribe(response => this.empresa = response);
+      
   }
 
   private navigateToList(msg: string) {
     this.poNotification.success(msg);
 
-    this.router.navigateByUrl('/empresas');
+    this.router.navigateByUrl('/new');
   }
 
 }
