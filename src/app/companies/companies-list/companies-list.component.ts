@@ -53,15 +53,15 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
     { property: 'fone', label: 'Telefone' },
     { property: 'email', label: 'E-mail' },
     { property: 'inscricao_municipal', label: 'Insc Municipal' },
-    { property: 'endereco_logradouro', label: 'Endereço' },
-    { property: 'endereco_numero', label: 'Numero' },
-    { property: 'endereco_bairro', label: 'Bairro' },
-    { property: 'endereco_cidade', label: 'Cidade' },
-    { property: 'endereco_uf', label: 'UF' },
-    { property: 'endereco_pais', label: 'Pais' },
-    { property: 'endereco_cep', label: 'CEP' },
-    { property: 'endereco_codigo_municipio', label: 'Código município' },
-    { property: 'endereco_codigo_pais', label: 'Código Pais' },
+    // { property: 'endereco_logradouro', label: 'Endereço' },
+    // { property: 'endereco_numero', label: 'Numero' },
+    // { property: 'endereco_bairro', label: 'Bairro' },
+    // { property: 'endereco_cidade', label: 'Cidade' },
+    // { property: 'endereco_uf', label: 'UF' },
+    // { property: 'endereco_pais', label: 'Pais' },
+    // { property: 'endereco_cep', label: 'CEP' },
+    // { property: 'endereco_codigo_municipio', label: 'Código município' },
+    // { property: 'endereco_codigo_pais', label: 'Código Pais' },
   ];
 
 
@@ -158,24 +158,21 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
   }
 
   private loadData(params: { page?: number, search?: string } = {}) {
-    this.loading = true;
+    // this.loading = true;
 
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
-    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'esyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
     // this.headers.append('Range', (this.offset - 1) + '-' + (this.limit - 1))
 
-    this.clientesSub = this.httpClient.get(this.url, { headers: this.headers, params: <any>params })
+    this.clientesSub = this.httpClient.get(this.url, { headers: this.headers })
       .subscribe((response: any) => {
         // this.empresasData = response.data.nome_razao_social;
         this.enderecoData = response.data;
         // this.hasNext = this.empresasData.length == this.limit;
         // this.hasNext = this.enderecoData.length == this.limit;
         this.loading = false;
-        // console.log(this.enderecoData)
-        // console.log(this.empresasData)
-        // public cpf_cnpj: string;
-        // public nome_razao_social: string;
-        // public fone: string;
+        console.log("log de enderecoData: "+this.enderecoData)
+        console.log("LOG  de empresasDAta"+this.empresasData)
 
       });
   }

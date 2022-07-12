@@ -27,7 +27,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   private paramsSub: Subscription;
   private headers: HttpHeaders;
 
-  public empresa: any = {};
+  public empresas: any = {};
 
   constructor(
     private poNotification: PoNotificationService,
@@ -46,7 +46,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
-    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
     this.paramsSub = this.route.params.subscribe(params => {
       if (params['cpf_cnpj']) {
         this.loadData(params['cpf_cnpj']);
@@ -60,15 +60,18 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   }
 
   save() {
-    const empresa = { ...this.empresa };
+    
+    const empresa = { ...this.empresas };
 
     this.empresaSub = this.isUpdateOperation
-      ? this.httpClient.put(`${this.url}/${empresa.cpf_cnpj}`, empresa.cpf_cnpj, { headers: this.headers })
+      ? this.httpClient.put(`${this.url}/${empresa.cpf_cnpj}`, { headers: this.headers })
         .subscribe(() => this.navigateToList('Cliente atualizado com sucesso'))
-      : this.httpClient.post(this.url, empresa, { headers: this.headers })
+      : this.httpClient.post(this.url, { headers: this.headers })
         .subscribe(() => this.navigateToList('Cliente cadastrado com sucesso'));
         console.log("Cuspindo log:" + this.url + "/" +empresa.cpf_cnpj);
         console.log("Cuspindo log:" + this.url);
+        console.log(this.headers );
+        
   }
 
   get isUpdateOperation() {
@@ -79,10 +82,10 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     return this.isUpdateOperation ? 'Atualizando empresas' : 'Nova empresa';
   }
 
-  private loadData(cpf_cnpj) {
+  private loadData(cpf_cnpj: any) {
     this.empresaSub = this.httpClient.get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
-
-      .subscribe(response => this.empresa = response);
+        
+      .subscribe(response => this.empresas = response);
       
   }
 
