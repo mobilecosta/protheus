@@ -173,6 +173,8 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
         this.loading = false;
         console.log("log de enderecoData: "+this.enderecoData)
         console.log("LOG  de empresasDAta"+this.empresasData)
+        console.log(this.headers );
+        
 
       });
   }
