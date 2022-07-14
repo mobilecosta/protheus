@@ -71,7 +71,16 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
 
       let body = 
         {
-          "nome_fantasia": `${empresa.nome_fantasia}`
+          // campos obrigatório."
+          "cpf_cnpj": `${empresa.cpf_cnpj}`,
+          "nome_razao_social": `${empresa.nome_razao_social}`,
+          "nome_fantasia": `${empresa.nome_fantasia}`,
+          "email": `${empresa.email}`,
+          "logradouro": `${empresa.logradouro}`,
+          "numero": `${empresa.numero}`,
+          "bairro": `${empresa.bairro}`,
+          "uf": `${empresa.uf}`,
+          "cep": `${empresa.cep}`,
       }
     // const empresa = { ...this.empresas };
     

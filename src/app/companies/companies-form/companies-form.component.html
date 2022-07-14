@@ -11,15 +11,13 @@
       p-label="Nome Fantasia">
     </po-input>
     <po-input class="po-md-5" name="cpf_cnpj" [(ngModel)]="empresas.cpf_cnpj" p-required p-label="CNPJ"
-      p-mask="99.999.999/9999-99" [p-disabled]="false">
+      p-mask="99.999.999/9999-99">
     </po-input>
     <po-input class="po-md-5" name="email" [(ngModel)]="empresas.email" p-required p-label="Email">
     </po-input>
     <po-input class="po-md-5" name="empresa.fone" [(ngModel)]="empresas.fone" p-label="Telefone"
       p-mask="(99) 99999?-9999">
     </po-input>
-
-    <po-divider class="po-sm-12" p-label="Endereço"></po-divider>
 
     <po-input class="po-md-5" name="endereco_logradouro" [(ngModel)]="empresas.endereco_logradouro" p-required
       p-label="Logradouro">
