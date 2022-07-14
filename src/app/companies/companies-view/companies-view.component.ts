@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
-import { PoNotificationService } from '@po-ui/ng-components';
+import { PoNotificationService, PoDividerModule } from '@po-ui/ng-components';
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
@@ -15,7 +15,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class CompaniesViewComponent implements OnDestroy, OnInit {
 
-  private readonly url: string = environment.apinmockup + '/empresas';
+  private readonly url: string = environment.apiNS + '/empresas';
 
   private clienteRemoveSub: Subscription;
   private clienteSub: Subscription;
@@ -33,7 +33,7 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
-    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
     this.paramsSub = this.route.params.subscribe(params => this.loadData(params['cpf_cnpj'])
       );
   }

@@ -20,6 +20,7 @@ export class AuthService {
 
   getToken() {
     return localStorage.getItem('access_token');
+    
   }
 
   get isLoggedIn(): boolean {

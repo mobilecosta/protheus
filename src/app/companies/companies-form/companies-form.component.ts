@@ -20,14 +20,14 @@ const actionUpdate = 'update';
 })
 export class CompaniesFormComponent implements OnDestroy, OnInit {
 
-  private readonly url: string = environment.apinmockup + '/empresas';
+  private readonly url: string = environment.apiNS + '/empresas';
 
   private action: string = actionInsert;
   private empresaSub: Subscription;
   private paramsSub: Subscription;
   private headers: HttpHeaders;
 
-  public empresa: any = {};
+  public empresas: any = {};
 
   constructor(
     private poNotification: PoNotificationService,
@@ -46,11 +46,17 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
-    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
-    this.paramsSub = this.route.params.subscribe(params => {
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
+     this.paramsSub = this.route.params.subscribe(params => {
       if (params['cpf_cnpj']) {
         this.loadData(params['cpf_cnpj']);
         this.action = actionUpdate;
+
+
+        // console.log(this.headers)
+
+
+
       }
     });
   }
@@ -60,33 +66,58 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   }
 
   save() {
-    const empresa = { ...this.empresa };
+    const empresa = { ...this.empresas };
+    
 
-    this.empresaSub = this.isUpdateOperation
-      ? this.httpClient.put(`${this.url}/${empresa.nome_razao_social}`, empresa, { headers: this.headers })
+      let body = 
+        {
+          // campos obrigatório."
+          "cpf_cnpj": `${empresa.cpf_cnpj}`,
+          "nome_razao_social": `${empresa.nome_razao_social}`,
+          "nome_fantasia": `${empresa.nome_fantasia}`,
+          "email": `${empresa.email}`,
+          "logradouro": `${empresa.logradouro}`,
+          "numero": `${empresa.numero}`,
+          "bairro": `${empresa.bairro}`,
+          "uf": `${empresa.uf}`,
+          "cep": `${empresa.cep}`,
+      }
+    // const empresa = { ...this.empresas };
+    
+         console.log(empresa.cpf_cnpj ); 
+        this.empresaSub = this.isUpdateOperation
+        
+      ? this.httpClient.patch(`${this.url}/${empresa.cpf_cnpj}`, body, {headers: this.headers})
         .subscribe(() => this.navigateToList('Cliente atualizado com sucesso'))
-      : this.httpClient.post(this.url, empresa, { headers: this.headers })
+      : this.httpClient.post(`${this.url}`, body,  {headers: this.headers})
         .subscribe(() => this.navigateToList('Cliente cadastrado com sucesso'));
+
+        //logs
+        // console.log("---log de put:" + this.url + "/" + empresa.cpf_cnpj);
+        // console.log("---log de post:" + this.url);
+        // console.log(this.headers );
+        
   }
 
   get isUpdateOperation() {
     return this.action === actionUpdate;
   }
 
-  get title() {
+  get cpf_cnpj() {
     return this.isUpdateOperation ? 'Atualizando empresas' : 'Nova empresa';
   }
 
-  private loadData(cpf_cnpj) {
+  private loadData(cpf_cnpj: any) {
     this.empresaSub = this.httpClient.get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
-
-      .subscribe(response => this.empresa = response);
+        
+      .subscribe(response => this.empresas = response);
+      
   }
 
   private navigateToList(msg: string) {
     this.poNotification.success(msg);
 
-    this.router.navigateByUrl('/empresas');
+    this.router.navigateByUrl('/new');
   }
 
 }
