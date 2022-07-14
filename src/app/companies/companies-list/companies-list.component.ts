@@ -236,7 +236,6 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
   }
 
   private onViewCliente(empresa) {
-    console.log(empresa);
     
     this.router.navigateByUrl(`companies/view/${empresa.cpf_cnpj}`)
   }

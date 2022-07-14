@@ -53,7 +53,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
         this.action = actionUpdate;
 
 
-        console.log(this.headers)
+        // console.log(this.headers)
 
 
 
@@ -66,22 +66,27 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   }
 
   save() {
- 
-    
     const empresa = { ...this.empresas };
     
+
+      let body = 
+        {
+          "nome_fantasia": `${empresa.nome_fantasia}`
+      }
+    // const empresa = { ...this.empresas };
     
+         console.log(empresa.cpf_cnpj ); 
         this.empresaSub = this.isUpdateOperation
         
-      ? this.httpClient.put<object>(`${this.url}/${empresa.cpf_cnpj}`, { headers: this.headers })
+      ? this.httpClient.patch(`${this.url}/${empresa.cpf_cnpj}`, body, {headers: this.headers})
         .subscribe(() => this.navigateToList('Cliente atualizado com sucesso'))
-      : this.httpClient.post(`${this.url}/${empresa.cpf_cnpj}`, { headers: this.headers })
+      : this.httpClient.post(`${this.url}`, body,  {headers: this.headers})
         .subscribe(() => this.navigateToList('Cliente cadastrado com sucesso'));
 
         //logs
         // console.log("---log de put:" + this.url + "/" + empresa.cpf_cnpj);
         // console.log("---log de post:" + this.url);
-        console.log(this.headers );
+        // console.log(this.headers );
         
   }
 
