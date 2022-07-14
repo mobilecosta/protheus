@@ -20,7 +20,7 @@ const actionUpdate = 'update';
 })
 export class CompaniesFormComponent implements OnDestroy, OnInit {
 
-  private readonly url: string = environment.apinmockup + '/empresas';
+  private readonly url: string = environment.apiNS + '/empresas';
 
   private action: string = actionInsert;
   private empresaSub: Subscription;

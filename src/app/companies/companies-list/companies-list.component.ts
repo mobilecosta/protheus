@@ -19,7 +19,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class CompaniesListComponent implements OnInit, OnDestroy {
 
-  private readonly url: string = environment.apinmockup + '/empresas';
+  private readonly url: string = environment.apiNS + '/empresas';
 
   private clienteRemoveSub: Subscription;
   private clientesSub: Subscription;
