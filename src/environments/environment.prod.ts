@@ -4,4 +4,6 @@ export const environment = {
   apicnpj: 'https://brasilapi.com.br/api/cnpj/v1/',
   apimenu: '',
   apinmockup: 'http://localhost:3000',
+  apiNS: 'https://api.sandbox.nuvemfiscal.com.br',
+  
 };
