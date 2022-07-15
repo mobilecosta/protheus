@@ -23,6 +23,7 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
   private headers: HttpHeaders;
 
   empresa: any = {};
+  endereco: object;
 
   constructor(
     private httpClient: HttpClient,
@@ -66,9 +67,11 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
 
   private loadData(cpf_cnpj) {
     this.clienteSub = this.httpClient.get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
-      .subscribe(response => this.empresa = response
-      );
-      console.log("Resultado do log é: " + cpf_cnpj)
+      .subscribe(response => this.empresa = response);
+      
+      // console.log("Resultado do log é: " + cpf_cnpj)
+      
+
 
   }
 
