@@ -9,20 +9,6 @@ import { Subscription } from 'rxjs';
 import { PoNotificationService, PoDividerModule } from '@po-ui/ng-components';
 import { AuthService } from 'src/app/auth/auth.service';
 
-
-interface Empresa {
-  cpf_cnpj: string,
-  inscricao_estadual: string,
-  inscricao_municipal: string,
-  nome_razao_social: string,
-  nome_fantasia: string,
-  fone: string,
-  email: string,
-
-  endereco: Endereco
-
-}
-
 interface Endereco {
   logradouro: string,
   numero: string,
@@ -35,6 +21,21 @@ interface Endereco {
   pais: string,
   cep: string
 }
+
+interface Empresa {
+ 
+  cpf_cnpj: string,
+  inscricao_estadual: string,
+  inscricao_municipal: string,
+  nome_razao_social: string,
+  nome_fantasia: string,
+  fone: string,
+  email: string,
+
+  endereco: Endereco
+}
+
+
 
 @Component({
   selector: 'app-cliente-view',
@@ -94,7 +95,7 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
 
   private loadData(cpf_cnpj) {
     this.clienteSub = this.httpClient.get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
-      .subscribe((response: {endereco: Endereco}) => {
+      .subscribe((response: Empresa) => {
             this.empresa = response;
             this.endereco = response.endereco;
             
