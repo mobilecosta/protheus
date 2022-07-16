@@ -9,10 +9,38 @@ import { Subscription } from 'rxjs';
 import { PoNotificationService, PoDividerModule } from '@po-ui/ng-components';
 import { AuthService } from 'src/app/auth/auth.service';
 
+
+interface Empresa {
+  cpf_cnpj: string,
+  inscricao_estadual: string,
+  inscricao_municipal: string,
+  nome_razao_social: string,
+  nome_fantasia: string,
+  fone: string,
+  email: string,
+
+  endereco: Endereco
+
+}
+
+interface Endereco {
+  logradouro: string,
+  numero: string,
+  complemento: string,
+  bairro: string,
+  codigo_municipio: string,
+  cidade: string,
+  uf: string,
+  codigo_pais: string,
+  pais: string,
+  cep: string
+}
+
 @Component({
   selector: 'app-cliente-view',
   templateUrl: './companies-view.component.html'
 })
+
 export class CompaniesViewComponent implements OnDestroy, OnInit {
 
   private readonly url: string = environment.apiNS + '/empresas';
@@ -23,6 +51,7 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
   private headers: HttpHeaders;
 
   empresa: any = {};
+  endereco: Endereco = {} as Endereco;
 
   constructor(
     private httpClient: HttpClient,
@@ -59,16 +88,21 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
     this.clienteRemoveSub = this.httpClient.delete(`${this.url}/${this.empresa.cpf_cnpj}`, { headers: this.headers })
       .subscribe(() => {
         this.poNotification.warning('Cadastro do cliente apagado com sucesso.');
-
         this.back();
       });
   }
 
   private loadData(cpf_cnpj) {
     this.clienteSub = this.httpClient.get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
-      .subscribe(response => this.empresa = response
+      .subscribe((response: any) => {
+            this.empresa = response;
+            this.endereco = response.endereco;
+            console.log(response);
+            
+            
+      }
+  
       );
-      console.log("Resultado do log é: " + cpf_cnpj)
 
   }
 
