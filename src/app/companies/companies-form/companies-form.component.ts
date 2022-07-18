@@ -14,6 +14,34 @@ const actionInsert = 'insert';
 const actionUpdate = 'update';
 
 
+interface Endereco {
+  logradouro: string,
+  numero: string,
+  complemento: string,
+  bairro: string,
+  codigo_municipio: string,
+  cidade: string,
+  uf: string,
+  codigo_pais: string,
+  pais: string,
+  cep: string
+}
+
+interface Empresa {
+ 
+  cpf_cnpj: string,
+  inscricao_estadual: string,
+  inscricao_municipal: string,
+  nome_razao_social: string,
+  nome_fantasia: string,
+  fone: string,
+  email: string,
+
+  endereco: Endereco
+}
+
+
+
 @Component({
   selector: 'app-cliente-form',
   templateUrl: './companies-form.component.html'
@@ -27,7 +55,10 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   private paramsSub: Subscription;
   private headers: HttpHeaders;
 
-  public empresas: any = {};
+
+  empresa: any = {};
+  endereco: Endereco = {} as Endereco;
+
 
   constructor(
     private poNotification: PoNotificationService,
@@ -66,7 +97,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   }
 
   save() {
-    const empresa = { ...this.empresas };
+    const empresa = { ...this.empresa };
     
 
       let body = 
@@ -80,7 +111,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
           "numero": `${empresa.numero}`,
           "bairro": `${empresa.bairro}`,
           "uf": `${empresa.uf}`,
-          "cep": `${empresa.cep}`,
+          "cep": `${this.endereco.cep}`,
       }
     // const empresa = { ...this.empresas };
     
@@ -107,10 +138,14 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     return this.isUpdateOperation ? 'Atualizando empresas' : 'Nova empresa';
   }
 
-  private loadData(cpf_cnpj: any) {
+  private loadData(cpf_cnpj: string) {
     this.empresaSub = this.httpClient.get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
-        
-      .subscribe(response => this.empresas = response);
+    .subscribe((response: Empresa) => {
+      this.empresa = response;
+      this.endereco = response.endereco;
+  });
+      
+      
       
   }
 

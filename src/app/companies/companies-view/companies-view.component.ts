@@ -82,7 +82,7 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
   }
   // botão 
   edit() {
-    this.router.navigateByUrl(`empresas/edit/${this.empresa.cpf_cnpj}`);
+    this.router.navigateByUrl(`companies/edit/${this.empresa.cpf_cnpj}`);
   }
 
   remove() {
