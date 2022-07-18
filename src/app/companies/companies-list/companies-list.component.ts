@@ -171,7 +171,6 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
         // this.hasNext = this.empresasData.length == this.limit;
         // this.hasNext = this.enderecoData.length == this.limit;
         this.loading = false;
-        // console.log(this.enderecoData[0].endereco.bairro)
         
 
       });
@@ -216,7 +215,7 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
   }
 
   private onRemoveCliente(empresa) {
-    this.clienteRemoveSub = this.httpClient.delete(`${this.url}?cpf_cnpj=eq.${empresa.cpf_cnpj}`, { headers: this.headers })
+    this.clienteRemoveSub = this.httpClient.delete(`${this.url}/${empresa.cpf_cnpj}`, { headers: this.headers })
       .subscribe(() => {
         this.poNotification.warning('Cliente ' + empresa.cpf_cnpj + ' apagado com sucesso.');
 
