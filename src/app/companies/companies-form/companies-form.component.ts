@@ -82,12 +82,6 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
       if (params['cpf_cnpj']) {
         this.loadData(params['cpf_cnpj']);
         this.action = actionUpdate;
-
-
-        // console.log(this.headers)
-
-
-
       }
     });
   }
@@ -107,6 +101,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
           "nome_razao_social": `${empresa.nome_razao_social}`,
           "nome_fantasia": `${empresa.nome_fantasia}`,
           "email": `${empresa.email}`,
+          "inscricao_municipal": `${empresa.inscricao_municipal}`,
           "endereco": {
                       "logradouro": `${this.endereco.logradouro}`,
                       "numero": `${this.endereco.numero}`,
@@ -118,21 +113,11 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
           },
 
       }
-    // const empresa = { ...this.empresas };
-    
-         console.log(this.endereco.codigo_municipio); 
-        this.empresaSub = this.isUpdateOperation
-        
+        this.empresaSub = this.isUpdateOperation        
       ? this.httpClient.patch(`${this.url}/${empresa.cpf_cnpj}`, body, {headers: this.headers})
         .subscribe(() => this.navigateToList('Cliente atualizado com sucesso'))
       : this.httpClient.post(`${this.url}`, body,  {headers: this.headers})
         .subscribe(() => this.navigateToList('Cliente cadastrado com sucesso'));
-
-        //logs
-        // console.log("---log de put:" + this.url + "/" + empresa.cpf_cnpj);
-        // console.log("---log de post:" + this.url);
-        // console.log(this.headers );
-        
   }
 
   get isUpdateOperation() {
@@ -148,10 +133,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     .subscribe((response: Empresa) => {
       this.empresa = response;
       this.endereco = response.endereco;
-  });
-      
-      
-      
+  }); 
   }
 
   private navigateToList(msg: string) {
