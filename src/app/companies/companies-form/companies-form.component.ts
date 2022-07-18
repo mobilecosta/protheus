@@ -107,15 +107,20 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
           "nome_razao_social": `${empresa.nome_razao_social}`,
           "nome_fantasia": `${empresa.nome_fantasia}`,
           "email": `${empresa.email}`,
-          "logradouro": `${empresa.logradouro}`,
-          "numero": `${empresa.numero}`,
-          "bairro": `${empresa.bairro}`,
-          "uf": `${empresa.uf}`,
-          "cep": `${this.endereco.cep}`,
+          "endereco": {
+                      "logradouro": `${this.endereco.logradouro}`,
+                      "numero": `${this.endereco.numero}`,
+                      "bairro": `${this.endereco.bairro}`,
+                      "cidade": `${this.endereco.cidade}`,
+                      "codigo_municipio": `${this.endereco.codigo_municipio}`,
+                      "uf": `${this.endereco.uf}`,
+                      "cep": `${this.endereco.cep}`,
+          },
+
       }
     // const empresa = { ...this.empresas };
     
-         console.log(empresa.cpf_cnpj ); 
+         console.log(this.endereco.codigo_municipio); 
         this.empresaSub = this.isUpdateOperation
         
       ? this.httpClient.patch(`${this.url}/${empresa.cpf_cnpj}`, body, {headers: this.headers})
