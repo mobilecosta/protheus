@@ -171,7 +171,6 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
         // this.hasNext = this.empresasData.length == this.limit;
         // this.hasNext = this.enderecoData.length == this.limit;
         this.loading = false;
-        // console.log(this.enderecoData[0].endereco.bairro)
         
 
       });
