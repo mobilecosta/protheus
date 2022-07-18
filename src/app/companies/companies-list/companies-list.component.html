@@ -1,7 +1,7 @@
 <po-page-list p-title="Lista de empresas" [p-actions]="actions" [p-disclaimer-group]="disclaimerGroup"
   [p-filter]="filter">
 
-  <po-table #table p-selectable p-sort="true" [p-actions]="tableActions" [p-columns]="columns" [p-items]="empresasData"
+  <po-table #table p-selectable p-sort="true" [p-actions]="tableActions" [p-columns]="columns" [p-items]="enderecoData"
     [p-loading]="loading" [p-show-more-disabled]="!hasNext" (p-sort-by)="sortBy($event)"
     (p-show-more)="showMore($event)">
   </po-table>

@@ -85,9 +85,7 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
   ];
 
   public empresasData: string;
-  public enderecoData: object;
-  public teste: string;
-
+  public enderecoData: string;
   public hasNext: boolean = false;
   public loading: boolean = true;
 
@@ -169,16 +167,13 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
     this.clientesSub = this.httpClient.get(this.url, { headers: this.headers })
       .subscribe((response: any) => {
         // this.empresasData = response.data.nome_razao_social;
-        this.empresasData = response.data;
-        this.teste = response.data[0].endereco;
+        this.enderecoData = response.data;
         // this.hasNext = this.empresasData.length == this.limit;
         // this.hasNext = this.enderecoData.length == this.limit;
         this.loading = false;
-        console.log(this.teste);
-        
-        // console.log("log de enderecoData: "+this.enderecoData)
-        // console.log("LOG  de empresasDAta"+this.empresasData)
-        // console.log(this.headers );
+        console.log("log de enderecoData: "+this.enderecoData)
+        console.log("LOG  de empresasDAta"+this.empresasData)
+        console.log(this.headers );
         
 
       });
