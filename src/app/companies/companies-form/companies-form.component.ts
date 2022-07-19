@@ -3,12 +3,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { map } from 'rxjs/operators';
+import { map, subscribeOn } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 import { PoNotificationService, PoSelectOption } from '@po-ui/ng-components';
 import { PoStorageService } from '@po-ui/ng-storage';
 import { AuthService } from 'src/app/auth/auth.service';
+import { promise } from 'protractor';
 
 const actionInsert = 'insert';
 const actionUpdate = 'update';
@@ -60,6 +61,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   empresa: any = {};
   endereco: Endereco = {} as Endereco;
   statusRes: string = "";
+  continue: boolean;
 
 
   constructor(
@@ -88,11 +90,15 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     });
   }
 
+  private onNewCliente() {
+    this.router.navigateByUrl('companies/new');
+  }
+
   cancel() {
     this.router.navigateByUrl('/companies');
   }
 
-  save() {
+  async save() {
     const empresa = { ...this.empresa };
       let body = 
         {
@@ -115,21 +121,18 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
       }
         this.empresaSub = this.isUpdateOperation        
       ? this.httpClient.patch(`${this.url}/${empresa.cpf_cnpj}`, body, {headers: this.headers})
-        .subscribe(() => this.navigateToList('Cliente atualizado com sucesso'))
+        .subscribe(() => this.navigateToList('Empresa atualizada com sucesso'))
         : this.httpClient.post(`${this.url}`, body,  {headers: this.headers})
-        .subscribe(() => this.navigateToList('Cliente cadastrado com sucesso'));
-        
-        this.cancel()
-        
-        
+        .subscribe(() => this.navigateToList('Empresa cadastrada com sucesso'))
+       
   }
 
   get isUpdateOperation() {
-    return this.action === actionUpdate;
+    return this.action === actionUpdate
   }
 
   get cpf_cnpj() {
-    return this.isUpdateOperation ? 'Atualizando empresas' : 'Nova empresa';
+    return this.isUpdateOperation ? 'Atualizando empresa' : 'Nova empresa';
   }
 
   private loadData(cpf_cnpj: string) {
@@ -137,18 +140,15 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     .subscribe((response: Empresa) => {
       this.empresa = response;
       this.endereco = response.endereco;
-      this.statusRes = response.status;
-      console.log(this.statusRes);
-      console.log("tete");
       
   }); 
   
   }
-
+  
   private navigateToList(msg: string) {
     this.poNotification.success(msg);
-
-    this.router.navigateByUrl('/new');
+    this.continue = confirm("Deseja cadastrar outra empresa?")
+    this.continue === true ? window.location.reload() : this.cancel()
   }
 
 }
