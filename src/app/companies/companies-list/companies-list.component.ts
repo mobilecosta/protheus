@@ -214,13 +214,19 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('companies/new');
   }
 
+  private locationreload() {
+    location.reload();      
+    }
+
   private onRemoveCliente(empresa) {
     this.clienteRemoveSub = this.httpClient.delete(`${this.url}/${empresa.cpf_cnpj}`, { headers: this.headers })
-      .subscribe(() => {
+      .subscribe(() => {  
         this.poNotification.warning('Cliente ' + empresa.cpf_cnpj + ' apagado com sucesso.');
+        this.locationreload();
 
         this.empresasData.slice(this.empresasData.indexOf(empresa), 1);
       });
+      
   }
 
   private onRemoveClientes() {
