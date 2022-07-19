@@ -3,15 +3,45 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { map } from 'rxjs/operators';
+import { map, subscribeOn } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 import { PoNotificationService, PoSelectOption } from '@po-ui/ng-components';
 import { PoStorageService } from '@po-ui/ng-storage';
 import { AuthService } from 'src/app/auth/auth.service';
+import { promise } from 'protractor';
 
 const actionInsert = 'insert';
 const actionUpdate = 'update';
+
+
+interface Endereco {
+  logradouro: string,
+  numero: string,
+  complemento: string,
+  bairro: string,
+  codigo_municipio: string,
+  cidade: string,
+  uf: string,
+  codigo_pais: string,
+  pais: string,
+  cep: string
+}
+
+interface Empresa {
+ 
+  cpf_cnpj: string,
+  inscricao_estadual: string,
+  inscricao_municipal: string,
+  nome_razao_social: string,
+  nome_fantasia: string,
+  fone: string,
+  email: string,
+  status: string,
+
+  endereco: Endereco
+}
+
 
 
 @Component({
@@ -27,7 +57,12 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   private paramsSub: Subscription;
   private headers: HttpHeaders;
 
-  public empresas: any = {};
+
+  empresa: any = {};
+  endereco: Endereco = {} as Endereco;
+  statusRes: string = "";
+  continue: boolean;
+
 
   constructor(
     private poNotification: PoNotificationService,
@@ -51,24 +86,20 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
       if (params['cpf_cnpj']) {
         this.loadData(params['cpf_cnpj']);
         this.action = actionUpdate;
-
-
-        // console.log(this.headers)
-
-
-
       }
     });
+  }
+
+  private onNewCliente() {
+    this.router.navigateByUrl('companies/new');
   }
 
   cancel() {
     this.router.navigateByUrl('/companies');
   }
 
-  save() {
-    const empresa = { ...this.empresas };
-    
-
+  async save() {
+    const empresa = { ...this.empresa };
       let body = 
         {
           // campos obrigatório."
@@ -76,48 +107,48 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
           "nome_razao_social": `${empresa.nome_razao_social}`,
           "nome_fantasia": `${empresa.nome_fantasia}`,
           "email": `${empresa.email}`,
-          "logradouro": `${empresa.logradouro}`,
-          "numero": `${empresa.numero}`,
-          "bairro": `${empresa.bairro}`,
-          "uf": `${empresa.uf}`,
-          "cep": `${empresa.cep}`,
-      }
-    // const empresa = { ...this.empresas };
-    
-         console.log(empresa.cpf_cnpj ); 
-        this.empresaSub = this.isUpdateOperation
-        
-      ? this.httpClient.patch(`${this.url}/${empresa.cpf_cnpj}`, body, {headers: this.headers})
-        .subscribe(() => this.navigateToList('Cliente atualizado com sucesso'))
-      : this.httpClient.post(`${this.url}`, body,  {headers: this.headers})
-        .subscribe(() => this.navigateToList('Cliente cadastrado com sucesso'));
+          "inscricao_municipal": `${empresa.inscricao_municipal}`,
+          "endereco": {
+                      "logradouro": `${this.endereco.logradouro}`,
+                      "numero": `${this.endereco.numero}`,
+                      "bairro": `${this.endereco.bairro}`,
+                      "cidade": `${this.endereco.cidade}`,
+                      "codigo_municipio": `${this.endereco.codigo_municipio}`,
+                      "uf": `${this.endereco.uf}`,
+                      "cep": `${this.endereco.cep}`,
+          },
 
-        //logs
-        // console.log("---log de put:" + this.url + "/" + empresa.cpf_cnpj);
-        // console.log("---log de post:" + this.url);
-        // console.log(this.headers );
-        
+      }
+        this.empresaSub = this.isUpdateOperation        
+      ? this.httpClient.patch(`${this.url}/${empresa.cpf_cnpj}`, body, {headers: this.headers})
+        .subscribe(() => this.navigateToList('Empresa atualizada com sucesso'))
+        : this.httpClient.post(`${this.url}`, body,  {headers: this.headers})
+        .subscribe(() => this.navigateToList('Empresa cadastrada com sucesso'))
+       
   }
 
   get isUpdateOperation() {
-    return this.action === actionUpdate;
+    return this.action === actionUpdate
   }
 
   get cpf_cnpj() {
-    return this.isUpdateOperation ? 'Atualizando empresas' : 'Nova empresa';
+    return this.isUpdateOperation ? 'Atualizando empresa' : 'Nova empresa';
   }
 
-  private loadData(cpf_cnpj: any) {
+  private loadData(cpf_cnpj: string) {
     this.empresaSub = this.httpClient.get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
-        
-      .subscribe(response => this.empresas = response);
+    .subscribe((response: Empresa) => {
+      this.empresa = response;
+      this.endereco = response.endereco;
       
+  }); 
+  
   }
-
+  
   private navigateToList(msg: string) {
     this.poNotification.success(msg);
-
-    this.router.navigateByUrl('/new');
+    this.continue = confirm("Deseja cadastrar outra empresa?")
+    this.continue === true ? window.location.reload() : this.cancel()
   }
 
 }
