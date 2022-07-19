@@ -36,6 +36,7 @@ interface Empresa {
   nome_fantasia: string,
   fone: string,
   email: string,
+  status: string,
 
   endereco: Endereco
 }
@@ -58,6 +59,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
 
   empresa: any = {};
   endereco: Endereco = {} as Endereco;
+  statusRes: string = "";
 
 
   constructor(
@@ -92,8 +94,6 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
 
   save() {
     const empresa = { ...this.empresa };
-    
-
       let body = 
         {
           // campos obrigatório."
@@ -116,8 +116,12 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
         this.empresaSub = this.isUpdateOperation        
       ? this.httpClient.patch(`${this.url}/${empresa.cpf_cnpj}`, body, {headers: this.headers})
         .subscribe(() => this.navigateToList('Cliente atualizado com sucesso'))
-      : this.httpClient.post(`${this.url}`, body,  {headers: this.headers})
+        : this.httpClient.post(`${this.url}`, body,  {headers: this.headers})
         .subscribe(() => this.navigateToList('Cliente cadastrado com sucesso'));
+        
+        this.cancel()
+        
+        
   }
 
   get isUpdateOperation() {
@@ -133,7 +137,12 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     .subscribe((response: Empresa) => {
       this.empresa = response;
       this.endereco = response.endereco;
+      this.statusRes = response.status;
+      console.log(this.statusRes);
+      console.log("tete");
+      
   }); 
+  
   }
 
   private navigateToList(msg: string) {
