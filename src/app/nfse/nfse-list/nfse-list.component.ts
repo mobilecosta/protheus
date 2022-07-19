@@ -19,7 +19,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class NfseListComponent implements OnInit, OnDestroy {
 
-  private readonly url: string = environment.apinmockup + '/nfse';
+  private readonly url: string = environment.apiNS + '/nfse';
 
   private clienteRemoveSub: Subscription;
   private nfseSub: Subscription;
