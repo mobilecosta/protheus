@@ -19,7 +19,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class NfseListComponent implements OnInit, OnDestroy {
 
-  private readonly url: string = environment.apiNS + '/nfse';
+  private readonly url: string = environment.apiNS + '/nfse?cpf_cnpj=10480616000160';
 
   private clienteRemoveSub: Subscription;
   private nfseSub: Subscription;
@@ -48,7 +48,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
   public readonly columns: Array<PoTableColumn> = [
     { property: 'numero', label: 'Número' },
     { property: 'nome_razao_social', label: 'Razão social' },
-    { property: 'status', label: 'CPF ou CNPJ' },
+    { property: 'cpf_cnpj', label: 'CPF ou CNPJ' },
     { property: 'rps_identificacao_rps_numero', label: 'Nº RPS' },
     { property: 'rps_identificacao_rps_serie', label: 'Série' },
     { property: 'rps_data_emissao', label: 'Emissão RPS', type: 'date' },
@@ -88,6 +88,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
   // public sfj_nome: string;
   public cpf_cnpj: string;
   public nfsesData: string;
+  public prestadorData: string;
   public fone: string;
 
   @ViewChild('advancedFilter', { static: true }) advancedFilter: PoModalComponent;
@@ -161,15 +162,18 @@ export class NfseListComponent implements OnInit, OnDestroy {
   private loadData(params: { page?: number, search?: string } = {}) {
     this.loading = true;
 
-    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
-    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
+    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
     this.headers.append('Range', (this.offset - 1) + '-' + (this.limit - 1))
-
-    this.nfseSub = this.httpClient.get(this.url, { headers: this.headers, params: <any>params })
+    // let cnpjTemp:string = prompt("Digite o CNPJ da empresa")
+    this.nfseSub = this.httpClient.get(this.url,{ headers: this.headers, params: <any>params })
       .subscribe((response: any) => {
         this.nfsesData = response.data;
-
-        this.hasNext = this.nfsesData.length == this.limit;
+        this.prestadorData = response.data[0].declaracao_prestacao_servico.prestador.nome_razao_social;
+        console.log(response.data[0].declaracao_prestacao_servico.prestador.nome_razao_social);
+        console.log(response.data);
+        
+        // this.hasNext = this.nfsesData.length == this.limit;
         this.loading = false;
         // public cpf_cnpj: string;
         // public nome_razao_social: string;
@@ -219,7 +223,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
   }
 
   private onRemoveCliente(cliente) {
-    this.clienteRemoveSub = this.httpClient.delete(`${this.url}?cpf_cnpj=eq.${cliente.cpf_cnpj}`, { headers: this.headers })
+    this.clienteRemoveSub = this.httpClient.delete(`${this.url}?cpf_cnpj=${cliente.cpf_cnpj}`, { headers: this.headers })
       .subscribe(() => {
         this.poNotification.warning('Cliente ' + cliente.cpf_cnpj + ' apagado com sucesso.');
 
