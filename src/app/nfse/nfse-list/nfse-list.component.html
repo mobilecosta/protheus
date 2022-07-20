@@ -17,6 +17,19 @@
     (p-show-more)="showMore($event)"
   >
   </po-table>
+  <po-table
+    #table
+    p-selectable
+    p-sort="true"
+    [p-actions]="tableActions"
+    [p-columns]="columns"
+    [p-items]="prestadorData"
+    [p-loading]="loading"
+    [p-show-more-disabled]="!hasNext"
+    (p-sort-by)="sortBy($event)"
+    (p-show-more)="showMore($event)"
+  >
+  </po-table>
 </po-page-list>
 
 <po-modal
