@@ -12,6 +12,31 @@ import {
   PoTableAction, PoTableColumn, PoTableComponent
 } from '@po-ui/ng-components';
 import { AuthService } from 'src/app/auth/auth.service';
+import { type } from 'os';
+
+export interface Nfse {
+  
+  indexOf(cliente: any): any;
+  slice(arg0: any, arg1: number);
+  status?: string,
+  numero?: string,
+  declaracao_prestacao_servico?: DeclaracaoServico
+}
+
+export interface DeclaracaoServico {
+  competencia?: string
+  natureza_tributacao?: string,
+  prestador?: Prestador
+
+}
+
+export interface Prestador {
+  cnpf_cnpj?: string,
+  email?: string,
+  nome_fantasia?: string,
+  nome_razao_social?: string,
+
+}
 
 @Component({
   selector: 'app-cliente-list',
@@ -83,13 +108,12 @@ export class NfseListComponent implements OnInit, OnDestroy {
   ];
 
   // public clientes: Array<any> = [];
-  public hasNext: boolean = false;
-  public loading: boolean = true;
-  // public sfj_nome: string;
-  public cpf_cnpj: string;
-  public nfsesData: string;
-  public prestadorData: string;
-  public fone: string;
+  hasNext: boolean = false;
+  loading: boolean = true;
+  //  sfj_nome: string;
+  cpf_cnpj: string;
+  nfsesData!: Nfse[];
+  fone: string;
 
   @ViewChild('advancedFilter', { static: true }) advancedFilter: PoModalComponent;
   @ViewChild('table', { static: true }) table: PoTableComponent;
@@ -108,6 +132,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
     };
 
     this.loadData(params);
+
   }
 
   ngOnDestroy() {
@@ -168,17 +193,9 @@ export class NfseListComponent implements OnInit, OnDestroy {
     // let cnpjTemp:string = prompt("Digite o CNPJ da empresa")
     this.nfseSub = this.httpClient.get(this.url,{ headers: this.headers, params: <any>params })
       .subscribe((response: any) => {
-        this.nfsesData = response.data;
-        this.prestadorData = response.data[0].declaracao_prestacao_servico.prestador.nome_razao_social;
-        console.log(response.data[0].declaracao_prestacao_servico.prestador.nome_razao_social);
-        console.log(response.data);
-        
-        // this.hasNext = this.nfsesData.length == this.limit;
+        this.nfsesData = response.data
+        console.log(this.nfsesData);
         this.loading = false;
-        // public cpf_cnpj: string;
-        // public nome_razao_social: string;
-        // public fone: string;
-
       });
   }
 
