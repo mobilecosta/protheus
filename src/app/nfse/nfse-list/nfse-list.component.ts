@@ -1,3 +1,5 @@
+import { Nfse } from '../../shared/nfse';
+
 import { environment } from 'src/environments/environment'
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -13,30 +15,8 @@ import {
 } from '@po-ui/ng-components';
 import { AuthService } from 'src/app/auth/auth.service';
 import { type } from 'os';
+import { report } from 'process';
 
-export interface Nfse {
-  
-  indexOf(cliente: any): any;
-  slice(arg0: any, arg1: number);
-  status?: string,
-  numero?: string,
-  declaracao_prestacao_servico?: DeclaracaoServico
-}
-
-export interface DeclaracaoServico {
-  competencia?: string
-  natureza_tributacao?: string,
-  prestador?: Prestador
-
-}
-
-export interface Prestador {
-  cnpf_cnpj?: string,
-  email?: string,
-  nome_fantasia?: string,
-  nome_razao_social?: string,
-
-}
 
 @Component({
   selector: 'app-cliente-list',
@@ -54,6 +34,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
   private searchTerm: string = '';
   private searchFilters: any;
   private headers: HttpHeaders;
+  private nfsesDataApi: Array<Nfse> = [];
 
   public readonly actions: Array<PoPageAction> = [
     { action: this.onNewNfse.bind(this), label: 'Emitir NFS-e', icon: 'po-icon po-icon-sale' },
@@ -112,7 +93,8 @@ export class NfseListComponent implements OnInit, OnDestroy {
   loading: boolean = true;
   //  sfj_nome: string;
   cpf_cnpj: string;
-  nfsesData!: Nfse[];
+  nfsesData: Array<any>
+  items: Array<any>
   fone: string;
 
   @ViewChild('advancedFilter', { static: true }) advancedFilter: PoModalComponent;
@@ -194,6 +176,25 @@ export class NfseListComponent implements OnInit, OnDestroy {
     this.nfseSub = this.httpClient.get(this.url,{ headers: this.headers, params: <any>params })
       .subscribe((response: any) => {
         this.nfsesData = response.data
+        this.items = this.nfsesData.map( report => {
+          return {
+            status: report.status,
+            numero: report.numero,
+            nome_razao_social: report.declaracao_prestacao_servico.prestador.nome_razao_social,
+            cpf_cnpj: report.declaracao_prestacao_servico.prestador.cpf_cnpj,
+            rps_identificacao_rps_numero: report.declaracao_prestacao_servico.rps.identificacao_rps.numero,
+            rps_identificacao_rps_serie: report.declaracao_prestacao_servico.rps.identificacao_rps.serie,
+            rps_data_emissao : report.declaracao_prestacao_servico.rps.data_emissao,
+            fone: report.declaracao_prestacao_servico.tomador.fone,
+
+
+            
+
+
+          }
+          
+        })
+        // this.nfsesDataApi = report
         console.log(this.nfsesData);
         this.loading = false;
       });
