@@ -10,7 +10,20 @@
     p-sort="true"
     [p-actions]="tableActions"
     [p-columns]="columns"
-    [p-items]="items"
+    [p-items]="nfsesData"
+    [p-loading]="loading"
+    [p-show-more-disabled]="!hasNext"
+    (p-sort-by)="sortBy($event)"
+    (p-show-more)="showMore($event)"
+  >
+  </po-table>
+  <po-table
+    #table
+    p-selectable
+    p-sort="true"
+    [p-actions]="tableActions"
+    [p-columns]="columns"
+    [p-items]="prestadorData"
     [p-loading]="loading"
     [p-show-more-disabled]="!hasNext"
     (p-sort-by)="sortBy($event)"

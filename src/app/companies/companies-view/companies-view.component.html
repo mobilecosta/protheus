@@ -1,25 +1,41 @@
-<po-page-detail (p-back)="back()" (p-remove)="remove()" (p-edit)="edit()" p-title="Detalhes do empresa">
-
+<po-page-detail
+  (p-back)="back()"
+  (p-remove)="remove()"
+  (p-edit)="edit()"
+  p-title="Detalhes do empresa"
+>
   <po-divider p-label="Dados Empresariais"></po-divider>
   <div class="po-row">
-    <po-info class="po-md-5" p-label="Codigo" [p-value]="">
-    </po-info>
+    <po-info class="po-md-5" p-label="Codigo" [p-value]=""> </po-info>
 
     <po-info class="po-md-5" p-label="CNPJ" [p-value]="empresa.cpf_cnpj">
     </po-info>
 
-    <po-info class="po-md-5" p-label="Razão Social" [p-value]="empresa.nome_razao_social">
+    <po-info
+      class="po-md-5"
+      p-label="Razão Social"
+      [p-value]="empresa.nome_razao_social"
+    >
     </po-info>
 
     <po-info class="po-md-5" p-label="E-mail" [p-value]="empresa.email">
     </po-info>
 
-    <po-info class="po-md-5" p-label="Fone" p-mask="(99) 99999?-9999" [p-value]="empresa.fone">
+    <po-info
+      class="po-md-5"
+      p-label="Fone"
+      p-mask="(99) 99999?-9999"
+      [p-value]="empresa.fone"
+    >
     </po-info>
 
     <po-divider class="po-md-12" p-label="Endereço"></po-divider>
 
-    <po-info class="po-md-5" p-label="Logradouro" [p-value]="endereco.logradouro">
+    <po-info
+      class="po-md-5"
+      p-label="Logradouro"
+      [p-value]="endereco.logradouro"
+    >
     </po-info>
 
     <po-info class="po-md-5" p-label="Numero" [p-value]="endereco.numero">
@@ -27,8 +43,5 @@
 
     <po-info class="po-md-5" p-label="Bairro" [p-value]="endereco.bairro">
     </po-info>
-
-
   </div>
-
 </po-page-detail>

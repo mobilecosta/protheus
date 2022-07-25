@@ -1,3 +1,5 @@
+import { Nfse } from '../../shared/nfse';
+
 import { environment } from 'src/environments/environment'
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,6 +14,9 @@ import {
   PoTableAction, PoTableColumn, PoTableComponent
 } from '@po-ui/ng-components';
 import { AuthService } from 'src/app/auth/auth.service';
+import { type } from 'os';
+import { report } from 'process';
+
 
 @Component({
   selector: 'app-cliente-list',
@@ -29,6 +34,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
   private searchTerm: string = '';
   private searchFilters: any;
   private headers: HttpHeaders;
+  private nfsesDataApi: Array<Nfse> = [];
 
   public readonly actions: Array<PoPageAction> = [
     { action: this.onNewNfse.bind(this), label: 'Emitir NFS-e', icon: 'po-icon po-icon-sale' },
@@ -83,13 +89,13 @@ export class NfseListComponent implements OnInit, OnDestroy {
   ];
 
   // public clientes: Array<any> = [];
-  public hasNext: boolean = false;
-  public loading: boolean = true;
-  // public sfj_nome: string;
-  public cpf_cnpj: string;
-  public nfsesData: string;
-  public prestadorData: string;
-  public fone: string;
+  hasNext: boolean = false;
+  loading: boolean = true;
+  //  sfj_nome: string;
+  cpf_cnpj: string;
+  nfsesData: Array<any>
+  items: Array<any>
+  fone: string;
 
   @ViewChild('advancedFilter', { static: true }) advancedFilter: PoModalComponent;
   @ViewChild('table', { static: true }) table: PoTableComponent;
@@ -108,6 +114,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
     };
 
     this.loadData(params);
+
   }
 
   ngOnDestroy() {
@@ -168,17 +175,28 @@ export class NfseListComponent implements OnInit, OnDestroy {
     // let cnpjTemp:string = prompt("Digite o CNPJ da empresa")
     this.nfseSub = this.httpClient.get(this.url,{ headers: this.headers, params: <any>params })
       .subscribe((response: any) => {
-        this.nfsesData = response.data;
-        this.prestadorData = response.data[0].declaracao_prestacao_servico.prestador.nome_razao_social;
-        console.log(response.data[0].declaracao_prestacao_servico.prestador.nome_razao_social);
-        console.log(response.data);
-        
-        // this.hasNext = this.nfsesData.length == this.limit;
-        this.loading = false;
-        // public cpf_cnpj: string;
-        // public nome_razao_social: string;
-        // public fone: string;
+        this.nfsesData = response.data
+        this.items = this.nfsesData.map( report => {
+          return {
+            status: report.status,
+            numero: report.numero,
+            nome_razao_social: report.declaracao_prestacao_servico.prestador.nome_razao_social,
+            cpf_cnpj: report.declaracao_prestacao_servico.prestador.cpf_cnpj,
+            rps_identificacao_rps_numero: report.declaracao_prestacao_servico.rps.identificacao_rps.numero,
+            rps_identificacao_rps_serie: report.declaracao_prestacao_servico.rps.identificacao_rps.serie,
+            rps_data_emissao : report.declaracao_prestacao_servico.rps.data_emissao,
+            fone: report.declaracao_prestacao_servico.tomador.fone,
 
+
+            
+
+
+          }
+          
+        })
+        // this.nfsesDataApi = report
+        console.log(this.nfsesData);
+        this.loading = false;
       });
   }
 
