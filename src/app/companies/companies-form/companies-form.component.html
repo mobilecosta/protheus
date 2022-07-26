@@ -1,58 +1,208 @@
-<po-page-edit (p-save)="save()" (p-cancel)="cancel()" [p-title]="cpf_cnpj" [p-disable-submit]="formCliente.invalid">
-
+<po-page-edit
+  (p-save)="save()"
+  (p-cancel)="cancel()"
+  [p-title]="cpf_cnpj"
+  [p-disable-submit]="formCliente.invalid"
+>
   <form #formCliente="ngForm">
-
     <po-divider class="po-sm-12" p-label="Dados da empresa"></po-divider>
 
-    <po-input class="po-md-5" name="empresa" [(ngModel)]="empresa.nome_razao_social" p-label="Nome / Razão Social"
-      [p-disabled]="false">
+    <po-input
+      class="po-md-5"
+      name="empresa"
+      [(ngModel)]="empresa.nome_razao_social"
+      p-label="Nome / Razão Social"
+      [p-disabled]="false"
+    >
     </po-input>
-    <po-input class="po-md-5" name="empresa fantasia" [(ngModel)]="empresa.nome_fantasia" p-required
-      p-label="Nome Fantasia">
+    <po-input
+      class="po-md-5"
+      name="empresa fantasia"
+      [(ngModel)]="empresa.nome_fantasia"
+      p-required
+      p-label="Nome Fantasia"
+    >
     </po-input>
-    <po-input class="po-md-5" name="cpf cnpj" [(ngModel)]="empresa.cpf_cnpj" p-required p-label="CNPJ"
-      p-mask="99.999.999/9999-99">
+    <po-input
+      class="po-md-5"
+      name="cpf cnpj"
+      [(ngModel)]="empresa.cpf_cnpj"
+      p-required
+      p-label="CNPJ"
+      p-placeholder="9.999.999/9999-99"
+      p-mask="99.999.999/9999-99"
+    >
     </po-input>
-    <po-input class="po-md-5" type="email" name="email" [(ngModel)]="empresa.email" p-required p-label="Email">
-    </po-input>
-
-    <po-input class="po-md-5" type="number" name="inscricao municipal" [(ngModel)]="empresa.inscricao_municipal"
-      p-required p-label="Inscrição Municipal">
-    </po-input>
-    <po-input class="po-md-5" type="tel" name="telefone" [(ngModel)]="empresa.fone" p-label="Telefone"
-      p-mask="(99) 99999?-9999">
-    </po-input>
-
-    <po-input class="po-md-5" name="endereco logradouro" [(ngModel)]="endereco.logradouro" p-required
-      p-label="Logradouro">
-    </po-input>
-    <po-input class="po-md-5" name="endereco_numero" [(ngModel)]="endereco.numero" p-required p-label="Numero">
-    </po-input>
-
-    <po-input class="po-md-5" name="endereco bairro" [(ngModel)]="endereco.bairro" p-required p-label="Bairro">
-    </po-input>
-
-    <po-input class="po-md-5" name="numero municipal" [(ngModel)]="endereco.codigo_municipio" p-required
-      p-label="Código Municipio">
-    </po-input>
-
-    <po-input class="po-md-5" name="cidade" [(ngModel)]="endereco.cidade" p-required p-label="Cidade">
-    </po-input>
-
-    <po-input class="po-md-5" name="uf" [(ngModel)]="endereco.uf" p-required p-label="UF">
-    </po-input>
-
-    <po-input class="po-md-5" type="number" name="codigo de pais" [(ngModel)]="endereco.codigo_pais" p-required
-      p-label="Código Pais">
+    <po-input
+      class="po-md-5"
+      type="email"
+      name="email"
+      [(ngModel)]="empresa.email"
+      p-placeholder="email@dominio.com.br"
+      p-required
+      p-label="Email"
+    >
     </po-input>
 
-    <po-input class="po-md-5" name="codigo numerido do Pais" [(ngModel)]="endereco.pais" p-required p-label="Nome Pais">
+    <po-input
+      class="po-md-5"
+      type="number"
+      name="inscricao municipal"
+      [(ngModel)]="empresa.inscricao_municipal"
+      p-required
+      p-label="Inscrição Municipal"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      type="tel"
+      name="telefone"
+      [(ngModel)]="empresa.fone"
+      p-placeholder="(99) 99999-9999"
+      p-label="Telefone"
+      p-mask="(99) 99999?-9999"
+    >
+    </po-input>
+    <po-divider class="po-sm-12" p-label="Endereço"></po-divider>
+
+    <po-input
+      class="po-md-5"
+      name="endereco logradouro"
+      [(ngModel)]="endereco.logradouro"
+      p-required
+      p-label="Logradouro"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="endereco_numero"
+      [(ngModel)]="endereco.numero"
+      p-required
+      p-label="Numero"
+    >
     </po-input>
 
-    <po-input class="po-md-5" type="number" p-mask="99999999" name="cep" [(ngModel)]="endereco.cep" p-required
-      p-label="CEP" p-mask-format-model="99999999">
+    <po-input
+      class="po-md-5"
+      name="endereco bairro"
+      [(ngModel)]="endereco.bairro"
+      p-required
+      p-label="Bairro"
+    >
     </po-input>
 
+    <po-input
+      class="po-md-5"
+      name="numero municipal"
+      [(ngModel)]="endereco.codigo_municipio"
+      p-required
+      p-label="Código Municipio"
+    >
+    </po-input>
+
+    <po-input
+      class="po-md-5"
+      name="cidade"
+      [(ngModel)]="endereco.cidade"
+      p-required
+      p-label="Cidade"
+    >
+    </po-input>
+
+    <po-input
+      class="po-md-5"
+      name="uf"
+      [(ngModel)]="endereco.uf"
+      p-required
+      p-label="UF"
+    >
+    </po-input>
+
+    <po-input
+      class="po-md-5"
+      type="number"
+      name="codigo de pais"
+      [(ngModel)]="endereco.codigo_pais"
+      p-required
+      p-label="Código Pais"
+    >
+    </po-input>
+
+    <po-input
+      class="po-md-5"
+      name="codigo numerido do Pais"
+      [(ngModel)]="endereco.pais"
+      p-required
+      p-label="Nome Pais"
+    >
+    </po-input>
+
+    <po-input
+      class="po-md-5"
+      type="number"
+      p-mask="99999999"
+      name="cep"
+      [(ngModel)]="endereco.cep"
+      p-required
+      p-label="CEP"
+      p-placeholder="99999999"
+      p-mask-format-model="99999999"
+    >
+    </po-input>
+    <po-divider class="po-sm-12" p-label="Dados Fiscais"></po-divider>
+    <po-switch
+      class="po-md-4"
+      name="switch"
+      [(ngModel)]="optante_simples_nacional"
+      p-label="Não"
+      p-label-off="Não"
+      p-label-on="Sim"
+      p-label="Optante Simples Nacional"
+      (p-change)="onChangeOptanteSimplesNacional($event)"
+    >
+    </po-switch>
+    <po-switch
+      class="po-md-4"
+      name="switch"
+      [(ngModel)]="incentivo_fiscal"
+      p-label="Não"
+      p-label-off="Não"
+      p-label-on="Sim"
+      p-label="Incentivo Fiscal"
+      (p-change)="onChangeIncentivoFiscal($event)"
+    >
+    </po-switch>
+    <po-switch
+      class="po-md-4"
+      name="switch"
+      [(ngModel)]="incentivador_cultural"
+      p-label="Não"
+      p-label-off="Não"
+      p-label-on="Sim"
+      p-label="Incentivador Cultural"
+      (p-change)="onChangeIcentivadorCultural($event)"
+    >
+    </po-switch>
+    <po-select
+      class="po-md-5"
+      name="Regime Tributação"
+      [(ngModel)]="regime_tributacao"
+      p-label="Regime Tributação"
+      [p-options]="regimeTributacao"
+    ></po-select>
+    <po-select
+      class="po-md-4"
+      name="Regime Tributação"
+      [(ngModel)]="regime_especial_tributacao"
+      p-label="Regime Tributação"
+      [p-options]="regimeEspecialTributacao"
+    ></po-select>
+    <!-- <po-select
+      class="po-md-4"
+      name="Regime Tributação"
+      [(ngModel)]="empresa.nfe"
+      p-label="Ambiente NFE"
+      [p-options]="nfeAmbiente"
+    ></po-select> -->
   </form>
-
 </po-page-edit>
