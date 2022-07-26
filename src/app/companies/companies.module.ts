@@ -11,12 +11,8 @@ import { CompaniesViewComponent } from './companies-view/companies-view.componen
   declarations: [
     CompaniesFormComponent,
     CompaniesListComponent,
-    CompaniesViewComponent
+    CompaniesViewComponent,
   ],
-  imports: [
-    SharedModule,
-
-    CompaniesRoutingModule
-  ]
+  imports: [SharedModule, CompaniesRoutingModule],
 })
-export class CompaniesModule { }
+export class CompaniesModule {}
