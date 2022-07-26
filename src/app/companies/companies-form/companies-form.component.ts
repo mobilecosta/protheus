@@ -14,14 +14,16 @@ import { promise } from 'protractor';
 const actionInsert = 'insert';
 const actionUpdate = 'update';
 
+interface Rps {
+  lote: number,
+  serie: string,
+  numero: number
+}
+
 interface Nfse {
 
-  ambiente: string,
-  rps: {
-    lote: 1,
-    serie: string,
-    numero: 1
-  }
+  ambiente: ["homologacao", "producao"],
+  rps: Rps
 }
 
 interface Endereco {
@@ -83,8 +85,8 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     { label: '6 - ME / a', value: 6 },
   ]
   readonly nfseAmbiente: Array<PoSelectOption> = [
-    { label: "Homologação", value: "homologacao" },
-    { label: "Produção", value: "producao" }
+    { label: "Homologação", value: 1 },
+    { label: "Produção", value: 2 }
   ]
 
   onChangeIncentivoFiscal(incentivo_fiscal: boolean) {
