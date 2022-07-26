@@ -14,6 +14,16 @@ import { promise } from 'protractor';
 const actionInsert = 'insert';
 const actionUpdate = 'update';
 
+interface Nfse {
+
+  ambiente: string,
+  rps: {
+    lote: 1,
+    serie: string,
+    numero: 1
+  }
+}
+
 interface Endereco {
   logradouro: string;
   numero: string;
@@ -38,6 +48,8 @@ interface Empresa {
   status: string;
 
   endereco: Endereco;
+
+  nfse: Nfse
 }
 
 @Component({
@@ -70,7 +82,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     { label: '5 - MEI', value: 5 },
     { label: '6 - ME / a', value: 6 },
   ]
-  readonly nfeAmbiente: Array<PoSelectOption> = [
+  readonly nfseAmbiente: Array<PoSelectOption> = [
     { label: "Homologação", value: "homologacao" },
     { label: "Produção", value: "producao" }
   ]
@@ -103,6 +115,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
 
   empresa: any = {};
   endereco: Endereco = {} as Endereco;
+  nfse: Nfse = {} as Nfse
   statusRes: string = '';
   continue: boolean;
 
@@ -225,6 +238,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
       .subscribe((response: Empresa) => {
         this.empresa = response;
         this.endereco = response.endereco;
+        this.nfse = response.nfse
       });
   }
 

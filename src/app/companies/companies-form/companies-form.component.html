@@ -197,12 +197,12 @@
       p-label="Regime Tributação"
       [p-options]="regimeEspecialTributacao"
     ></po-select>
-    <!-- <po-select
+    <po-select
       class="po-md-4"
       name="Regime Tributação"
-      [(ngModel)]="empresa.nfe"
-      p-label="Ambiente NFE"
-      [p-options]="nfeAmbiente"
-    ></po-select> -->
+      [(ngModel)]="nfse.ambiente"
+      p-label="Ambiente"
+      [p-options]="nfseAmbiente"
+    ></po-select>
   </form>
 </po-page-edit>

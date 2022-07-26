@@ -34,7 +34,6 @@ export class NfseListComponent implements OnInit, OnDestroy {
   private searchTerm: string = '';
   private searchFilters: any;
   private headers: HttpHeaders;
-  private nfsesDataApi: Array<Nfse> = [];
 
   public readonly actions: Array<PoPageAction> = [
     { action: this.onNewNfse.bind(this), label: 'Emitir NFS-e', icon: 'po-icon po-icon-sale' },
@@ -93,7 +92,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
   loading: boolean = true;
   //  sfj_nome: string;
   cpf_cnpj: string;
-  nfsesData: Array<any>
+  nfsesData: Array<Nfse>
   items: Array<any>
   fone: string;
 
@@ -173,10 +172,10 @@ export class NfseListComponent implements OnInit, OnDestroy {
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
     this.headers.append('Range', (this.offset - 1) + '-' + (this.limit - 1))
     // let cnpjTemp:string = prompt("Digite o CNPJ da empresa")
-    this.nfseSub = this.httpClient.get(this.url,{ headers: this.headers, params: <any>params })
+    this.nfseSub = this.httpClient.get(this.url, { headers: this.headers, params: <any>params })
       .subscribe((response: any) => {
         this.nfsesData = response.data
-        this.items = this.nfsesData.map( report => {
+        this.items = this.nfsesData.map(report => {
           return {
             status: report.status,
             numero: report.numero,
@@ -184,18 +183,16 @@ export class NfseListComponent implements OnInit, OnDestroy {
             cpf_cnpj: report.declaracao_prestacao_servico.prestador.cpf_cnpj,
             rps_identificacao_rps_numero: report.declaracao_prestacao_servico.rps.identificacao_rps.numero,
             rps_identificacao_rps_serie: report.declaracao_prestacao_servico.rps.identificacao_rps.serie,
-            rps_data_emissao : report.declaracao_prestacao_servico.rps.data_emissao,
+            rps_data_emissao: report.declaracao_prestacao_servico.rps.data_emissao,
             fone: report.declaracao_prestacao_servico.tomador.fone,
 
 
-            
+
 
 
           }
-          
+
         })
-        // this.nfsesDataApi = report
-        console.log(this.nfsesData);
         this.loading = false;
       });
   }
