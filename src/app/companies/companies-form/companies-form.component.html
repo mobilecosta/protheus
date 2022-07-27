@@ -56,9 +56,9 @@
     <po-input
       class="po-md-5"
       type="tel"
-      name="telefone"
+      name="phone"
       [(ngModel)]="empresa.fone"
-      p-placeholder="(99) 99999-9999"
+      p-placeholder="(12) 12345-6789"
       p-label="Telefone"
       p-mask="(99) 99999?-9999"
     >
@@ -68,7 +68,7 @@
     <po-input
       class="po-md-5"
       name="endereco logradouro"
-      [(ngModel)]="endereco.logradouro"
+      [(ngModel)]="empresa.endereco.logradouro"
       p-required
       p-label="Logradouro"
     >
@@ -76,7 +76,7 @@
     <po-input
       class="po-md-5"
       name="endereco_numero"
-      [(ngModel)]="endereco.numero"
+      [(ngModel)]="empresa.endereco.numero"
       p-required
       p-label="Numero"
     >
@@ -85,7 +85,7 @@
     <po-input
       class="po-md-5"
       name="endereco bairro"
-      [(ngModel)]="endereco.bairro"
+      [(ngModel)]="empresa.endereco.bairro"
       p-required
       p-label="Bairro"
     >
@@ -94,7 +94,7 @@
     <po-input
       class="po-md-5"
       name="numero municipal"
-      [(ngModel)]="endereco.codigo_municipio"
+      [(ngModel)]="empresa.endereco.codigo_municipio"
       p-required
       p-label="Código Municipio"
     >
@@ -103,7 +103,7 @@
     <po-input
       class="po-md-5"
       name="cidade"
-      [(ngModel)]="endereco.cidade"
+      [(ngModel)]="empresa.endereco.cidade"
       p-required
       p-label="Cidade"
     >
@@ -112,7 +112,7 @@
     <po-input
       class="po-md-5"
       name="uf"
-      [(ngModel)]="endereco.uf"
+      [(ngModel)]="empresa.endereco.uf"
       p-required
       p-label="UF"
     >
@@ -122,7 +122,7 @@
       class="po-md-5"
       type="number"
       name="codigo de pais"
-      [(ngModel)]="endereco.codigo_pais"
+      [(ngModel)]="empresa.endereco.codigo_pais"
       p-required
       p-label="Código Pais"
     >
@@ -131,7 +131,7 @@
     <po-input
       class="po-md-5"
       name="codigo numerido do Pais"
-      [(ngModel)]="endereco.pais"
+      [(ngModel)]="empresa.endereco.pais"
       p-required
       p-label="Nome Pais"
     >
@@ -142,7 +142,7 @@
       type="number"
       p-mask="99999999"
       name="cep"
-      [(ngModel)]="endereco.cep"
+      [(ngModel)]="empresa.endereco.cep"
       p-required
       p-label="CEP"
       p-placeholder="99999999"
@@ -153,8 +153,7 @@
     <po-switch
       class="po-md-4"
       name="switch"
-      [(ngModel)]="optante_simples_nacional"
-      p-label="Não"
+      [(ngModel)]="empresa.optante_simples_nacional"
       p-label-off="Não"
       p-label-on="Sim"
       p-label="Optante Simples Nacional"
@@ -164,8 +163,7 @@
     <po-switch
       class="po-md-4"
       name="switch"
-      [(ngModel)]="incentivo_fiscal"
-      p-label="Não"
+      [(ngModel)]="empresa.incentivo_fiscal"
       p-label-off="Não"
       p-label-on="Sim"
       p-label="Incentivo Fiscal"
@@ -175,8 +173,7 @@
     <po-switch
       class="po-md-4"
       name="switch"
-      [(ngModel)]="incentivador_cultural"
-      p-label="Não"
+      [(ngModel)]="empresa.incentivador_cultural"
       p-label-off="Não"
       p-label-on="Sim"
       p-label="Incentivador Cultural"
@@ -186,23 +183,53 @@
     <po-select
       class="po-md-5"
       name="Regime Tributação"
-      [(ngModel)]="regime_tributacao"
+      [(ngModel)]="empresa.regime_tributacao"
       p-label="Regime Tributação"
       [p-options]="regimeTributacao"
     ></po-select>
     <po-select
       class="po-md-4"
       name="Regime Tributação"
-      [(ngModel)]="regime_especial_tributacao"
+      [(ngModel)]="empresa.regime_especial_tributacao"
       p-label="Regime Tributação"
       [p-options]="regimeEspecialTributacao"
+    ></po-select>
+    <po-divider class="po-sm-12" p-label="Ambiente"></po-divider>
+    <po-select
+      class="po-md-4"
+      name="Regime Tributação"
+      [(ngModel)]="empresa.nfe.ambiente"
+      p-label="Ambiente NF-e"
+      [p-options]="nfeAmbiente"
     ></po-select>
     <po-select
       class="po-md-4"
       name="Regime Tributação"
-      [(ngModel)]="nfse.ambiente"
-      p-label="Ambiente"
+      [(ngModel)]="empresa.mdfe.ambiente"
+      p-label="Ambiente MDF-e"
+      [p-options]="mdfeAmbiente"
+    ></po-select>
+    <po-select
+      class="po-md-4"
+      name="Regime Tributação"
+      [(ngModel)]="empresa.cte.ambiente"
+      p-label="Ambiente CTE"
+      [p-options]="cteAmbiente"
+    ></po-select>
+    <po-select
+      class="po-md-4"
+      name="Regime Tributação"
+      [(ngModel)]="empresa.cte_os.ambiente"
+      p-label="Ambiente CTE_OS"
+      [p-options]="cte_osAmbiente"
+    ></po-select>
+    <po-select
+      class="po-md-4"
+      name="Regime Tributação"
+      [(ngModel)]="empresa.nfse.ambiente"
+      p-label="Ambiente NFS-e"
       [p-options]="nfseAmbiente"
     ></po-select>
+    <po-divider class="po-sm-12" p-label=""></po-divider>
   </form>
 </po-page-edit>

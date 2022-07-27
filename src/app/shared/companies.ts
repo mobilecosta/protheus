@@ -1,12 +1,31 @@
+export interface Nfe {
+  ambiente: string,
+}
+export interface Mdfe {
+  ambiente: string,
+}
+export interface Cte {
+  ambiente: string,
+}
+export interface Cte_os {
+  ambiente: string,
+}
+export interface Prefeitura {
+  login: string
+  senha: string
+  token: string
+}
+
+export interface Rps {
+  lote: number,
+  serie: string,
+  numero: number
+}
 
 export interface Nfse {
-
+  rps: Rps
+  prefeitura: Prefeitura
   ambiente: string,
-  rps: {
-    lote: 1,
-    serie: string,
-    numero: 1
-  }
 }
 export interface Endereco {
   logradouro: string;
@@ -33,5 +52,15 @@ export interface Empresa {
 
   endereco: Endereco;
 
+  optante_simples_nacional: boolean
+  regime_tributacao: 0
+  regime_especial_tributacao: 0
+  incentivo_fiscal: boolean
+  incentivador_cultural: boolean
+
+  nfe: Nfe
+  mdfe: Mdfe
+  cte: Cte
+  cte_os: Cte_os
   nfse: Nfse
 }
