@@ -1,3 +1,8 @@
+export interface Certificado {
+  certificado: string,
+  password: string
+}
+
 export interface Nfe {
   ambiente: string,
 }

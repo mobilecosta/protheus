@@ -10,7 +10,7 @@ import { PoNotificationService, PoSelectOption, PoTableBoolean } from '@po-ui/ng
 import { PoStorageService } from '@po-ui/ng-storage';
 import { AuthService } from 'src/app/auth/auth.service';
 import { promise } from 'protractor';
-import { Cte, Cte_os, Empresa, Endereco, Mdfe, Nfe, Nfse, Prefeitura, Rps } from '../../shared/companies';
+import { Certificado, Cte, Cte_os, Empresa, Endereco, Mdfe, Nfe, Nfse, Prefeitura, Rps } from '../../shared/companies';
 
 const actionInsert = 'insert';
 const actionUpdate = 'update';
@@ -98,6 +98,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   private headers: HttpHeaders;
 
   empresa: Empresa = {} as Empresa;
+  certificado: Certificado = {} as Certificado
   statusRes: string = '';
   continue: boolean;
 
@@ -139,6 +140,8 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     this.empresa.nfse = {} as Nfse
     this.empresa.nfse.rps = {} as Rps
     this.empresa.nfse.prefeitura = {} as Prefeitura
+
+    this.certificado = {} as Certificado
 
     this.empresa.optante_simples_nacional = false
     this.empresa.incentivo_fiscal = false
@@ -234,6 +237,16 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
       .get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
       .subscribe((response: Empresa) => {
         this.empresa = response;
+
+      });
+  }
+
+  private loadDataCertificado(cpf_cnpj: string) {
+    this.empresaSub = this.httpClient
+      .get(`${this.url}/${cpf_cnpj}/certificado`, { headers: this.headers })
+      .subscribe((response: Certificado) => {
+        this.certificado = response;
+        console.log(this.certificado)
 
       });
   }

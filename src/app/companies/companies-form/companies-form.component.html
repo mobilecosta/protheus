@@ -149,6 +149,23 @@
       p-mask-format-model="99999999"
     >
     </po-input>
+    <po-divider class="po-sm-12" p-label="Certificado"></po-divider>
+
+    <po-input
+      class="po-md-5"
+      name="Certificado"
+      [(ngModel)]="certificado.certificado"
+      p-label="Certificado Base64"
+      [p-disabled]="false"
+    ></po-input>
+    <po-input
+      class="po-md-5"
+      name="empresa"
+      [(ngModel)]="certificado.password"
+      p-label="Senha"
+      [p-disabled]="false"
+    ></po-input>
+
     <po-divider class="po-sm-12" p-label="Dados Fiscais"></po-divider>
     <po-switch
       class="po-md-4"
