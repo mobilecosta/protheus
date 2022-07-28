@@ -68,6 +68,12 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     { label: "Produção", value: "producao" }
   ]
 
+  readonly rpsNumero: Array<PoSelectOption> = [
+    { label: "1-Recibo Provisorio de Serviços", value: 1 },
+    { label: "2-RPS Nota Fiscal Conjugada (Mista)", value: 2 },
+    { label: "3-Cupom", value: 3 }
+  ]
+
 
 
 
@@ -199,6 +205,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
           senha: this.empresa.nfse.prefeitura.senha,
           token: this.empresa.nfse.prefeitura.token
         },
+        ambiente: this.empresa.nfse.ambiente
       }
     }
 

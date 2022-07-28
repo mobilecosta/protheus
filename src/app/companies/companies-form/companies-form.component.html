@@ -194,7 +194,7 @@
       p-label="Regime Tributação"
       [p-options]="regimeEspecialTributacao"
     ></po-select>
-    <po-divider class="po-sm-12" p-label="Ambiente"></po-divider>
+    <po-divider class="po-sm-12" p-label="Ambientes"></po-divider>
     <po-select
       class="po-md-4"
       name="Regime Tributação"
@@ -223,13 +223,39 @@
       p-label="Ambiente CTE_OS"
       [p-options]="cte_osAmbiente"
     ></po-select>
+    <po-divider class="po-sm-12" p-label="Ambiente NFS-e"></po-divider>
     <po-select
-      class="po-md-4"
+      class="po-md-3"
       name="Regime Tributação"
       [(ngModel)]="empresa.nfse.ambiente"
       p-label="Ambiente NFS-e"
       [p-options]="nfseAmbiente"
     ></po-select>
+    <po-select
+      class="po-md-5"
+      name="rps number"
+      [(ngModel)]="empresa.nfse.rps.numero"
+      p-label="Numero RPS"
+      [p-options]="rpsNumero"
+    ></po-select>
+    <po-number
+      class="po-md-2"
+      type="number"
+      name="lote"
+      [(ngModel)]="empresa.nfse.rps.lote"
+      p-placeholder=""
+      p-label="Lote RPS"
+    >
+    </po-number>
+    <po-input
+      class="po-md-2"
+      type="text"
+      name="serie RPS"
+      [(ngModel)]="empresa.nfse.rps.serie"
+      p-required
+      p-label="Serie do RPS"
+    >
+    </po-input>
     <po-divider class="po-sm-12" p-label=""></po-divider>
   </form>
 </po-page-edit>
