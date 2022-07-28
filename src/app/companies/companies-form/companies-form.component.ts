@@ -79,19 +79,16 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
 
   onChangeIncentivoFiscal(incentivo_fiscal: boolean) {
     this.filterParams = incentivo_fiscal ? { opcao: this.empresa.incentivo_fiscal = true } : { opcao: this.empresa.incentivo_fiscal = false };
-    console.log(this.empresa.incentivo_fiscal);
 
   }
 
   onChangeOptanteSimplesNacional(optante_simples_nacional: boolean) {
     this.filterParams = optante_simples_nacional ? { opcao: this.empresa.optante_simples_nacional = true } : { opcao: this.empresa.optante_simples_nacional = false };
-    console.log(this.empresa.optante_simples_nacional);
 
   }
 
   onChangeIcentivadorCultural(incentivador_cultural: boolean) {
     this.filterParams = incentivador_cultural ? { opcao: this.empresa.incentivador_cultural = true } : { opcao: this.empresa.incentivador_cultural = false };
-    console.log(this.empresa.incentivador_cultural);
 
   }
 
@@ -237,7 +234,6 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
       .get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
       .subscribe((response: Empresa) => {
         this.empresa = response;
-        console.log(this.empresa);
 
       });
   }

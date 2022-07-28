@@ -9,33 +9,7 @@ import { Subscription } from 'rxjs';
 import { PoNotificationService, PoDividerModule } from '@po-ui/ng-components';
 import { AuthService } from 'src/app/auth/auth.service';
 
-interface Endereco {
-  logradouro: string,
-  numero: string,
-  complemento: string,
-  bairro: string,
-  codigo_municipio: string,
-  cidade: string,
-  uf: string,
-  codigo_pais: string,
-  pais: string,
-  cep: string
-}
-
-interface Empresa {
- 
-  cpf_cnpj: string,
-  inscricao_estadual: string,
-  inscricao_municipal: string,
-  nome_razao_social: string,
-  nome_fantasia: string,
-  fone: string,
-  email: string,
-
-  endereco: Endereco
-}
-
-
+import { Cte, Cte_os, Empresa, Endereco, Mdfe, Nfe, Nfse, Prefeitura, Rps } from '../../shared/companies';
 
 @Component({
   selector: 'app-cliente-view',
@@ -51,8 +25,7 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
   private paramsSub: Subscription;
   private headers: HttpHeaders;
 
-  empresa: any = {};
-  endereco: Endereco = {} as Endereco;
+  empresa: Empresa = {} as Empresa
 
   constructor(
     private httpClient: HttpClient,
@@ -65,7 +38,16 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
     this.paramsSub = this.route.params.subscribe(params => this.loadData(params['cpf_cnpj'])
-      );
+    );
+    this.empresa.endereco = {} as Endereco;
+    this.empresa.nfe = {} as Nfe
+    this.empresa.mdfe = {} as Mdfe
+    this.empresa.cte = {} as Cte
+    this.empresa.cte_os = {} as Cte_os
+
+    this.empresa.nfse = {} as Nfse
+    this.empresa.nfse.rps = {} as Rps
+    this.empresa.nfse.prefeitura = {} as Prefeitura
   }
 
   ngOnDestroy() {
@@ -96,12 +78,10 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
   private loadData(cpf_cnpj) {
     this.clienteSub = this.httpClient.get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
       .subscribe((response: Empresa) => {
-            this.empresa = response;
-            this.endereco = response.endereco;
-            
-            
+        this.empresa = response;
+
       }
-  
+
       );
 
   }

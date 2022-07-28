@@ -41,6 +41,7 @@ export interface Endereco {
 }
 
 export interface Empresa {
+  data: Empresa
   cpf_cnpj: string;
   inscricao_estadual: string;
   inscricao_municipal: string;
