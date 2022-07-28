@@ -131,6 +131,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
         this.action = actionUpdate;
       }
     });
+    this.empresa = {} as Empresa
     this.empresa.endereco = {} as Endereco;
     this.empresa.nfe = {} as Nfe
     this.empresa.mdfe = {} as Mdfe
@@ -141,6 +142,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     this.empresa.nfse.rps = {} as Rps
     this.empresa.nfse.prefeitura = {} as Prefeitura
 
+
     this.certificado = {} as Certificado
 
     this.empresa.optante_simples_nacional = false
@@ -150,21 +152,18 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
 
   }
 
-  private onNewCliente() {
-    this.router.navigateByUrl('companies/new');
-  }
-
   cancel() {
     this.router.navigateByUrl('/companies');
   }
 
   async save() {
 
-    let body = {
-      // campos obrigatório."
+    const body = {
+      // campos obrigatórios
       cpf_cnpj: this.empresa.cpf_cnpj,
       nome_razao_social: this.empresa.nome_razao_social,
       nome_fantasia: this.empresa.nome_fantasia,
+      fone: this.empresa.fone,
       email: this.empresa.email,
       inscricao_municipal: this.empresa.inscricao_municipal,
       endereco: {
@@ -222,6 +221,29 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
         .subscribe(() =>
           this.navigateToList('Empresa cadastrada com sucesso')
         );
+
+
+    const bodyCert = {
+      certificado: this.certificado.certificado,
+      password: this.certificado.password
+    }
+
+    this.empresaSub = this.isUpdateOperation
+      ? this.httpClient
+        .post(`${this.url}/${this.empresa.cpf_cnpj}/certificado`, bodyCert, {
+          headers: this.headers,
+        })
+        .subscribe(() =>
+          this.navigateToList('Certificado atualizado com sucesso')
+        )
+      : this.httpClient
+        .patch(`${this.url}/${this.empresa.cpf_cnpj}/certificado`, bodyCert, { headers: this.headers })
+        .subscribe(() =>
+          this.navigateToList('Certificado cadastrado com sucesso')
+        );
+
+
+
   }
 
   get isUpdateOperation() {
@@ -253,7 +275,5 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
 
   private navigateToList(msg: string) {
     this.poNotification.success(msg);
-    this.continue = confirm('Deseja cadastrar outra empresa?');
-    this.continue === true ? window.location.reload() : this.cancel();
   }
 }

@@ -1,36 +1,36 @@
 export interface Certificado {
-  certificado: string,
-  password: string
+  certificado: string;
+  password: string;
 }
 
 export interface Nfe {
-  ambiente: string,
+  ambiente: string;
 }
 export interface Mdfe {
-  ambiente: string,
+  ambiente: string;
 }
 export interface Cte {
-  ambiente: string,
+  ambiente: string;
 }
 export interface Cte_os {
-  ambiente: string,
+  ambiente: string;
 }
 export interface Prefeitura {
-  login: string
-  senha: string
-  token: string
+  login: string;
+  senha: string;
+  token: string;
 }
 
 export interface Rps {
-  lote: number,
-  serie: string,
-  numero: number
+  lote: number;
+  serie: string;
+  numero: number;
 }
 
 export interface Nfse {
-  rps: Rps
-  prefeitura: Prefeitura
-  ambiente: string,
+  rps: Rps;
+  prefeitura: Prefeitura;
+  ambiente: string;
 }
 export interface Endereco {
   logradouro: string;
@@ -46,7 +46,7 @@ export interface Endereco {
 }
 
 export interface Empresa {
-  data: Empresa
+  data: Empresa;
   cpf_cnpj: string;
   inscricao_estadual: string;
   inscricao_municipal: string;
@@ -58,15 +58,15 @@ export interface Empresa {
 
   endereco: Endereco;
 
-  optante_simples_nacional: boolean
-  regime_tributacao: 0
-  regime_especial_tributacao: 0
-  incentivo_fiscal: boolean
-  incentivador_cultural: boolean
+  optante_simples_nacional: boolean;
+  regime_tributacao: 0;
+  regime_especial_tributacao: 0;
+  incentivo_fiscal: boolean;
+  incentivador_cultural: boolean;
 
-  nfe: Nfe
-  mdfe: Mdfe
-  cte: Cte
-  cte_os: Cte_os
-  nfse: Nfse
+  nfe: Nfe;
+  mdfe: Mdfe;
+  cte: Cte;
+  cte_os: Cte_os;
+  nfse: Nfse;
 }

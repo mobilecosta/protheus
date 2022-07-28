@@ -55,7 +55,7 @@
     </po-input>
     <po-input
       class="po-md-5"
-      type="tel"
+      type="number"
       name="phone"
       [(ngModel)]="empresa.fone"
       p-placeholder="(12) 12345-6789"
@@ -160,11 +160,41 @@
     ></po-input>
     <po-input
       class="po-md-5"
-      name="empresa"
+      name="senha certificado"
       [(ngModel)]="certificado.password"
       p-label="Senha"
       [p-disabled]="false"
     ></po-input>
+    <po-divider class="po-sm-12" p-label="Prefeitura"></po-divider>
+
+    <po-input
+      class="po-md-5"
+      name="login"
+      p-placeholder="Usuario"
+      [(ngModel)]="empresa.nfse.prefeitura.login"
+      p-label="Login"
+    >
+    </po-input>
+
+    <po-input
+      class="po-md-5"
+      name="password"
+      p-placeholder="Senha"
+      [(ngModel)]="empresa.nfse.prefeitura.senha"
+      p-required
+      p-label="Senha"
+    >
+    </po-input>
+
+    <po-input
+      class="po-md-5"
+      name="token"
+      p-placeholder="Token/Chave"
+      [(ngModel)]="empresa.nfse.prefeitura.token"
+      p-required
+      p-label="Token"
+    >
+    </po-input>
 
     <po-divider class="po-sm-12" p-label="Dados Fiscais"></po-divider>
     <po-switch
