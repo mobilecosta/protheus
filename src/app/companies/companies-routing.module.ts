@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CompaniesCertComponent } from './companies-cert/companies-cert.component';
 
 import { CompaniesFormComponent } from './companies-form/companies-form.component';
 import { CompaniesListComponent } from './companies-list/companies-list.component';
