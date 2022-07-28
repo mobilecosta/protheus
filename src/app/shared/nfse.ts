@@ -1,31 +1,44 @@
 export interface Nfse {
-  
-      indexOf(cliente: any): any;
-      slice(arg0: any, arg1: number);
-      status: string,
-      numero: string,
-      declaracao_prestacao_servico: DeclaracaoServico,
-      
-    }
-    
-    export interface DeclaracaoServico {
-      competencia: string
-      natureza_tributacao: string,
-      prestador: Prestador,
-      fone : string,
-    
-    }
-    
-    export interface Prestador {
-      cnpf_cnpj: string,
-      email: string,
-      nome_fantasia: string,
-      nome_razao_social: string,
-    
-    }
+  indexOf(cliente: any): any;
+  slice(arg0: any, arg1: number);
+  status: string;
+  numero: string;
+  declaracao_prestacao_servico: DeclaracaoServico;
+}
 
+export interface DeclaracaoServico {
+  competencia: string;
+  natureza_tributacao: string;
+  fone: string;
 
+  rps: Rps;
 
+  tomador: Tomador;
+
+  prestador: Prestador;
+}
+export interface Rps {
+  identificacao_rps: {
+    numero: number;
+    serie: string;
+  };
+  data_emissao: string;
+}
+
+export interface Tomador {
+  cpf_cnpj: string;
+  inscricao_municipal: string;
+  nome_razao_social: string;
+  fone: string;
+  email: string;
+}
+
+export interface Prestador {
+  cpf_cnpj: string;
+  email: string;
+  nome_fantasia: string;
+  nome_razao_social: string;
+}
 
 // export interface Nfse {
 //         id: string,
@@ -39,8 +52,8 @@ export interface Nfse {
 //         referencia: string,
 //         declaracao_prestacao_servico_rps_identificacao_rps: string,
 //         rps_identificacao_numero: string,
-//         rps_identificacao_serie: string 
-//         rps_data_emissao: string,         
+//         rps_identificacao_serie: string
+//         rps_data_emissao: string,
 //         declaracao_prestacao_servico_competencia: string,
 //         declaracao_prestacao_servico_natureza_tributacao: string,
 
@@ -57,13 +70,12 @@ export interface Nfse {
 //               prestador_endereco_uf: string,
 //               prestador_endereco_codigo_pais: string,
 //               prestador_endereco_pais: string,
-//               prestador_endereco_cep: string,              
+//               prestador_endereco_cep: string,
 //               prestador_optante_simples_nacional: string,
 //               prestador_regime_tributacao: string,
 //               prestador_regime_especial_tributacao: string,
 //               prestador_incentivo_fiscal: string,
 //               prestador_incentivador_cultural: string
-
 
 //               tomador_cpf_cnpj: string,
 //               tomador_inscricao_municipal: string,
@@ -117,6 +129,5 @@ export interface Nfse {
 //               servicos_valores_desconto_incondicionado: string,
 //               servicos_valores_desconto_condicionado: string
 
-        
 //         mensagens: []
 //     }

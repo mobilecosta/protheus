@@ -10,35 +10,11 @@ import { PoNotificationService, PoSelectOption, PoTableBoolean } from '@po-ui/ng
 import { PoStorageService } from '@po-ui/ng-storage';
 import { AuthService } from 'src/app/auth/auth.service';
 import { promise } from 'protractor';
+import { Cte, Cte_os, Empresa, Endereco, Mdfe, Nfe, Nfse, Prefeitura, Rps } from '../../shared/companies';
 
 const actionInsert = 'insert';
 const actionUpdate = 'update';
 
-interface Endereco {
-  logradouro: string;
-  numero: string;
-  complemento: string;
-  bairro: string;
-  codigo_municipio: string;
-  cidade: string;
-  uf: string;
-  codigo_pais: string;
-  pais: string;
-  cep: string;
-}
-
-interface Empresa {
-  cpf_cnpj: string;
-  inscricao_estadual: string;
-  inscricao_municipal: string;
-  nome_razao_social: string;
-  nome_fantasia: string;
-  fone: string;
-  email: string;
-  status: string;
-
-  endereco: Endereco;
-}
 
 @Component({
   selector: 'app-cliente-form',
@@ -53,7 +29,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   regime_especial_tributacao: number;
   incentivo_fiscal: boolean = false;
   incentivador_cultural: boolean = false;
-  filterParams = {}
+  filterParams = JSON.parse('{}');
 
   readonly regimeTributacao: Array<PoSelectOption> = [
     { label: '1 - Simples Nacional', value: 1 },
@@ -75,24 +51,44 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     { label: "Produção", value: "producao" }
   ]
 
+  readonly mdfeAmbiente: Array<PoSelectOption> = [
+    { label: "Homologação", value: "homologacao" },
+    { label: "Produção", value: "producao" }
+  ]
+  readonly cteAmbiente: Array<PoSelectOption> = [
+    { label: "Homologação", value: "homologacao" },
+    { label: "Produção", value: "producao" }
+  ]
+  readonly cte_osAmbiente: Array<PoSelectOption> = [
+    { label: "Homologação", value: "homologacao" },
+    { label: "Produção", value: "producao" }
+  ]
+  readonly nfseAmbiente: Array<PoSelectOption> = [
+    { label: "Homologação", value: "homologacao" },
+    { label: "Produção", value: "producao" }
+  ]
+
+  readonly rpsNumero: Array<PoSelectOption> = [
+    { label: "1-Recibo Provisorio de Serviços", value: 1 },
+    { label: "2-RPS Nota Fiscal Conjugada (Mista)", value: 2 },
+    { label: "3-Cupom", value: 3 }
+  ]
+
+
+
+
   onChangeIncentivoFiscal(incentivo_fiscal: boolean) {
-    this.filterParams = true ? { incentivo_fiscal: false } : {};
-    this.incentivo_fiscal = false;
-    console.log(incentivo_fiscal);
+    this.filterParams = incentivo_fiscal ? { opcao: this.empresa.incentivo_fiscal = true } : { opcao: this.empresa.incentivo_fiscal = false };
 
   }
 
   onChangeOptanteSimplesNacional(optante_simples_nacional: boolean) {
-    this.filterParams = true ? { optante_simples_nacional: false } : {};
-    this.optante_simples_nacional = false;
-    console.log(optante_simples_nacional);
+    this.filterParams = optante_simples_nacional ? { opcao: this.empresa.optante_simples_nacional = true } : { opcao: this.empresa.optante_simples_nacional = false };
 
   }
 
   onChangeIcentivadorCultural(incentivador_cultural: boolean) {
-    this.filterParams = true ? { incentivador_cultural: false } : {};
-    this.incentivador_cultural = false;
-    console.log(incentivador_cultural);
+    this.filterParams = incentivador_cultural ? { opcao: this.empresa.incentivador_cultural = true } : { opcao: this.empresa.incentivador_cultural = false };
 
   }
 
@@ -101,8 +97,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   private paramsSub: Subscription;
   private headers: HttpHeaders;
 
-  empresa: any = {};
-  endereco: Endereco = {} as Endereco;
+  empresa: Empresa = {} as Empresa;
   statusRes: string = '';
   continue: boolean;
 
@@ -135,6 +130,21 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
         this.action = actionUpdate;
       }
     });
+    this.empresa.endereco = {} as Endereco;
+    this.empresa.nfe = {} as Nfe
+    this.empresa.mdfe = {} as Mdfe
+    this.empresa.cte = {} as Cte
+    this.empresa.cte_os = {} as Cte_os
+
+    this.empresa.nfse = {} as Nfse
+    this.empresa.nfse.rps = {} as Rps
+    this.empresa.nfse.prefeitura = {} as Prefeitura
+
+    this.empresa.optante_simples_nacional = false
+    this.empresa.incentivo_fiscal = false
+    this.empresa.incentivador_cultural = false
+
+
   }
 
   private onNewCliente() {
@@ -146,59 +156,59 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   }
 
   async save() {
-    const empresa = { ...this.empresa };
+
     let body = {
       // campos obrigatório."
-      cpf_cnpj: `${empresa.cpf_cnpj}`,
-      nome_razao_social: `${empresa.nome_razao_social}`,
-      nome_fantasia: `${empresa.nome_fantasia}`,
-      email: `${empresa.email}`,
-      inscricao_municipal: `${empresa.inscricao_municipal}`,
+      cpf_cnpj: this.empresa.cpf_cnpj,
+      nome_razao_social: this.empresa.nome_razao_social,
+      nome_fantasia: this.empresa.nome_fantasia,
+      email: this.empresa.email,
+      inscricao_municipal: this.empresa.inscricao_municipal,
       endereco: {
-        logradouro: `${this.endereco.logradouro}`,
-        numero: `${this.endereco.numero}`,
-        bairro: `${this.endereco.bairro}`,
-        cidade: `${this.endereco.cidade}`,
-        codigo_municipio: `${this.endereco.codigo_municipio}`,
-        uf: `${this.endereco.uf}`,
-        cep: `${this.endereco.cep}`,
+        logradouro: this.empresa.endereco.logradouro,
+        numero: this.empresa.endereco.numero,
+        bairro: this.empresa.endereco.bairro,
+        cidade: this.empresa.endereco.cidade,
+        codigo_municipio: this.empresa.endereco.codigo_municipio,
+        uf: this.empresa.endereco.uf,
+        cep: this.empresa.endereco.cep,
       },
-      optante_simples_nacional: `${this.empresa.optante_simples_nacional}`,
-      regime_tributacao: `${this.empresa.regime_tributacao}`,
-      regime_especial_tributacao: `${this.empresa.regime_especial_tributacao}`,
-      incentivo_fiscal: `${this.empresa.incentivo_fiscal}`,
-      incentivador_cultural: `${this.empresa.incentivador_cultural}`,
+      optante_simples_nacional: this.empresa.optante_simples_nacional,
+      regime_tributacao: this.empresa.regime_tributacao,
+      regime_especial_tributacao: this.empresa.regime_especial_tributacao,
+      incentivo_fiscal: this.empresa.incentivo_fiscal,
+      incentivador_cultural: this.empresa.incentivador_cultural,
 
       nfe: {
-        ambiente: `${this.empresa.nfe.ambiente}`,
+        ambiente: this.empresa.nfe.ambiente,
       },
       mdfe: {
-        ambiente: `${this.empresa.mdfe.ambiente}`
+        ambiente: this.empresa.mdfe.ambiente
       },
       cte: {
-        ambiente: `${this.empresa.cte.ambiente}`
+        ambiente: this.empresa.cte.ambiente
       },
       cte_os: {
-        ambiente: `${this.empresa.cte_os.ambiente}`
+        ambiente: this.empresa.cte_os.ambiente
       },
       nfse: {
         rps: {
-          lote: `${this.empresa.nfse.rps.lote}`,
-          serie: `${this.empresa.nfse.rps.serie}`,
-          numero: `${this.empresa.nfse.rps.numero}`
+          lote: this.empresa.nfse.rps.lote,
+          serie: this.empresa.nfse.rps.serie,
+          numero: this.empresa.nfse.rps.numero
         },
         prefeitura: {
-          login: `${this.empresa.nfse.prefeitura.login}`,
-          senha: `${this.empresa.nfse.prefeitura.senha}`,
-          token: `${this.empresa.nfse.prefeitura.token}`
+          login: this.empresa.nfse.prefeitura.login,
+          senha: this.empresa.nfse.prefeitura.senha,
+          token: this.empresa.nfse.prefeitura.token
         },
-        ambiente: `${this.empresa.nfse.ambiente}`,
+        ambiente: this.empresa.nfse.ambiente
       }
     }
 
     this.empresaSub = this.isUpdateOperation
       ? this.httpClient
-        .patch(`${this.url}/${empresa.cpf_cnpj}`, body, {
+        .patch(`${this.url}/${this.empresa.cpf_cnpj}`, body, {
           headers: this.headers,
         })
         .subscribe(() =>
@@ -224,7 +234,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
       .get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
       .subscribe((response: Empresa) => {
         this.empresa = response;
-        this.endereco = response.endereco;
+
       });
   }
 

@@ -6,11 +6,6 @@
 >
   <po-divider p-label="Dados Empresariais"></po-divider>
   <div class="po-row">
-    <po-info class="po-md-5" p-label="Codigo" [p-value]=""> </po-info>
-
-    <po-info class="po-md-5" p-label="CNPJ" [p-value]="empresa.cpf_cnpj">
-    </po-info>
-
     <po-info
       class="po-md-5"
       p-label="Razão Social"
@@ -18,7 +13,73 @@
     >
     </po-info>
 
+    <po-info
+      class="po-md-5"
+      p-label="Nome Fantasia"
+      [p-value]="empresa.nome_fantasia"
+    >
+    </po-info>
+
+    <po-info class="po-md-5" p-label="CNPJ ou CPF" [p-value]="empresa.cpf_cnpj">
+    </po-info>
+
     <po-info class="po-md-5" p-label="E-mail" [p-value]="empresa.email">
+    </po-info>
+
+    <po-divider class="po-sm-12" p-label="Endereço"></po-divider>
+
+    <po-info
+      class="po-md-5"
+      p-label="Logradouro"
+      [p-value]="empresa.endereco.logradouro"
+    >
+    </po-info>
+
+    <po-info
+      class="po-md-5"
+      p-label="Numero"
+      [p-value]="empresa.endereco.numero"
+    >
+    </po-info>
+
+    <po-info
+      class="po-md-5"
+      p-label="Bairro"
+      [p-value]="empresa.endereco.bairro"
+    >
+    </po-info>
+
+    <po-info
+      class="po-md-5"
+      p-label="Municipio"
+      [p-value]="empresa.endereco.codigo_municipio"
+    >
+    </po-info>
+
+    <po-info
+      class="po-md-5"
+      p-label="Cidade"
+      [p-value]="empresa.endereco.cidade"
+    >
+    </po-info>
+
+    <po-info class="po-md-5" p-label="UF" [p-value]="empresa.endereco.uf">
+    </po-info>
+
+    <po-info
+      class="po-md-5"
+      p-label="Codigo do Pais"
+      [p-value]="empresa.endereco.codigo_pais"
+    >
+    </po-info>
+
+    <po-info class="po-md-5" p-label="Pais" [p-value]="empresa.endereco.pais">
+    </po-info>
+
+    <po-info class="po-md-5" p-label="CEP" [p-value]="empresa.endereco.cep">
+    </po-info>
+
+    <po-info class="po-md-5" p-label="CNPJ" [p-value]="empresa.cpf_cnpj">
     </po-info>
 
     <po-info
@@ -28,20 +89,87 @@
       [p-value]="empresa.fone"
     >
     </po-info>
-
-    <po-divider class="po-md-12" p-label="Endereço"></po-divider>
+    <po-divider class="po-sm-12" p-label="Dados Fiscais"></po-divider>
 
     <po-info
       class="po-md-5"
-      p-label="Logradouro"
-      [p-value]="endereco.logradouro"
+      p-label="Incentivador Cultural"
+      [p-value]="empresa.incentivador_cultural"
     >
     </po-info>
 
-    <po-info class="po-md-5" p-label="Numero" [p-value]="endereco.numero">
+    <po-info
+      class="po-md-5"
+      p-label="Regime Tributação"
+      [p-value]="empresa.regime_tributacao"
+    >
     </po-info>
 
-    <po-info class="po-md-5" p-label="Bairro" [p-value]="endereco.bairro">
+    <po-info
+      class="po-md-5"
+      p-label="Regime Especial Tributação"
+      [p-value]="empresa.regime_especial_tributacao"
+    >
     </po-info>
+
+    <po-divider class="po-sm-12" p-label="Ambientes"></po-divider>
+
+    <!-- <po-info
+      class="po-md-5"
+      p-label="NF-e Ambiente"
+      [p-value]="empresa.nfe.ambiente"
+    >
+    </po-info> -->
+    <!-- 
+      <po-info
+        class="po-md-5"
+        p-label="MDF-e Ambiente"
+        [p-value]="empresa.mdfe.ambiente"
+      >
+      </po-info>
+
+      <po-info
+        class="po-md-5"
+        p-label="CTE Ambiente"
+        [p-value]="empresa.cte.ambiente"
+      >
+      </po-info>
+
+      <po-info
+        class="po-md-5"
+        p-label="CTE_OS Ambiente"
+        [p-value]="empresa.cte_os.ambiente"
+      >
+      </po-info>
+
+      <po-divider class="po-sm-12" p-label="Ambiente NFS-e"></po-divider>
+
+      <po-info
+        class="po-md-5"
+        p-label="NFS-e Ambiente"
+        [p-value]="empresa.nfse.ambiente"
+      >
+      </po-info>
+
+      <po-info
+        class="po-md-5"
+        p-label="Numero RPS"
+        [p-value]="empresa.nfse.rps.numero"
+      >
+      </po-info>
+
+      <po-info
+        class="po-md-5"
+        p-label="Lote RPS"
+        [p-value]="empresa.nfse.rps.lote"
+      >
+      </po-info>
+
+      <po-info
+        class="po-md-5"
+        p-label="Serie do RPS"
+        [p-value]="empresa.nfse.rps.serie"
+      >
+      </po-info> -->
   </div>
 </po-page-detail>
