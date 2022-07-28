@@ -1,3 +1,5 @@
+import { Nfse } from '../../shared/nfse';
+
 import { environment } from 'src/environments/environment'
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,6 +14,9 @@ import {
   PoTableAction, PoTableColumn, PoTableComponent
 } from '@po-ui/ng-components';
 import { AuthService } from 'src/app/auth/auth.service';
+import { type } from 'os';
+import { report } from 'process';
+
 
 @Component({
   selector: 'app-cliente-list',
@@ -19,7 +24,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class NfseListComponent implements OnInit, OnDestroy {
 
-  private readonly url: string = environment.apinmockup + '/nfse';
+  private readonly url: string = environment.apiNS + '/nfse?cpf_cnpj=10480616000160';
 
   private clienteRemoveSub: Subscription;
   private nfseSub: Subscription;
@@ -48,7 +53,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
   public readonly columns: Array<PoTableColumn> = [
     { property: 'numero', label: 'Número' },
     { property: 'nome_razao_social', label: 'Razão social' },
-    { property: 'status', label: 'CPF ou CNPJ' },
+    { property: 'cpf_cnpj', label: 'CPF ou CNPJ' },
     { property: 'rps_identificacao_rps_numero', label: 'Nº RPS' },
     { property: 'rps_identificacao_rps_serie', label: 'Série' },
     { property: 'rps_data_emissao', label: 'Emissão RPS', type: 'date' },
@@ -83,12 +88,13 @@ export class NfseListComponent implements OnInit, OnDestroy {
   ];
 
   // public clientes: Array<any> = [];
-  public hasNext: boolean = false;
-  public loading: boolean = true;
-  // public sfj_nome: string;
-  public cpf_cnpj: string;
-  public nfsesData: string;
-  public fone: string;
+  hasNext: boolean = false;
+  loading: boolean = true;
+  //  sfj_nome: string;
+  cpf_cnpj: string;
+  nfsesData: Array<Nfse>
+  items: Array<any>
+  fone: string;
 
   @ViewChild('advancedFilter', { static: true }) advancedFilter: PoModalComponent;
   @ViewChild('table', { static: true }) table: PoTableComponent;
@@ -107,6 +113,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
     };
 
     this.loadData(params);
+
   }
 
   ngOnDestroy() {
@@ -161,20 +168,32 @@ export class NfseListComponent implements OnInit, OnDestroy {
   private loadData(params: { page?: number, search?: string } = {}) {
     this.loading = true;
 
-    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
-    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
+    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
     this.headers.append('Range', (this.offset - 1) + '-' + (this.limit - 1))
-
+    // let cnpjTemp:string = prompt("Digite o CNPJ da empresa")
     this.nfseSub = this.httpClient.get(this.url, { headers: this.headers, params: <any>params })
       .subscribe((response: any) => {
-        this.nfsesData = response.data;
+        this.nfsesData = response.data
+        this.items = this.nfsesData.map(report => {
+          return {
+            status: report.status,
+            numero: report.numero,
+            nome_razao_social: report.declaracao_prestacao_servico.prestador.nome_razao_social,
+            cpf_cnpj: report.declaracao_prestacao_servico.prestador.cpf_cnpj,
+            rps_identificacao_rps_numero: report.declaracao_prestacao_servico.rps.identificacao_rps.numero,
+            rps_identificacao_rps_serie: report.declaracao_prestacao_servico.rps.identificacao_rps.serie,
+            rps_data_emissao: report.declaracao_prestacao_servico.rps.data_emissao,
+            fone: report.declaracao_prestacao_servico.tomador.fone,
 
-        this.hasNext = this.nfsesData.length == this.limit;
+
+
+
+
+          }
+
+        })
         this.loading = false;
-        // public cpf_cnpj: string;
-        // public nome_razao_social: string;
-        // public fone: string;
-
       });
   }
 
@@ -219,7 +238,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
   }
 
   private onRemoveCliente(cliente) {
-    this.clienteRemoveSub = this.httpClient.delete(`${this.url}?cpf_cnpj=eq.${cliente.cpf_cnpj}`, { headers: this.headers })
+    this.clienteRemoveSub = this.httpClient.delete(`${this.url}?cpf_cnpj=${cliente.cpf_cnpj}`, { headers: this.headers })
       .subscribe(() => {
         this.poNotification.warning('Cliente ' + cliente.cpf_cnpj + ' apagado com sucesso.');
 
