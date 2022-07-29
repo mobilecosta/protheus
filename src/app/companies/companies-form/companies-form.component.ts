@@ -75,8 +75,6 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   ]
 
 
-
-
   onChangeIncentivoFiscal(incentivo_fiscal: boolean) {
     this.filterParams = incentivo_fiscal ? { opcao: this.empresa.incentivo_fiscal = true } : { opcao: this.empresa.incentivo_fiscal = false };
 
@@ -128,6 +126,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     this.paramsSub = this.route.params.subscribe((params) => {
       if (params['cpf_cnpj']) {
         this.loadData(params['cpf_cnpj']);
+        this.loadDataCert(params['cpf_cnpj']);
         this.action = actionUpdate;
       }
     });
@@ -263,7 +262,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
       });
   }
 
-  private loadDataCertificado(cpf_cnpj: string) {
+  private loadDataCert(cpf_cnpj: string) {
     this.empresaSub = this.httpClient
       .get(`${this.url}/${cpf_cnpj}/certificado`, { headers: this.headers })
       .subscribe((response: Certificado) => {
