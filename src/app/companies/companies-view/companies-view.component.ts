@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 import { PoNotificationService, PoDividerModule } from '@po-ui/ng-components';
 import { AuthService } from 'src/app/auth/auth.service';
 
-import { Cte, Cte_os, Empresa, Endereco, Mdfe, Nfe, Nfse, Prefeitura, Rps } from '../../shared/companies';
+import { Certificado, Cte, Cte_os, Empresa, Endereco, Mdfe, Nfe, Nfse, Prefeitura, Rps } from '../../shared/companies';
 
 @Component({
   selector: 'app-cliente-view',
@@ -26,6 +26,7 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
   private headers: HttpHeaders;
 
   empresa: Empresa = {} as Empresa
+  certificado: Certificado = {} as Certificado
 
   constructor(
     private httpClient: HttpClient,
@@ -37,8 +38,11 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
   ngOnInit() {
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
-    this.paramsSub = this.route.params.subscribe(params => this.loadData(params['cpf_cnpj'])
-    );
+    this.paramsSub = this.route.params.subscribe(params => this.loadData(params['cpf_cnpj']));
+    this.paramsSub = this.route.params.subscribe(params => this.loadDataCert(params['cpf_cnpj']));
+
+    this.certificado = {} as Certificado
+
     this.empresa.endereco = {} as Endereco;
     this.empresa.nfe = {} as Nfe
     this.empresa.mdfe = {} as Mdfe
@@ -79,6 +83,18 @@ export class CompaniesViewComponent implements OnDestroy, OnInit {
     this.clienteSub = this.httpClient.get(`${this.url}/${cpf_cnpj}`, { headers: this.headers })
       .subscribe((response: Empresa) => {
         this.empresa = response;
+
+      }
+
+      );
+
+  }
+
+
+  private loadDataCert(cpf_cnpj) {
+    this.clienteSub = this.httpClient.get(`${this.url}/${cpf_cnpj}/certificado`, { headers: this.headers })
+      .subscribe((response: Certificado) => {
+        this.certificado = response;
 
       }
 

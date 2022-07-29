@@ -171,5 +171,32 @@
       [p-value]="empresa.nfse.rps.serie"
     >
     </po-info>
+
+    <po-divider class="po-sm-12" p-label="Certificado"></po-divider>
+
+    <po-info
+      class="po-md-5"
+      p-label="Nome do Emissor"
+      [p-value]="certificado.issuer_name"
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="Numero Serial"
+      [p-value]="certificado.serial_number"
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="Data de emissao"
+      [p-value]="certificado.not_valid_before"
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="Data de vencimento"
+      [p-value]="certificado.not_valid_after"
+    >
+    </po-info>
   </div>
 </po-page-detail>
