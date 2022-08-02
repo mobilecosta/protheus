@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "70986a37-5967-4665-b71e-4db7e4d74446",
+		"_postman_id": "4a41a80a-9eca-4cce-8eaf-57efb419cb4f",
 		"name": "Api Fiscal",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "1755482"
+		"_exporter_id": "18320680"
 	},
 	"item": [
 		{
@@ -35,36 +35,7 @@
 			"response": []
 		},
 		{
-			"name": "Cnpj",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "https://api.sandbox.nuvemfiscal.com.br/cnpj/09266010000148",
-					"protocol": "https",
-					"host": [
-						"api",
-						"sandbox",
-						"nuvemfiscal",
-						"com",
-						"br"
-					],
-					"path": [
-						"cnpj",
-						"09266010000148"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Empresas Post",
+			"name": "Empresas",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -95,6 +66,309 @@
 					],
 					"path": [
 						"empresas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empresas JFR",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.sandbox.nuvemfiscal.com.br/empresas/10480616000160",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sandbox",
+						"nuvemfiscal",
+						"com",
+						"br"
+					],
+					"path": [
+						"empresas",
+						"10480616000160"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EMPRESAS",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.sandbox.nuvemfiscal.com.br/empresas",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sandbox",
+						"nuvemfiscal",
+						"com",
+						"br"
+					],
+					"path": [
+						"empresas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empresas JFR",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nfse\": {\n    \"rps\": {\n      \"lote\": 0,\n      \"serie\": \"string\",\n      \"numero\": 0\n    },\n    \"prefeitura\": {\n      \"login\": \"string\",\n      \"senha\": \"string\",\n      \"token\": \"string\"\n    },\n    \"ambiente\": \"homologacao\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.sandbox.nuvemfiscal.com.br/empresas/10480616000160",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sandbox",
+						"nuvemfiscal",
+						"com",
+						"br"
+					],
+					"path": [
+						"empresas",
+						"10480616000160"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro de empresas",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"cpf_cnpj\": \"35059574000110\",\n  \"created_at\": \"2022-07-11T16:46:17.553Z\",\n  \"updated_at\": \"2022-07-11T16:46:17.553Z\",\n  \"inscricao_estadual\": \"121128823118\",\n  \"inscricao_municipal\": \"273276\",\n  \"nome_razao_social\": \"GUILHERME SANTANA SANTOS 07431916507\",\n  \"nome_fantasia\": \"GUILHERME INFORMATICA\",\n  \"fone\": \"11977408378\",\n  \"email\": \"guylhermesantos52@gmail.com\",\n  \"endereco\": {\n    \"logradouro\": \"RUA MAGNOLIA\",\n    \"numero\": \"50\",\n    \"complemento\": \"\",\n    \"bairro\": \"VILA PIRES\",\n    \"codigo_municipio\": \"3547809\",\n    \"cidade\": \"SANTO ANDRE\",\n    \"uf\": \"SP\",\n    \"codigo_pais\": \"1058\",\n    \"pais\": \"BRSIL\",\n    \"cep\": \"09195650\"\n  },\n  \"optante_simples_nacional\": true,\n  \"regime_tributacao\": 0,\n  \"regime_especial_tributacao\": 0,\n  \"incentivo_fiscal\": true,\n  \"incentivador_cultural\": true,\n  \"nfe\": {\n    \"ambiente\": \"homologacao\"\n  },\n  \"nfce\": {\n    \"sefaz\": {\n      \"id_csc\": 0,\n      \"csc\": \"string\"\n    },\n    \"ambiente\": \"homologacao\"\n  },\n  \"mdfe\": {\n    \"ambiente\": \"homologacao\"\n  },\n  \"cte\": {\n    \"ambiente\": \"homologacao\"\n  },\n  \"cte_os\": {\n    \"ambiente\": \"homologacao\"\n  },\n  \"nfse\": {\n    \"rps\": {\n      \"lote\": 0,\n      \"serie\": \"string\",\n      \"numero\": 0\n    },\n    \"prefeitura\": {\n      \"login\": \"string\",\n      \"senha\": \"string\",\n      \"token\": \"string\"\n    },\n    \"ambiente\": \"homologacao\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.sandbox.nuvemfiscal.com.br/empresas/",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sandbox",
+						"nuvemfiscal",
+						"com",
+						"br"
+					],
+					"path": [
+						"empresas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NFS-e",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.sandbox.nuvemfiscal.com.br/nfse?cpf_cnpj=10480616000160",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sandbox",
+						"nuvemfiscal",
+						"com",
+						"br"
+					],
+					"path": [
+						"nfse"
+					],
+					"query": [
+						{
+							"key": "cpf_cnpj",
+							"value": "10480616000160"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NFS-e",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"ambiente\": \"homologacao\",\n  \"rps\": {\n    \"referencia\": \"TESTENUV003\",\n    \"data_emissao\": \"2022-08-02T14:49:51.112Z\",\n    \"competencia\": \"2022-08-02\",\n    \"natureza_tributacao\": 1,\n    \"prestador\": {\n      \"cpf_cnpj\": \"10480616000160\"\n    },\n    \"tomador\": {\n      \"cpf_cnpj\": \"35059574000110\",\n      \"inscricao_municipal\": \"38335\",\n      \"nome_razao_social\": \"GUILHERME SANTANA SANTOS 07431916507\",\n      \"fone\": \"11977408378\",\n      \"email\": \"guylhermesantos@hotmail.com\",\n      \"endereco\": {\n        \"logradouro\": \"RUA UNIÃO\",\n        \"numero\": \"421\",\n        \"complemento\": \"nao\",\n        \"bairro\": \"JARDIM SANTO ANDRÉ\",\n        \"codigo_municipio\": \"3547809\",\n        \"cidade\": \"SANTO ANDRÉ\",\n        \"uf\": \"SP\",\n        \"codigo_pais\": \"1058\",\n        \"pais\": \"BRASIL\",\n        \"cep\": \"09132655\"\n      }\n    },\n    \"intermediario\": {\n      \"cpf_cnpj\": \"35059574000110\",\n      \"nome_razao_social\": \"NÃO INFORMADO\",\n      \"inscricao_municipal\": \"NÃO INFORMADO\"\n    },\n    \"construcao_civil\": {\n      \"codigo_obra\": \"NÃO INFORMADO\",\n      \"art\": \"NÃO INFORMADO\"\n    },\n    \"servicos\": [\n      {\n        \"iss_retido\": true,\n        \"responsavel_retencao\": 1,\n        \"item_lista_servico\": \"INFORMÁTICA\",\n        \"codigo_cnae\": \"95118\",\n        \"codigo_tributacao_municipio\": \"5103403\",\n        \"discriminacao\": \"Análise E Desenvolvimento De Sistemass.\",\n        \"codigo_municipio\": \"3547809\",\n        \"codigo_pais\": \"1058\",\n        \"tipo_tributacao\": 1,\n        \"exigibilidade_iss\": 1,\n        \"codigo_municipio_incidencia\": \"3547809\",\n        \"numero_processo\": \"1\",\n        \"unidade\": \"1\",\n        \"quantidade\": 1,\n        \"valores\": {\n          \"valor_unitario\": 777,\n          \"valor_servicos\": 777,\n          \"valor_deducoes\": 1,\n          \"valor_pis\": 1,\n          \"valor_cofins\": 1,\n          \"valor_inss\": 1,\n          \"valor_ir\": 1,\n          \"valor_csll\": 1,\n          \"valor_outras_retencoes\": 1,\n          \"valor_iss\": 1,\n          \"valor_iss_retido\": 1,\n          \"valor_liquido\": 1,\n          \"aliquota_iss\": 1,\n          \"aliquota_pis\": 1,\n          \"aliquota_cofins\": 1,\n          \"aliquota_inss\": 1,\n          \"aliquota_ir\": 1,\n          \"aliquota_csll\": 1,\n          \"desconto_incondicionado\": 0,\n          \"desconto_condicionado\": 0\n        }\n      }\n    ]\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.sandbox.nuvemfiscal.com.br/nfse/10480616000160",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sandbox",
+						"nuvemfiscal",
+						"com",
+						"br"
+					],
+					"path": [
+						"nfse",
+						"10480616000160"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Certificado",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"certificado\": \"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\",\r\n  \"password\":\"rica9671.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.sandbox.nuvemfiscal.com.br/empresas/10480616000160/certificado",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sandbox",
+						"nuvemfiscal",
+						"com",
+						"br"
+					],
+					"path": [
+						"empresas",
+						"10480616000160",
+						"certificado"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Certificado",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.sandbox.nuvemfiscal.com.br/empresas/10480616000160/certificado",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sandbox",
+						"nuvemfiscal",
+						"com",
+						"br"
+					],
+					"path": [
+						"empresas",
+						"10480616000160",
+						"certificado"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cnpj",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.sandbox.nuvemfiscal.com.br/cnpj/10480616000160",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sandbox",
+						"nuvemfiscal",
+						"com",
+						"br"
+					],
+					"path": [
+						"cnpj",
+						"10480616000160"
 					]
 				}
 			},
