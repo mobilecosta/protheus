@@ -47,7 +47,7 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
   };
 
   public readonly columns: Array<PoTableColumn> = [
-    { property: 'nome_razao_social', label: 'Razão Social'},
+    { property: 'nome_razao_social', label: 'Razão Social' },
     { property: 'nome_fantasia', label: 'Nome fantasia' },
     { property: 'cpf_cnpj', label: 'CPF ou CNPJ' },
     { property: 'fone', label: 'Telefone' },
@@ -171,7 +171,7 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
         // this.hasNext = this.empresasData.length == this.limit;
         // this.hasNext = this.enderecoData.length == this.limit;
         this.loading = false;
-        
+
 
       });
   }
@@ -215,18 +215,18 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
   }
 
   private locationreload() {
-    location.reload();      
-    }
+    location.reload();
+  }
 
   private onRemoveCliente(empresa) {
     this.clienteRemoveSub = this.httpClient.delete(`${this.url}/${empresa.cpf_cnpj}`, { headers: this.headers })
-      .subscribe(() => {  
+      .subscribe(() => {
         this.poNotification.warning('Cliente ' + empresa.cpf_cnpj + ' apagado com sucesso.');
         this.locationreload();
 
         this.empresasData.slice(this.empresasData.indexOf(empresa), 1);
       });
-      
+
   }
 
   private onRemoveClientes() {
@@ -239,7 +239,7 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
   }
 
   private onViewCliente(empresa) {
-    
+
     this.router.navigateByUrl(`companies/view/${empresa.cpf_cnpj}`)
   }
 }

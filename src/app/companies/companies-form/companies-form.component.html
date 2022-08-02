@@ -13,6 +13,7 @@
       [(ngModel)]="empresa.nome_razao_social"
       p-label="Nome / Razão Social"
       [p-disabled]="false"
+      p-required
     >
     </po-input>
     <po-input
@@ -55,7 +56,7 @@
     </po-input>
     <po-input
       class="po-md-5"
-      type="tel"
+      type="number"
       name="phone"
       [(ngModel)]="empresa.fone"
       p-placeholder="(12) 12345-6789"
@@ -102,7 +103,7 @@
 
     <po-input
       class="po-md-5"
-      name="cidade"
+      name="city"
       [(ngModel)]="empresa.endereco.cidade"
       p-required
       p-label="Cidade"
@@ -149,6 +150,67 @@
       p-mask-format-model="99999999"
     >
     </po-input>
+    <po-divider class="po-sm-12" p-label="Certificado"></po-divider>
+
+    <po-info
+      class="po-md-5"
+      p-label="Certificado digital (.pfx ou .p12) codificado em base64."
+    >
+    </po-info>
+
+    <po-upload
+      name="upload"
+      p-label="Envio de certificado"
+      p-url="https://po-sample-api.herokuapp.com/v1/uploads/addFile"
+    >
+    </po-upload>
+    <hr />
+    <!-- https://po-ui.io/documentation/po-upload -->
+    <!-- <po-input
+      class="po-md-5"
+      name="Certificado"
+      [(ngModel)]="certificado.certificado"
+      p-label="Certificado Base64"
+      [p-disabled]="false"
+    ></po-input> -->
+    <po-input
+      class="po-md-5"
+      name="senha certificado"
+      [(ngModel)]="certificado.password"
+      p-label="Senha"
+      [p-disabled]="false"
+    ></po-input>
+    <po-divider class="po-sm-12" p-label="Prefeitura"></po-divider>
+
+    <po-input
+      class="po-md-5"
+      name="login"
+      p-placeholder="Usuario"
+      [(ngModel)]="empresa.nfse.prefeitura.login"
+      p-label="Login"
+    >
+    </po-input>
+
+    <po-input
+      class="po-md-5"
+      name="password"
+      p-placeholder="Senha"
+      [(ngModel)]="empresa.nfse.prefeitura.senha"
+      p-required
+      p-label="Senha"
+    >
+    </po-input>
+
+    <po-input
+      class="po-md-5"
+      name="token"
+      p-placeholder="Token/Chave"
+      [(ngModel)]="empresa.nfse.prefeitura.token"
+      p-required
+      p-label="Token"
+    >
+    </po-input>
+
     <po-divider class="po-sm-12" p-label="Dados Fiscais"></po-divider>
     <po-switch
       class="po-md-4"

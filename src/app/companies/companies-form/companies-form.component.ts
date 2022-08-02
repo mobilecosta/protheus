@@ -10,7 +10,7 @@ import { PoNotificationService, PoSelectOption, PoTableBoolean } from '@po-ui/ng
 import { PoStorageService } from '@po-ui/ng-storage';
 import { AuthService } from 'src/app/auth/auth.service';
 import { promise } from 'protractor';
-import { Cte, Cte_os, Empresa, Endereco, Mdfe, Nfe, Nfse, Prefeitura, Rps } from '../../shared/companies';
+import { Certificado, Cte, Cte_os, Empresa, Endereco, Mdfe, Nfe, Nfse, Prefeitura, Rps } from '../../shared/companies';
 
 const actionInsert = 'insert';
 const actionUpdate = 'update';
@@ -75,8 +75,6 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   ]
 
 
-
-
   onChangeIncentivoFiscal(incentivo_fiscal: boolean) {
     this.filterParams = incentivo_fiscal ? { opcao: this.empresa.incentivo_fiscal = true } : { opcao: this.empresa.incentivo_fiscal = false };
 
@@ -98,6 +96,7 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
   private headers: HttpHeaders;
 
   empresa: Empresa = {} as Empresa;
+  certificado: Certificado = {} as Certificado
   statusRes: string = '';
   continue: boolean;
 
@@ -127,9 +126,11 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     this.paramsSub = this.route.params.subscribe((params) => {
       if (params['cpf_cnpj']) {
         this.loadData(params['cpf_cnpj']);
+        this.loadDataCert(params['cpf_cnpj']);
         this.action = actionUpdate;
       }
     });
+    this.empresa = {} as Empresa
     this.empresa.endereco = {} as Endereco;
     this.empresa.nfe = {} as Nfe
     this.empresa.mdfe = {} as Mdfe
@@ -140,15 +141,14 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
     this.empresa.nfse.rps = {} as Rps
     this.empresa.nfse.prefeitura = {} as Prefeitura
 
+
+    this.certificado = {} as Certificado
+
     this.empresa.optante_simples_nacional = false
     this.empresa.incentivo_fiscal = false
     this.empresa.incentivador_cultural = false
 
 
-  }
-
-  private onNewCliente() {
-    this.router.navigateByUrl('companies/new');
   }
 
   cancel() {
@@ -157,11 +157,12 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
 
   async save() {
 
-    let body = {
-      // campos obrigatório."
+    const body = {
+      // campos obrigatórios
       cpf_cnpj: this.empresa.cpf_cnpj,
       nome_razao_social: this.empresa.nome_razao_social,
       nome_fantasia: this.empresa.nome_fantasia,
+      fone: this.empresa.fone,
       email: this.empresa.email,
       inscricao_municipal: this.empresa.inscricao_municipal,
       endereco: {
@@ -219,6 +220,29 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
         .subscribe(() =>
           this.navigateToList('Empresa cadastrada com sucesso')
         );
+
+
+    const bodyCert = {
+      certificado: this.certificado.certificado,
+      password: this.certificado.password
+    }
+
+    this.empresaSub = this.isUpdateOperation
+      ? this.httpClient
+        .post(`${this.url}/${this.empresa.cpf_cnpj}/certificado`, bodyCert, {
+          headers: this.headers,
+        })
+        .subscribe(() =>
+          this.navigateToList('Certificado atualizado com sucesso')
+        )
+      : this.httpClient
+        .patch(`${this.url}/${this.empresa.cpf_cnpj}/certificado`, bodyCert, { headers: this.headers })
+        .subscribe(() =>
+          this.navigateToList('Certificado cadastrado com sucesso')
+        );
+
+
+
   }
 
   get isUpdateOperation() {
@@ -238,9 +262,17 @@ export class CompaniesFormComponent implements OnDestroy, OnInit {
       });
   }
 
+  private loadDataCert(cpf_cnpj: string) {
+    this.empresaSub = this.httpClient
+      .get(`${this.url}/${cpf_cnpj}/certificado`, { headers: this.headers })
+      .subscribe((response: Certificado) => {
+        this.certificado = response;
+        console.log(this.certificado)
+
+      });
+  }
+
   private navigateToList(msg: string) {
     this.poNotification.success(msg);
-    this.continue = confirm('Deseja cadastrar outra empresa?');
-    this.continue === true ? window.location.reload() : this.cancel();
   }
 }

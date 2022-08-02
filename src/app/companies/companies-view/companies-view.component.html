@@ -114,62 +114,89 @@
 
     <po-divider class="po-sm-12" p-label="Ambientes"></po-divider>
 
-    <!-- <po-info
+    <po-info
       class="po-md-5"
       p-label="NF-e Ambiente"
       [p-value]="empresa.nfe.ambiente"
     >
-    </po-info> -->
-    <!-- 
-      <po-info
-        class="po-md-5"
-        p-label="MDF-e Ambiente"
-        [p-value]="empresa.mdfe.ambiente"
-      >
-      </po-info>
+    </po-info>
 
-      <po-info
-        class="po-md-5"
-        p-label="CTE Ambiente"
-        [p-value]="empresa.cte.ambiente"
-      >
-      </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="MDF-e Ambiente"
+      [p-value]="empresa.mdfe.ambiente"
+    >
+    </po-info>
 
-      <po-info
-        class="po-md-5"
-        p-label="CTE_OS Ambiente"
-        [p-value]="empresa.cte_os.ambiente"
-      >
-      </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="CTE Ambiente"
+      [p-value]="empresa.cte.ambiente"
+    >
+    </po-info>
 
-      <po-divider class="po-sm-12" p-label="Ambiente NFS-e"></po-divider>
+    <po-info
+      class="po-md-5"
+      p-label="CTE_OS Ambiente"
+      [p-value]="empresa.cte_os.ambiente"
+    >
+    </po-info>
 
-      <po-info
-        class="po-md-5"
-        p-label="NFS-e Ambiente"
-        [p-value]="empresa.nfse.ambiente"
-      >
-      </po-info>
+    <po-divider class="po-sm-12" p-label="Ambiente NFS-e"></po-divider>
 
-      <po-info
-        class="po-md-5"
-        p-label="Numero RPS"
-        [p-value]="empresa.nfse.rps.numero"
-      >
-      </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="NFS-e Ambiente"
+      [p-value]="empresa.nfse.ambiente"
+    >
+    </po-info>
 
-      <po-info
-        class="po-md-5"
-        p-label="Lote RPS"
-        [p-value]="empresa.nfse.rps.lote"
-      >
-      </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="Numero RPS"
+      [p-value]="empresa.nfse.rps.numero"
+    >
+    </po-info>
 
-      <po-info
-        class="po-md-5"
-        p-label="Serie do RPS"
-        [p-value]="empresa.nfse.rps.serie"
-      >
-      </po-info> -->
+    <po-info
+      class="po-md-5"
+      p-label="Lote RPS"
+      [p-value]="empresa.nfse.rps.lote"
+    >
+    </po-info>
+
+    <po-info
+      class="po-md-5"
+      p-label="Serie do RPS"
+      [p-value]="empresa.nfse.rps.serie"
+    >
+    </po-info>
+
+    <po-divider class="po-sm-12" p-label="Certificado"></po-divider>
+
+    <po-info
+      class="po-md-5"
+      p-label="Nome do Emissor"
+      [p-value]="certificado.issuer_name"
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="Numero Serial"
+      [p-value]="certificado.serial_number"
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="Data de emissao"
+      [p-value]="certificado.not_valid_before"
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="Data de vencimento"
+      [p-value]="certificado.not_valid_after"
+    >
+    </po-info>
   </div>
 </po-page-detail>
