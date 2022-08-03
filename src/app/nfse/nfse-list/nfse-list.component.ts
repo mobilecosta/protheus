@@ -51,8 +51,8 @@ export class NfseListComponent implements OnInit, OnDestroy {
   };
 
   public readonly columns: Array<PoTableColumn> = [
-    { property: 'numero', label: 'Número' },
     { property: 'nome_razao_social', label: 'Razão social' },
+    { property: 'numero', label: 'Número' },
     { property: 'cpf_cnpj', label: 'CPF ou CNPJ' },
     { property: 'rps_identificacao_rps_numero', label: 'Nº RPS' },
     { property: 'rps_identificacao_rps_serie', label: 'Série' },
@@ -184,7 +184,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
             rps_identificacao_rps_numero: report.declaracao_prestacao_servico.rps.identificacao_rps.numero,
             rps_identificacao_rps_serie: report.declaracao_prestacao_servico.rps.identificacao_rps.serie,
             rps_data_emissao: report.declaracao_prestacao_servico.rps.data_emissao,
-            fone: report.declaracao_prestacao_servico.tomador.fone,
+            fone: report.declaracao_prestacao_servico.prestador.fone,
 
 
 

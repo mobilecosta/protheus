@@ -20,7 +20,7 @@ export interface Declaracao_prestacao_servico {
   competencia: "2022-08-02"
   natureza_tributacao: 0
 
-  preprestador: Prestador
+  prestador: Prestador
   tomador: Tomador
   intermediario: Intermediario
   construcao_civil: Construcao_civil
