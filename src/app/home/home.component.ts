@@ -30,7 +30,7 @@ export class HomeComponent {
 			{ label: 'Usuarios', link: './users', icon: 'po-icon-finance', shortLabel: 'Usuários' },
 			{ label: 'CNPJ', link: './cnpj', icon: 'po-icon po-icon-company', shortLabel: 'CNPJ' },
 			{ label: 'Empresas', link: './companies', icon: 'po-icon po-icon-agro-business', shortLabel: 'Companies' },
-			{ label: 'nfe', link: './nfe', icon: 'po-icon po-icon-sale', shortLabel: 'nfe' },
+			{ label: 'NF-e', link: './', icon: 'po-icon po-icon-sale', shortLabel: 'nfe' },
 			{ label: 'NFSe', link: './nfse', icon: 'po-icon po-icon-sale', shortLabel: 'nfse' },
 			{ label: 'Logout', action: this.logout.bind(this), icon: 'po-icon-users', shortLabel: 'Logout' }
 

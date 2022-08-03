@@ -51,8 +51,8 @@ export class NfseListComponent implements OnInit, OnDestroy {
   };
 
   public readonly columns: Array<PoTableColumn> = [
-    { property: 'numero', label: 'Número' },
     { property: 'nome_razao_social', label: 'Razão social' },
+    { property: 'numero', label: 'Número' },
     { property: 'cpf_cnpj', label: 'CPF ou CNPJ' },
     { property: 'rps_identificacao_rps_numero', label: 'Nº RPS' },
     { property: 'rps_identificacao_rps_serie', label: 'Série' },
@@ -177,23 +177,21 @@ export class NfseListComponent implements OnInit, OnDestroy {
         this.nfsesData = response.data
         this.items = this.nfsesData.map(report => {
           return {
+            id: report.id,
             status: report.status,
             numero: report.numero,
-            nome_razao_social: report.declaracao_prestacao_servico.prestador.nome_razao_social,
-            cpf_cnpj: report.declaracao_prestacao_servico.prestador.cpf_cnpj,
+            nome_razao_social: report.declaracao_prestacao_servico.tomador.nome_razao_social,
+            cpf_cnpj: report.declaracao_prestacao_servico.tomador.cpf_cnpj,
             rps_identificacao_rps_numero: report.declaracao_prestacao_servico.rps.identificacao_rps.numero,
             rps_identificacao_rps_serie: report.declaracao_prestacao_servico.rps.identificacao_rps.serie,
             rps_data_emissao: report.declaracao_prestacao_servico.rps.data_emissao,
             fone: report.declaracao_prestacao_servico.tomador.fone,
-
-
-
-
-
           }
 
         })
         this.loading = false;
+        console.log(this.nfsesData);
+
       });
   }
 
@@ -228,7 +226,6 @@ export class NfseListComponent implements OnInit, OnDestroy {
   }
 
   private onEditNfse(nfse) {
-    console.log(nfse.numero);
 
     this.router.navigateByUrl(`/nfse/edit/${nfse.numero}`);
   }
@@ -260,6 +257,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
   }
 
   private onViewNfse(nfse) {
-    this.router.navigateByUrl(`/nfse/view/${nfse.cpf_cnpj}`);
+    this.router.navigateByUrl(`/nfse/view/${nfse.id}`);
+
   }
 }
