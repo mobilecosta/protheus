@@ -177,6 +177,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
         this.nfsesData = response.data
         this.items = this.nfsesData.map(report => {
           return {
+            id: report.id,
             status: report.status,
             numero: report.numero,
             nome_razao_social: report.declaracao_prestacao_servico.prestador.nome_razao_social,
@@ -185,15 +186,12 @@ export class NfseListComponent implements OnInit, OnDestroy {
             rps_identificacao_rps_serie: report.declaracao_prestacao_servico.rps.identificacao_rps.serie,
             rps_data_emissao: report.declaracao_prestacao_servico.rps.data_emissao,
             fone: report.declaracao_prestacao_servico.prestador.fone,
-
-
-
-
-
           }
 
         })
         this.loading = false;
+        console.log(this.nfsesData);
+
       });
   }
 
@@ -228,7 +226,6 @@ export class NfseListComponent implements OnInit, OnDestroy {
   }
 
   private onEditNfse(nfse) {
-    console.log(nfse.numero);
 
     this.router.navigateByUrl(`/nfse/edit/${nfse.numero}`);
   }
@@ -260,6 +257,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
   }
 
   private onViewNfse(nfse) {
-    this.router.navigateByUrl(`/nfse/view/${nfse.cpf_cnpj}`);
+    this.router.navigateByUrl(`/nfse/view/${nfse.id}`);
+
   }
 }
