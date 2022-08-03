@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 
 import { PoNotificationService } from '@po-ui/ng-components';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Nfse } from '../../shared/nfse';
 
 @Component({
   selector: 'app-grid-view',
@@ -15,14 +16,14 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class NfseViewComponent implements OnDestroy, OnInit {
 
-  private readonly url: string = environment.api + '/nfse';
+  private readonly url: string = environment.apiNS + '/nfse';
 
   private gridRemoveSub: Subscription;
   private gridSub: Subscription;
   private paramsSub: Subscription;
   private headers: HttpHeaders;
 
-  nfse: any = {};
+  nfseData: Nfse = {} as Nfse
 
   constructor(
     private httpClient: HttpClient,
@@ -32,8 +33,9 @@ export class NfseViewComponent implements OnDestroy, OnInit {
     private auth: AuthService) { }
 
   ngOnInit() {
-    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
-    this.paramsSub = this.route.params.subscribe(params => this.loadData(params['id']));
+    // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
+    this.paramsSub = this.route.params.subscribe(params => this.loadData(params['cpf_cnpj']));
   }
 
   ngOnDestroy() {
@@ -50,11 +52,11 @@ export class NfseViewComponent implements OnDestroy, OnInit {
   }
 
   edit() {
-    this.router.navigateByUrl(`nfse/edit/${this.nfse.id}`);
+    this.router.navigateByUrl(`nfse/edit/${this.nfseData.id}`);
   }
 
   remove() {
-    this.gridRemoveSub = this.httpClient.delete(`${this.url}?id=eq.${this.nfse.id}`, { headers: this.headers })
+    this.gridRemoveSub = this.httpClient.delete(`${this.url}?id=eq.${this.nfseData.id}`, { headers: this.headers })
       .subscribe(() => {
         this.poNotification.warning('Registro apagado com sucesso.');
 
@@ -62,14 +64,16 @@ export class NfseViewComponent implements OnDestroy, OnInit {
       });
   }
 
-  private loadData(id) {
-    this.gridSub = this.httpClient.get(`${this.url}?id=eq.${id}`, { headers: this.headers })
+  private loadData(cpf_cnpj) {
+    this.gridSub = this.httpClient.get(`${this.url}?cpf_cnpj=${cpf_cnpj}`, { headers: this.headers })
       .pipe(
-        map((grid: any) => {
-          return grid[0];
+        map((grid: Nfse) => {
+          return grid;
         })
       )
-      .subscribe(response => this.nfse = response);
+      .subscribe(response => this.nfseData = response);
+    console.log(this.nfseData);
+
   }
 
 }
