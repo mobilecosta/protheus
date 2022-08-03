@@ -77,7 +77,7 @@ export class NfseViewComponent implements OnDestroy, OnInit {
 
 
   private loadData(nfseData) {
-    this.gridSub = this.httpClient.get(`${this.url}${nfseData}`, { headers: this.headers })
+    this.gridSub = this.httpClient.get(`${this.url}/${nfseData}`, { headers: this.headers })
       .subscribe((response: Nfse) => {
         this.nfseData = response
         //   .subscribe(response => this.nfseData = response[0]);
