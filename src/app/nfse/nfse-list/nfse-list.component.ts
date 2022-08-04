@@ -190,7 +190,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
 
         })
         this.loading = false;
-        console.log(this.nfsesData);
+        console.log(this.nfsesData[0].id);
 
       });
   }
@@ -227,7 +227,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
 
   private onEditNfse(nfse) {
 
-    this.router.navigateByUrl(`/nfse/edit/${nfse.numero}`);
+    this.router.navigateByUrl(`/nfse/edit/${nfse.id}`);
   }
 
   private onNewNfse() {

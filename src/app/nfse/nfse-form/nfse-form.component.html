@@ -1,8 +1,46 @@
-<po-page-dynamic-edit
+<!-- <po-page-dynamic-edit
   [p-auto-router]="true"
   [p-title]="title"
   [p-actions]="actions"
   [p-fields]="fields"
+  [p-service-api]="nfse"
+  [(ngModel)]="nfse"
+>
+</po-page-dynamic-edit> -->
+
+<po-page-dynamic-edit
+  p-title="Po Page Dynamic Edit"
+  [p-fields]="[
+    { property: 'id', label: 'User ID' },
+    { property: 'created_at', label: 'User ID' },
+    { property: 'status', label: 'User ID' },
+    { property: 'numero', label: 'User ID' },
+    { property: 'codigo_verificacao', label: 'User ID' },
+    { property: 'link_url', label: 'User ID' },
+    { property: 'data_emissao', label: 'User ID' },
+    { property: 'ambiente', label: 'User ID' },
+    { property: 'referencia', label: 'User ID' },
+    {
+      property: 'identificacao_rps.numero',
+      label: 'Numero do RPS'
+    },
+    {
+      property: 'declaracao_prestacao_servico.rps.identificacao_rps.serie',
+      label: 'Série RPS'
+    },
+    {
+      property: 'declaracao_prestacao_servico.rps.data_emissao',
+      label: 'Data emissão RPS'
+    },
+    {
+      property: 'declaracao_prestacao_servico.competencia',
+      label: 'Competencia'
+    },
+    {
+      property: 'declaracao_prestacao_servico.natureza_tributacao',
+      label: 'Natureza Tributação'
+    }
+  ]"
   [p-service-api]="serviceApi"
 >
 </po-page-dynamic-edit>
