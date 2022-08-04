@@ -7,6 +7,40 @@
   <po-divider p-label="Dados NFS-e do Tomador"></po-divider>
 
   <div class="po-row">
+    <po-info
+      class="po-md-5"
+      p-label="Razão Social"
+      [p-value]="
+        nfseData.declaracao_prestacao_servico.tomador.nome_razao_social
+      "
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="Código de verificação"
+      [p-value]="nfseData.declaracao_prestacao_servico.tomador.cpf_cnpj"
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="Incrição Municipal"
+      [p-value]="
+        nfseData.declaracao_prestacao_servico.tomador.inscricao_municipal
+      "
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="Telefone"
+      [p-value]="nfseData.declaracao_prestacao_servico.tomador.fone"
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="Email"
+      [p-value]="nfseData.declaracao_prestacao_servico.tomador.email"
+    >
+    </po-info>
     <po-info class="po-md-5" p-label="ID" [p-value]="nfseData.id"> </po-info>
 
     <po-info class="po-md-5" p-label="Satus" [p-value]="nfseData.status">
@@ -15,7 +49,7 @@
     </po-info>
     <po-info
       class="po-md-5"
-      p-label="data_emissao"
+      p-label="Código de verificação"
       [p-value]="nfseData.codigo_verificacao"
     >
     </po-info>
@@ -31,8 +65,76 @@
     </po-info>
     <po-info
       class="po-md-5"
-      p-label="referencia"
+      p-label="Referencia"
       [p-value]="nfseData.referencia"
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="Logradouro"
+      [p-value]="
+        nfseData.declaracao_prestacao_servico.tomador.endereco.logradouro
+      "
+    >
+    </po-info>
+
+    <po-info
+      class="po-md-5"
+      p-label="Numero"
+      [p-value]="nfseData.declaracao_prestacao_servico.tomador.endereco.numero"
+    >
+    </po-info>
+
+    <po-info
+      class="po-md-5"
+      p-label="Bairro"
+      [p-value]="nfseData.declaracao_prestacao_servico.tomador.endereco.bairro"
+    >
+    </po-info>
+
+    <po-info
+      class="po-md-5"
+      p-label="Cidade"
+      [p-value]="nfseData.declaracao_prestacao_servico.tomador.endereco.cidade"
+    >
+    </po-info>
+
+    <po-info
+      class="po-md-5"
+      p-label="UF"
+      [p-value]="nfseData.declaracao_prestacao_servico.tomador.endereco.uf"
+    >
+    </po-info>
+
+    <po-info
+      class="po-md-5"
+      p-label="CEP"
+      [p-value]="nfseData.declaracao_prestacao_servico.tomador.endereco.cep"
+    >
+    </po-info>
+
+    <po-info
+      class="po-md-5"
+      p-label="Código Municipio"
+      [p-value]="
+        nfseData.declaracao_prestacao_servico.tomador.endereco.codigo_municipio
+      "
+    >
+    </po-info>
+
+    <po-info
+      class="po-md-5"
+      p-label="Código Pais"
+      [p-value]="
+        nfseData.declaracao_prestacao_servico.tomador.endereco.codigo_pais
+      "
+    >
+    </po-info>
+
+    <po-info
+      class="po-md-5"
+      p-label="Pais"
+      [p-value]="nfseData.declaracao_prestacao_servico.tomador.endereco.pais"
     >
     </po-info>
 
@@ -42,15 +144,6 @@
       class="po-md-5"
       p-label="CNPJ / CPF"
       [p-value]="nfseData.declaracao_prestacao_servico.prestador.cpf_cnpj"
-    >
-    </po-info>
-
-    <po-info
-      class="po-md-5"
-      p-label="Incrição Municipal"
-      [p-value]="
-        nfseData.declaracao_prestacao_servico.prestador.inscricao_municipal
-      "
     >
     </po-info>
 
@@ -81,6 +174,73 @@
       class="po-md-5"
       p-label="E-mail"
       [p-value]="nfseData.declaracao_prestacao_servico.prestador.email"
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="Logradouro"
+      [p-value]="
+        nfseData.declaracao_prestacao_servico.prestador.endereco.logradouro
+      "
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="Numero"
+      [p-value]="
+        nfseData.declaracao_prestacao_servico.prestador.endereco.numero
+      "
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="Bairro"
+      [p-value]="
+        nfseData.declaracao_prestacao_servico.prestador.endereco.bairro
+      "
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="CÓDIGO MUNICIPIO"
+      [p-value]="
+        nfseData.declaracao_prestacao_servico.prestador.endereco
+          .codigo_municipio
+      "
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="CIDADE"
+      [p-value]="
+        nfseData.declaracao_prestacao_servico.prestador.endereco.cidade
+      "
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="UF"
+      [p-value]="nfseData.declaracao_prestacao_servico.prestador.endereco.uf"
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="CODIGO PAIS"
+      [p-value]="
+        nfseData.declaracao_prestacao_servico.prestador.endereco.codigo_pais
+      "
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="PAIS"
+      [p-value]="nfseData.declaracao_prestacao_servico.prestador.endereco.pais"
+    >
+    </po-info>
+    <po-info
+      class="po-md-5"
+      p-label="CEP"
+      [p-value]="nfseData.declaracao_prestacao_servico.prestador.endereco.cep"
     >
     </po-info>
   </div>

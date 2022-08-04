@@ -76,7 +76,21 @@ export interface Tomador {
   fone: string
   email: string
 
+  endereco: Endereco
 
+
+}
+export interface Endereco {
+  logradouro: string
+  numero: string
+  complemento: string
+  bairro: string
+  codigo_municipio: string
+  cidade: string
+  codigo_pais: string
+  uf: string
+  pais: string
+  cep: string
 }
 export interface Intermediario {
   cpf_cnpj: string

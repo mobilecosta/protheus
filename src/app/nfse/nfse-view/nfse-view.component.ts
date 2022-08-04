@@ -1,3 +1,5 @@
+import { Endereco } from './../../shared/companies';
+import { Tomador } from './../../shared/nfse';
 import { environment } from 'src/environments/environment'
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -45,6 +47,7 @@ export class NfseViewComponent implements OnDestroy, OnInit {
     this.nfseData = {} as Nfse
     this.nfseData.declaracao_prestacao_servico = {} as Declaracao_prestacao_servico
     this.nfseData.declaracao_prestacao_servico.prestador = {} as Prestador
+    this.nfseData.declaracao_prestacao_servico.tomador.endereco = {} as Endereco
     this.nfseData.cancelamento = {} as Cancelamento
     this.nfseData.mensagens = {} as Mensagens
   }
