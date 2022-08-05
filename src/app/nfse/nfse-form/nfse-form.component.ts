@@ -32,16 +32,42 @@ export class NfseFormComponent implements OnDestroy, OnInit {
   private paramsSub: Subscription;
   private headers: HttpHeaders;
 
-  public nfse: Nfse
+  // public readonly serviceApi = environment.apiNS + '/nfse';
 
-  public readonly serviceApi = environment.apiNS + '/nfse'
+  public nfse: Nfse = {} as Nfse
 
 
-  public readonly fields: Array<PoDynamicFormField> = [
-    { property: 'name', divider: 'Personal data', required: true },
-    { property: 'nickname' },
-    { property: 'email', label: 'E-mail' },
-  ]
+  // public readonly fields: Array<PoDynamicFormField> = [
+  //   { property: 'id', label: 'User ID' },
+  //   { property: 'created_at', label: 'Data de Criação' },
+  //   { property: 'status', label: 'Status' },
+  //   { property: 'numero', label: 'Numero' },
+  //   { property: 'codigo_verificacao', label: 'Código de verificação' },
+  //   { property: 'link_url', label: 'Link URL' },
+  //   { property: 'data_emissao', label: 'Data de Emissão' },
+  //   { property: 'ambiente', label: 'Ambiente' },
+  //   { property: 'referencia', label: 'Referencia' },
+  //   {
+  //     property: 'declaracao_prestacao_servico.rps.identificacao_rps.numero',
+  //     label: 'Numero do RPS'
+  //   },
+  //   {
+  //     property: 'declaracao_prestacao_servico.rps.identificacao_rps.serie',
+  //     label: 'Série RPS'
+  //   },
+  //   {
+  //     property: 'declaracao_prestacao_servico.rps.data_emissao',
+  //     label: 'Data emissão RPS'
+  //   },
+  //   {
+  //     property: 'declaracao_prestacao_servico.competencia',
+  //     label: 'Competencia'
+  //   },
+  //   {
+  //     property: 'declaracao_prestacao_servico.natureza_tributacao',
+  //     label: 'Natureza Tributação'
+  //   }
+  // ]
 
   constructor(
     private poNotification: PoNotificationService,
@@ -51,11 +77,11 @@ export class NfseFormComponent implements OnDestroy, OnInit {
     private auth: AuthService) { }
 
   ngOnDestroy() {
-    // this.paramsSub.unsubscribe();
+    this.paramsSub.unsubscribe();
 
-    // if (this.gridSub) {
-    //   this.gridSub.unsubscribe();
-    // }
+    if (this.gridSub) {
+      this.gridSub.unsubscribe();
+    }
   }
 
   ngOnInit() {
@@ -63,7 +89,6 @@ export class NfseFormComponent implements OnDestroy, OnInit {
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
     this.paramsSub = this.route.params.subscribe(params => {
       if (params['id']) {
-        console.log(params);
         this.loadData(params['id']);
         this.action = actionUpdate;
 
@@ -108,6 +133,7 @@ export class NfseFormComponent implements OnDestroy, OnInit {
       .subscribe((response: Nfse) => {
         this.nfse = response
       })
+
   }
 
   private navigateToList(msg: string) {

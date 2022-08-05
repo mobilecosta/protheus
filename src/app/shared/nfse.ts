@@ -17,7 +17,7 @@ export interface Nfse {
 export interface Declaracao_prestacao_servico {
   rps: Rps
 
-  competencia: "2022-08-02"
+  competencia: string
   natureza_tributacao: 0
 
   prestador: Prestador
@@ -29,7 +29,7 @@ export interface Declaracao_prestacao_servico {
 
 export interface Rps {
   identificacao_rps: Identificacao_rps
-  data_emissao: "2022-08-02T19:58:36.516Z"
+  data_emissao: string
 
 }
 
