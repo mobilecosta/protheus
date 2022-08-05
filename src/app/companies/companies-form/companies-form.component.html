@@ -1,9 +1,4 @@
-<po-page-edit
-  (p-save)="save()"
-  (p-cancel)="cancel()"
-  [p-title]="cpf_cnpj"
-  [p-disable-submit]="formCliente.invalid"
->
+<po-page-edit (p-save)="save()" (p-cancel)="cancel()" [p-title]="cpf_cnpj">
   <form #formCliente="ngForm">
     <po-divider class="po-sm-12" p-label="Dados da empresa"></po-divider>
 
