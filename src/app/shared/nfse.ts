@@ -17,7 +17,7 @@ export interface Nfse {
 export interface Declaracao_prestacao_servico {
   rps: Rps
 
-  competencia: "2022-08-02"
+  competencia: string
   natureza_tributacao: 0
 
   prestador: Prestador
@@ -29,7 +29,7 @@ export interface Declaracao_prestacao_servico {
 
 export interface Rps {
   identificacao_rps: Identificacao_rps
-  data_emissao: "2022-08-02T19:58:36.516Z"
+  data_emissao: string
 
 }
 
@@ -76,7 +76,21 @@ export interface Tomador {
   fone: string
   email: string
 
+  endereco: Endereco
 
+
+}
+export interface Endereco {
+  logradouro: string
+  numero: string
+  complemento: string
+  bairro: string
+  codigo_municipio: string
+  cidade: string
+  codigo_pais: string
+  uf: string
+  pais: string
+  cep: string
 }
 export interface Intermediario {
   cpf_cnpj: string

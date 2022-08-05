@@ -1,8 +1,213 @@
-<po-page-dynamic-edit
+<po-page-edit (p-save)="save()" (p-cancel)="cancel()" p-title="Atualizar NFS-e">
+  <form #formCliente="ngForm">
+    <po-divider class="po-sm-12" p-label="Dados da empresa"></po-divider>
+    <po-input
+      class="po-md-5"
+      name="id"
+      [(ngModel)]="nfse.id"
+      p-label="Data de Criação"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfse.created_at"
+      p-label="Data de Criação"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="status"
+      [(ngModel)]="nfse.status"
+      p-label="Status"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="numero"
+      [(ngModel)]="nfse.numero"
+      p-label="Numero"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="codigo_verificacao"
+      [(ngModel)]="nfse.codigo_verificacao"
+      p-label="Código de verificação"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="link_url"
+      [(ngModel)]="nfse.link_url"
+      p-label="Link URL"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="data_emissao"
+      [(ngModel)]="nfse.data_emissao"
+      p-label="Data de Emissão"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="ambiente"
+      [(ngModel)]="nfse.ambiente"
+      p-label="Ambiente"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="referencia"
+      [(ngModel)]="nfse.referencia"
+      p-label="Referencia"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="number"
+      [(ngModel)]="
+        nfse.declaracao_prestacao_servico.rps.identificacao_rps.numero
+      "
+      p-label="Numero do RPS"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="serie"
+      [(ngModel)]="
+        nfse.declaracao_prestacao_servico.rps.identificacao_rps.serie
+      "
+      p-label="Série"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="data_emissao"
+      [(ngModel)]="nfse.declaracao_prestacao_servico.rps.data_emissao"
+      p-label="Data de emissão"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="competencia"
+      [(ngModel)]="nfse.declaracao_prestacao_servico.competencia"
+      p-label="Competencia"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="natureza_tributacao"
+      [(ngModel)]="nfse.declaracao_prestacao_servico.natureza_tributacao"
+      p-label="Natureza Tributação"
+      [p-disabled]="false"
+    >
+    </po-input>
+
+    <!-- <po-page-dynamic-edit
+  p-group-form="true"
   [p-auto-router]="true"
   [p-title]="title"
   [p-actions]="actions"
   [p-fields]="fields"
   [p-service-api]="serviceApi"
+  [(ngModel)]="nfse"
 >
-</po-page-dynamic-edit>
+  >
+</po-page-dynamic-edit> -->
+
+    <!-- <po-page-dynamic-edit
+  p-title="Po Page Dynamic Edit"
+  [p-fields]="[
+    { property: 'id', label: 'User ID' },
+    { proper<po-input
+      class="po-md-5"
+      name="id"
+      [(ngModel)]="nfse.id"
+      p-label="XXXXXXXXXXX"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="id"
+      [(ngModel)]="nfse.id"
+      p-label="XXXXXXXXXXX"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="id"
+      [(ngModel)]="nfse.id"
+      p-label="XXXXXXXXXXX"
+      [p-disabled]="false"
+    >
+    </po-input>
+  </form>
+</po-page-edit>
+
+<!-- <po-page-dynamic-edit
+  p-group-form="true"
+  [p-auto-router]="true"
+  [p-title]="title"
+  [p-actions]="actions"
+  [p-fields]="fields"
+  [p-service-api]="serviceApi"
+  [(ngModel)]="nfse"
+>
+  >
+</po-page-dynamic-edit> -->
+
+    <!-- <po-page-dynamic-edit
+  p-title="Po Page Dynamic Edit"
+  [p-fields]="[
+    { property: 'id', label: 'User ID' },
+    { property: 'created_at', label: 'Data de Criação' },
+    { property: 'status', label: 'Status' },
+    { property: 'numero', label: 'Numero' },
+    { property: 'codigo_verificacao', label: 'Código de verificação' },
+    { property: 'link_url', label: 'Link URL' },
+    { property: 'data_emissao', label: 'Data de Emissão' },
+    { property: 'ambiente', label: 'Ambiente' },
+    { property: 'referencia', label: 'Referencia' },
+    {
+      property: 'declaracao_prestacao_servico.rps.identificacao_rps.numero',
+      label: 'Numero do RPS'
+    },
+    {
+      property: 'declaracao_prestacao_servico.rps.identificacao_rps.serie',
+      label: 'Série RPS'
+    },
+    {
+      property: 'declaracao_prestacao_servico.rps.data_emissao',
+      label: 'Data emissão RPS'
+    },
+    {
+      property: 'declaracao_prestacao_servico.competencia',
+      label: 'Competencia'
+    },
+    {
+      property: 'declaracao_prestacao_servico.natureza_tributacao',
+      label: 'Natureza Tributação'
+    }
+  ]"
+  [p-service-api]="serviceApi"
+>
+</po-page-dynamic-edit> -->
+  </form></po-page-edit
+>

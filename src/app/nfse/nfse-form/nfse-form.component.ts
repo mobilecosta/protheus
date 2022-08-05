@@ -10,6 +10,7 @@ import { PoNotificationService, PoSelectOption, PoDynamicFormField } from '@po-u
 import { PoPageDynamicEditActions, PoPageDynamicEditModule } from '@po-ui/ng-templates';
 
 import { AuthService } from 'src/app/auth/auth.service';
+import { Nfse, Declaracao_prestacao_servico, Rps, Identificacao_rps } from '../../shared/nfse';
 
 const actionInsert = 'insert';
 const actionUpdate = 'update';
@@ -20,8 +21,7 @@ const actionUpdate = 'update';
 })
 export class NfseFormComponent implements OnDestroy, OnInit {
 
-  private readonly url: string = 'http://localhost:3000' + '/nfse';
-  public readonly serviceApi = 'http://localhost:3000';
+  private readonly url: string = environment.apiNS + '/nfse';
 
   public readonly actions: PoPageDynamicEditActions = {
     save: '/documentation/po-page-dynamic-detail',
@@ -32,13 +32,42 @@ export class NfseFormComponent implements OnDestroy, OnInit {
   private paramsSub: Subscription;
   private headers: HttpHeaders;
 
-  public nfse: any = {};
+  // public readonly serviceApi = environment.apiNS + '/nfse';
 
-  public readonly fields: Array<PoDynamicFormField> = [
-    { property: 'name', divider: 'Personal data', required: true },
-    { property: 'nickname' },
-    { property: 'email', label: 'E-mail' },
-  ]
+  public nfse: Nfse = {} as Nfse
+
+
+  // public readonly fields: Array<PoDynamicFormField> = [
+  //   { property: 'id', label: 'User ID' },
+  //   { property: 'created_at', label: 'Data de Criação' },
+  //   { property: 'status', label: 'Status' },
+  //   { property: 'numero', label: 'Numero' },
+  //   { property: 'codigo_verificacao', label: 'Código de verificação' },
+  //   { property: 'link_url', label: 'Link URL' },
+  //   { property: 'data_emissao', label: 'Data de Emissão' },
+  //   { property: 'ambiente', label: 'Ambiente' },
+  //   { property: 'referencia', label: 'Referencia' },
+  //   {
+  //     property: 'declaracao_prestacao_servico.rps.identificacao_rps.numero',
+  //     label: 'Numero do RPS'
+  //   },
+  //   {
+  //     property: 'declaracao_prestacao_servico.rps.identificacao_rps.serie',
+  //     label: 'Série RPS'
+  //   },
+  //   {
+  //     property: 'declaracao_prestacao_servico.rps.data_emissao',
+  //     label: 'Data emissão RPS'
+  //   },
+  //   {
+  //     property: 'declaracao_prestacao_servico.competencia',
+  //     label: 'Competencia'
+  //   },
+  //   {
+  //     property: 'declaracao_prestacao_servico.natureza_tributacao',
+  //     label: 'Natureza Tributação'
+  //   }
+  // ]
 
   constructor(
     private poNotification: PoNotificationService,
@@ -48,21 +77,29 @@ export class NfseFormComponent implements OnDestroy, OnInit {
     private auth: AuthService) { }
 
   ngOnDestroy() {
-    // this.paramsSub.unsubscribe();
+    this.paramsSub.unsubscribe();
 
-    // if (this.gridSub) {
-    //   this.gridSub.unsubscribe();
-    // }
+    if (this.gridSub) {
+      this.gridSub.unsubscribe();
+    }
   }
 
   ngOnInit() {
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
     this.paramsSub = this.route.params.subscribe(params => {
       if (params['id']) {
-        console.log(params);
-
         this.loadData(params['id']);
         this.action = actionUpdate;
+
+        this.nfse = {} as Nfse
+        this.nfse.declaracao_prestacao_servico = {} as Declaracao_prestacao_servico
+        this.nfse.declaracao_prestacao_servico.rps = {} as Rps
+        this.nfse.declaracao_prestacao_servico.rps.identificacao_rps = {} as Identificacao_rps
+
+
+        // console.log(this.nfse);
+
       }
     });
   }
@@ -73,7 +110,7 @@ export class NfseFormComponent implements OnDestroy, OnInit {
 
   save() {
     const record = { ...this.nfse };
-    console.log(record);
+    // console.log(record);
 
 
     // this.gridSub = this.isUpdateOperation
@@ -93,12 +130,10 @@ export class NfseFormComponent implements OnDestroy, OnInit {
 
   private loadData(id) {
     this.gridSub = this.httpClient.get(`${this.url}/${id}`, { headers: this.headers })
-      .pipe(
-        map((cliente: any) => {
-          return cliente[0];
-        })
-      )
-      .subscribe(response => this.nfse = response);
+      .subscribe((response: Nfse) => {
+        this.nfse = response
+      })
+
   }
 
   private navigateToList(msg: string) {
@@ -106,5 +141,4 @@ export class NfseFormComponent implements OnDestroy, OnInit {
 
     this.router.navigateByUrl('/nfse');
   }
-
 }
