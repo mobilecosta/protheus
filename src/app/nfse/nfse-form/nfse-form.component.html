@@ -1,14 +1,7 @@
 <po-page-edit (p-save)="save()" (p-cancel)="cancel()" p-title="Atualizar NFS-e">
   <form #formCliente="ngForm">
     <po-divider class="po-sm-12" p-label="Dados da empresa"></po-divider>
-    <po-input
-      class="po-md-5"
-      name="id"
-      [(ngModel)]="nfse.id"
-      p-label="Data de Criação"
-      [p-disabled]="false"
-    >
-    </po-input>
+
     <po-input
       class="po-md-5"
       name="created_at"
@@ -73,21 +66,21 @@
       [p-disabled]="false"
     >
     </po-input>
-    <!-- <po-input
-      type="rps"
+    <po-input
       class="po-md-5"
-      name="number"
+      name="string"
       [(ngModel)]="
-        nfse.declaracao_prestacao_servico.rps.identificacao_rps.numero
+        nfse.declaracao_prestacao_servico?.rps.identificacao_rps.numero
       "
       p-label="Numero do RPS"
     >
     </po-input>
+
     <po-input
       class="po-md-5"
       name="serie"
       [(ngModel)]="
-        nfse.declaracao_prestacao_servico.rps.identificacao_rps.serie
+        nfse.declaracao_prestacao_servico?.rps.identificacao_rps.serie
       "
       p-label="Série"
       [p-disabled]="false"
@@ -96,11 +89,12 @@
     <po-input
       class="po-md-5"
       name="data_emissao"
-      [(ngModel)]="nfse.declaracao_prestacao_servico.rps.data_emissao"
+      [(ngModel)]="nfse.declaracao_prestacao_servico?.rps.data_emissao"
       p-label="Data de emissão"
       [p-disabled]="false"
     >
-    </po-input> -->
+    </po-input>
+
     <!-- <po-input
       class="po-md-5"
       name="competencia"

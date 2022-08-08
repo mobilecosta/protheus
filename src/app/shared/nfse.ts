@@ -14,6 +14,7 @@ export interface Nfse {
   mensagens: Mensagens
 }
 
+
 export interface Declaracao_prestacao_servico {
   rps: Rps
 
@@ -152,8 +153,8 @@ export interface Valores_Servicos {
 }
 export interface Cancelamento {
   id: string
-  status: "pendente"
-  data_hora: "2022-08-02T19:58:36.516Z"
+  status: string
+  data_hora: string
   mensagens: Mensagens_Cancelamento
 }
 export interface Mensagens_Cancelamento {

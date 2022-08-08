@@ -10,7 +10,7 @@ import { PoNotificationService, PoSelectOption, PoDynamicFormField } from '@po-u
 import { PoPageDynamicEditActions, PoPageDynamicEditModule } from '@po-ui/ng-templates';
 
 import { AuthService } from 'src/app/auth/auth.service';
-import { Nfse, Declaracao_prestacao_servico, Rps, Identificacao_rps } from '../../shared/nfse';
+import { Nfse, Declaracao_prestacao_servico, Rps, Identificacao_rps, Mensagens } from '../../shared/nfse';
 
 const actionInsert = 'insert';
 const actionUpdate = 'update';
@@ -100,7 +100,7 @@ export class NfseFormComponent implements OnDestroy, OnInit {
         this.nfse.declaracao_prestacao_servico = {} as Declaracao_prestacao_servico
         this.nfse.declaracao_prestacao_servico.rps = {} as Rps
         this.nfse.declaracao_prestacao_servico.rps.identificacao_rps = {} as Identificacao_rps
-
+        this.nfse.mensagens = {} as Mensagens
 
         // console.log(this.nfse);
 
