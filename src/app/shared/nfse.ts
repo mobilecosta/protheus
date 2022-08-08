@@ -31,6 +31,7 @@ export interface Rps {
   identificacao_rps: Identificacao_rps
   data_emissao: string
 
+
 }
 
 export interface Identificacao_rps {

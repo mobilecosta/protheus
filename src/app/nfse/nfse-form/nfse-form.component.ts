@@ -16,25 +16,29 @@ const actionInsert = 'insert';
 const actionUpdate = 'update';
 
 @Component({
-  selector: 'app-nfse-form',
+  selector: 'ngForm',
   templateUrl: './nfse-form.component.html'
 })
 export class NfseFormComponent implements OnDestroy, OnInit {
 
   private readonly url: string = environment.apiNS + '/nfse';
 
-  public readonly actions: PoPageDynamicEditActions = {
-    save: '/documentation/po-page-dynamic-detail',
-  };
+  // public readonly actions: PoPageDynamicEditActions = {
+  //   save: '/documentation/po-page-dynamic-detail',
+  // };
+
+
+
 
   private action: string = actionInsert;
   private gridSub: Subscription;
   private paramsSub: Subscription;
   private headers: HttpHeaders;
-
+  numero: string = ""
   // public readonly serviceApi = environment.apiNS + '/nfse';
 
   public nfse: Nfse = {} as Nfse
+  public rps: Rps = {} as Rps
 
 
   // public readonly fields: Array<PoDynamicFormField> = [
