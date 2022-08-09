@@ -24,7 +24,6 @@ const actionUpdate = 'update';
 export class NfseFormComponent implements OnDestroy, OnInit {
 
   private readonly url: string = environment.apiNS + '/nfse';
-  private readonly urlToken: string = environment.apiNS + '/empresas';
 
   // public readonly actions: PoPageDynamicEditActions = {
   //   save: '/documentation/po-page-dynamic-detail',
@@ -40,7 +39,6 @@ export class NfseFormComponent implements OnDestroy, OnInit {
   numero: string = ""
   // public readonly serviceApi = environment.apiNS + '/nfse';
 
-  public empresa: Empresa = {} as Empresa
   public nfse: Nfse = {} as Nfse
   public nfsePost: NfsePost = {} as NfsePost
 
@@ -96,12 +94,11 @@ export class NfseFormComponent implements OnDestroy, OnInit {
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
     this.paramsSub = this.route.params.subscribe(params => {
-      if (params['cpf_cnpj']) {
-        this.loadData(params['cpf_cnpj']);
+      if (params['id']) {
+        this.loadData(params['id']);
         this.action = actionUpdate;
       }
     });
-    this.loadData(this.empresa)
     this.nfse = {} as Nfse
     this.nfse.declaracao_prestacao_servico = {} as Declaracao_prestacao_servico
     this.nfse.declaracao_prestacao_servico.rps = {} as Rps
@@ -111,6 +108,7 @@ export class NfseFormComponent implements OnDestroy, OnInit {
     this.nfsePost = {} as NfsePost
 
 
+
   }
 
   cancel() {
@@ -118,7 +116,9 @@ export class NfseFormComponent implements OnDestroy, OnInit {
   }
 
   async save() {
-    const record = { ...this.empresa };
+    const record = { ...this.nfse };
+
+    console.log(record);
 
 
     let body = {
@@ -126,9 +126,9 @@ export class NfseFormComponent implements OnDestroy, OnInit {
     }
 
     this.gridSub = this.isUpdateOperation
-      ? this.httpClient.put(`${this.url}/${record.cpf_cnpj}`, body, { headers: this.headers })
+      ? this.httpClient.put(`${this.url}/${record.id}`, body, { headers: this.headers })
         .subscribe(() => this.navigateToList('Registro atualizado com sucesso'))
-      : this.httpClient.post(`${this.url}/${record.cpf_cnpj}`, body, { headers: this.headers })
+      : this.httpClient.post(`${this.url}`, body, { headers: this.headers })
         .subscribe(() => this.navigateToList('Registro cadastrado com sucesso'));
   }
 
@@ -141,11 +141,11 @@ export class NfseFormComponent implements OnDestroy, OnInit {
   }
 
   private loadData(response) {
-    this.gridSub = this.httpClient.get(`${this.urlToken}`, { headers: this.headers })
-      .subscribe((response: Empresa) => {
-        this.empresa = response.data
+    this.gridSub = this.httpClient.get(`${this.url}/${response.id}`, { headers: this.headers })
+      .subscribe((response: Nfse) => {
+        this.nfse = response
         console.log("loadData CNPJ DO LOGIN");
-        console.log(this.empresa[0].cpf_cnpj);
+        console.log(this.nfse);
 
       })
 
