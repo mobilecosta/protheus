@@ -11,8 +11,7 @@ import { PoPageDynamicEditActions, PoPageDynamicEditModule } from '@po-ui/ng-tem
 
 import { AuthService } from 'src/app/auth/auth.service';
 import { Nfse, Declaracao_prestacao_servico, Rps, Identificacao_rps, Mensagens } from '../../shared/nfse';
-import { NfsePost } from '../../shared/nfse-post';
-import { Empresa } from '../../shared/companies';
+import { NfsePost, RpsNfesPost, Prestador, Tomador, Intermediario, ConstrucaoCivil, EnderecoTomador } from '../../shared/nfse-post';
 
 const actionInsert = 'insert';
 const actionUpdate = 'update';
@@ -90,7 +89,7 @@ export class NfseFormComponent implements OnDestroy, OnInit {
     }
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
     this.paramsSub = this.route.params.subscribe(params => {
@@ -106,6 +105,12 @@ export class NfseFormComponent implements OnDestroy, OnInit {
     this.nfse.mensagens = {} as Mensagens
 
     this.nfsePost = {} as NfsePost
+    this.nfsePost.rps = {} as RpsNfesPost
+    this.nfsePost.rps.prestador = {} as Prestador
+    this.nfsePost.rps.tomador = {} as Tomador
+    this.nfsePost.rps.tomador.endereco = {} as EnderecoTomador
+    this.nfsePost.rps.intermediario = {} as Intermediario
+    this.nfsePost.rps.construcao_civil = {} as ConstrucaoCivil
 
 
 
@@ -117,9 +122,6 @@ export class NfseFormComponent implements OnDestroy, OnInit {
 
   async save() {
     const record = { ...this.nfse };
-
-    console.log(record);
-
 
     let body = {
       ambiente: this.nfsePost.ambiente
