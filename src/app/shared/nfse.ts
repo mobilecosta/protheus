@@ -1,18 +1,20 @@
 export interface Nfse {
   id: string
-  created_at: "2022-08-02T19:58:36.515Z"
-  status: "processando"
+  created_at: string
+  status: string
   numero: string
   codigo_verificacao: string
   link_url: string
-  data_emissao: "2022-08-02T19:58:36.515Z"
-  ambiente: "homologacao"
+  data_emissao: string
+  ambiente: string
   referencia: string
 
   declaracao_prestacao_servico: Declaracao_prestacao_servico
   cancelamento: Cancelamento
   mensagens: Mensagens
+
 }
+
 
 export interface Declaracao_prestacao_servico {
   rps: Rps
@@ -30,6 +32,7 @@ export interface Declaracao_prestacao_servico {
 export interface Rps {
   identificacao_rps: Identificacao_rps
   data_emissao: string
+
 
 }
 
@@ -151,8 +154,8 @@ export interface Valores_Servicos {
 }
 export interface Cancelamento {
   id: string
-  status: "pendente"
-  data_hora: "2022-08-02T19:58:36.516Z"
+  status: string
+  data_hora: string
   mensagens: Mensagens_Cancelamento
 }
 export interface Mensagens_Cancelamento {

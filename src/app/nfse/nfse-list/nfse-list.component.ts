@@ -38,6 +38,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
   public readonly actions: Array<PoPageAction> = [
     { action: this.onNewNfse.bind(this), label: 'Emitir NFS-e', icon: 'po-icon po-icon-sale' },
     { action: this.onRemoveNfses.bind(this), label: 'Remover NFS-e' },
+    { action: this.ngOnInit(), label: 'Pagina Inicial' }
   ];
 
   public readonly advancedFilterPrimaryAction: PoModalAction = {
@@ -91,10 +92,9 @@ export class NfseListComponent implements OnInit, OnDestroy {
   hasNext: boolean = false;
   loading: boolean = true;
   //  sfj_nome: string;
-  cpf_cnpj: string;
+
   nfsesData: Array<Nfse>
   items: Array<any>
-  fone: string;
 
   @ViewChild('advancedFilter', { static: true }) advancedFilter: PoModalComponent;
   @ViewChild('table', { static: true }) table: PoTableComponent;
@@ -105,7 +105,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
     private auth: AuthService) { }
 
   ngOnInit() {
-    this.order = "cpf_cnpj";
+    this.order = "id";
     let params: any = {
       offset: 1,
       limit: this.limit,
@@ -231,7 +231,7 @@ export class NfseListComponent implements OnInit, OnDestroy {
   }
 
   private onNewNfse() {
-    this.router.navigateByUrl('/nfse/new');
+    this.router.navigateByUrl(`/nfse/new`);
   }
 
   private onRemoveCliente(cliente) {

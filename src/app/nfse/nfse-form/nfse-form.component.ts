@@ -10,31 +10,36 @@ import { PoNotificationService, PoSelectOption, PoDynamicFormField } from '@po-u
 import { PoPageDynamicEditActions, PoPageDynamicEditModule } from '@po-ui/ng-templates';
 
 import { AuthService } from 'src/app/auth/auth.service';
-import { Nfse, Declaracao_prestacao_servico, Rps, Identificacao_rps } from '../../shared/nfse';
+import { Nfse, Declaracao_prestacao_servico, Rps, Identificacao_rps, Mensagens } from '../../shared/nfse';
+import { NfsePost, RpsNfesPost, Prestador, Tomador, Intermediario, ConstrucaoCivil, EnderecoTomador } from '../../shared/nfse-post';
 
 const actionInsert = 'insert';
 const actionUpdate = 'update';
 
 @Component({
-  selector: 'app-nfse-form',
+  selector: 'ngForm',
   templateUrl: './nfse-form.component.html'
 })
 export class NfseFormComponent implements OnDestroy, OnInit {
 
   private readonly url: string = environment.apiNS + '/nfse';
 
-  public readonly actions: PoPageDynamicEditActions = {
-    save: '/documentation/po-page-dynamic-detail',
-  };
+  // public readonly actions: PoPageDynamicEditActions = {
+  //   save: '/documentation/po-page-dynamic-detail',
+  // };
+
+
+
 
   private action: string = actionInsert;
   private gridSub: Subscription;
   private paramsSub: Subscription;
   private headers: HttpHeaders;
-
+  numero: string = ""
   // public readonly serviceApi = environment.apiNS + '/nfse';
 
   public nfse: Nfse = {} as Nfse
+  public nfsePost: NfsePost = {} as NfsePost
 
 
   // public readonly fields: Array<PoDynamicFormField> = [
@@ -84,40 +89,49 @@ export class NfseFormComponent implements OnDestroy, OnInit {
     }
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
     this.paramsSub = this.route.params.subscribe(params => {
       if (params['id']) {
         this.loadData(params['id']);
         this.action = actionUpdate;
-
-        this.nfse = {} as Nfse
-        this.nfse.declaracao_prestacao_servico = {} as Declaracao_prestacao_servico
-        this.nfse.declaracao_prestacao_servico.rps = {} as Rps
-        this.nfse.declaracao_prestacao_servico.rps.identificacao_rps = {} as Identificacao_rps
-
-
-        // console.log(this.nfse);
-
       }
     });
+    this.nfse = {} as Nfse
+    this.nfse.declaracao_prestacao_servico = {} as Declaracao_prestacao_servico
+    this.nfse.declaracao_prestacao_servico.rps = {} as Rps
+    this.nfse.declaracao_prestacao_servico.rps.identificacao_rps = {} as Identificacao_rps
+    this.nfse.mensagens = {} as Mensagens
+
+    this.nfsePost = {} as NfsePost
+    this.nfsePost.rps = {} as RpsNfesPost
+    this.nfsePost.rps.prestador = {} as Prestador
+    this.nfsePost.rps.tomador = {} as Tomador
+    this.nfsePost.rps.tomador.endereco = {} as EnderecoTomador
+    this.nfsePost.rps.intermediario = {} as Intermediario
+    this.nfsePost.rps.construcao_civil = {} as ConstrucaoCivil
+
+
+
   }
 
   cancel() {
     this.router.navigateByUrl('/nfse');
   }
 
-  save() {
+  async save() {
     const record = { ...this.nfse };
-    // console.log(record);
 
+    let body = {
+      ambiente: this.nfsePost.ambiente
+    }
 
-    // this.gridSub = this.isUpdateOperation
-    //   ? this.httpClient.put(`${this.url}?id=eq.${record.id}`, record, { headers: this.headers })
-    //     .subscribe(() => this.navigateToList('Registro atualizado com sucesso'))
-    //   : this.httpClient.post(this.url, record, { headers: this.headers })
-    //     .subscribe(() => this.navigateToList('Registro cadastrado com sucesso'));
+    this.gridSub = this.isUpdateOperation
+      ? this.httpClient.put(`${this.url}/${record.id}`, body, { headers: this.headers })
+        .subscribe(() => this.navigateToList('Registro atualizado com sucesso'))
+      : this.httpClient.post(`${this.url}`, body, { headers: this.headers })
+        .subscribe(() => this.navigateToList('Registro cadastrado com sucesso'));
   }
 
   get isUpdateOperation() {
@@ -128,10 +142,13 @@ export class NfseFormComponent implements OnDestroy, OnInit {
     return this.isUpdateOperation ? 'Atualizar NFS-e' : 'Emitir NFS-e';
   }
 
-  private loadData(id) {
-    this.gridSub = this.httpClient.get(`${this.url}/${id}`, { headers: this.headers })
+  private loadData(response) {
+    this.gridSub = this.httpClient.get(`${this.url}/${response.id}`, { headers: this.headers })
       .subscribe((response: Nfse) => {
         this.nfse = response
+        console.log("loadData CNPJ DO LOGIN");
+        console.log(this.nfse);
+
       })
 
   }
