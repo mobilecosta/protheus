@@ -2,10 +2,43 @@
   <form #formCliente="ngForm">
     <po-divider class="po-sm-12" p-label="Dados da empresa"></po-divider>
 
+    <po-divider class="po-sm-12" p-label="Serviços"></po-divider>
+
+    <po-divider class="po-sm-12" p-label="Construção Civil"></po-divider>
+    <po-divider class="po-sm-12" p-label="Intermediario"></po-divider>
+    <po-divider class="po-sm-12" p-label="Tomador"></po-divider>
+    <po-divider class="po-sm-12" p-label="RPS"></po-divider>
+    <po-divider class="po-sm-12" p-label="Ambiente"></po-divider>
+
     <po-input
       class="po-md-5"
       name="created_at"
-      [(ngModel)]="nfse.created_at"
+      [(ngModel)]="nfsePost.ambiente"
+      p-label="Ambiente"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <!-- <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.created_at"
+      p-label="Data de Criação"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.created_at"
+      p-label="Data de Criação"
+      [p-disabled]="false"
+    >
+    </po-input>
+
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.created_at"
       p-label="Data de Criação"
       [p-disabled]="false"
     >
@@ -13,7 +46,7 @@
     <po-input
       class="po-md-5"
       name="status"
-      [(ngModel)]="nfse.status"
+      [(ngModel)]="nfsePost.status"
       p-label="Status"
       [p-disabled]="false"
     >
@@ -21,7 +54,7 @@
     <po-input
       class="po-md-5"
       name="numero"
-      [(ngModel)]="nfse.numero"
+      [(ngModel)]="nfsePost.numero"
       p-label="Numero"
       [p-disabled]="false"
     >
@@ -29,7 +62,7 @@
     <po-input
       class="po-md-5"
       name="codigo_verificacao"
-      [(ngModel)]="nfse.codigo_verificacao"
+      [(ngModel)]="nfsePost.codigo_verificacao"
       p-label="Código de verificação"
       [p-disabled]="false"
     >
@@ -37,7 +70,7 @@
     <po-input
       class="po-md-5"
       name="link_url"
-      [(ngModel)]="nfse.link_url"
+      [(ngModel)]="nfsePost.link_url"
       p-label="Link URL"
       [p-disabled]="false"
     >
@@ -45,7 +78,7 @@
     <po-input
       class="po-md-5"
       name="data_emissao"
-      [(ngModel)]="nfse.data_emissao"
+      [(ngModel)]="nfsePost.data_emissao"
       p-label="Data de Emissão"
       [p-disabled]="false"
     >
@@ -53,7 +86,7 @@
     <po-input
       class="po-md-5"
       name="ambiente"
-      [(ngModel)]="nfse.ambiente"
+      [(ngModel)]="nfsePost.ambiente"
       p-label="Ambiente"
       [p-disabled]="false"
     >
@@ -61,7 +94,7 @@
     <po-input
       class="po-md-5"
       name="referencia"
-      [(ngModel)]="nfse.referencia"
+      [(ngModel)]="nfsePost.referencia"
       p-label="Referencia"
       [p-disabled]="false"
     >
@@ -70,7 +103,7 @@
       class="po-md-5"
       name="string"
       [(ngModel)]="
-        nfse.declaracao_prestacao_servico?.rps.identificacao_rps.numero
+        nfsePost.declaracao_prestacao_servico?.rps.identificacao_rps.numero
       "
       p-label="Numero do RPS"
     >
@@ -80,7 +113,7 @@
       class="po-md-5"
       name="serie"
       [(ngModel)]="
-        nfse.declaracao_prestacao_servico?.rps.identificacao_rps.serie
+        nfsePost.declaracao_prestacao_servico?.rps.identificacao_rps.serie
       "
       p-label="Série"
       [p-disabled]="false"
@@ -89,16 +122,16 @@
     <po-input
       class="po-md-5"
       name="data_emissao"
-      [(ngModel)]="nfse.declaracao_prestacao_servico?.rps.data_emissao"
+      [(ngModel)]="nfsePost.declaracao_prestacao_servico?.rps.data_emissao"
       p-label="Data de emissão"
       [p-disabled]="false"
     >
-    </po-input>
-
+    </po-input> -->
+    <!-- çasldkfjmnaçlsdjkfnaçsdlkjfnaslçkdjfnd -->
     <!-- <po-input
       class="po-md-5"
       name="competencia"
-      [(ngModel)]="nfse.declaracao_prestacao_servico.competencia"
+      [(ngModel)]="nfsePost.declaracao_prestacao_servico.competencia"
       p-label="Competencia"
       [p-disabled]="false"
     >
@@ -106,7 +139,7 @@
     <po-input
       class="po-md-5"
       name="natureza_tributacao"
-      [(ngModel)]="nfse.declaracao_prestacao_servico.natureza_tributacao"
+      [(ngModel)]="nfsePost.declaracao_prestacao_servico.natureza_tributacao"
       p-label="Natureza Tributação"
       [p-disabled]="false"
     >
@@ -119,7 +152,7 @@
   [p-actions]="actions"
   [p-fields]="fields"
   [p-service-api]="serviceApi"
-  [(ngModel)]="nfse"
+  [(ngModel)]="nfsePost"
 >
   >
 </po-page-dynamic-edit> -->
@@ -131,7 +164,7 @@
     { proper<po-input
       class="po-md-5"
       name="id"
-      [(ngModel)]="nfse.id"
+      [(ngModel)]="nfsePost.id"
       p-label="XXXXXXXXXXX"
       [p-disabled]="false"
     >
@@ -139,7 +172,7 @@
     <po-input
       class="po-md-5"
       name="id"
-      [(ngModel)]="nfse.id"
+      [(ngModel)]="nfsePost.id"
       p-label="XXXXXXXXXXX"
       [p-disabled]="false"
     >
@@ -147,7 +180,7 @@
     <po-input
       class="po-md-5"
       name="id"
-      [(ngModel)]="nfse.id"
+      [(ngModel)]="nfsePost.id"
       p-label="XXXXXXXXXXX"
       [p-disabled]="false"
     >
@@ -162,7 +195,7 @@
   [p-actions]="actions"
   [p-fields]="fields"
   [p-service-api]="serviceApi"
-  [(ngModel)]="nfse"
+  [(ngModel)]="nfsePost"
 >
   >
 </po-page-dynamic-edit> -->

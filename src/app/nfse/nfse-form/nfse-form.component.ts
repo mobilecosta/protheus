@@ -11,6 +11,8 @@ import { PoPageDynamicEditActions, PoPageDynamicEditModule } from '@po-ui/ng-tem
 
 import { AuthService } from 'src/app/auth/auth.service';
 import { Nfse, Declaracao_prestacao_servico, Rps, Identificacao_rps, Mensagens } from '../../shared/nfse';
+import { NfsePost } from '../../shared/nfse-post';
+import { Empresa } from '../../shared/companies';
 
 const actionInsert = 'insert';
 const actionUpdate = 'update';
@@ -22,6 +24,7 @@ const actionUpdate = 'update';
 export class NfseFormComponent implements OnDestroy, OnInit {
 
   private readonly url: string = environment.apiNS + '/nfse';
+  private readonly urlToken: string = environment.apiNS + '/empresas';
 
   // public readonly actions: PoPageDynamicEditActions = {
   //   save: '/documentation/po-page-dynamic-detail',
@@ -37,8 +40,9 @@ export class NfseFormComponent implements OnDestroy, OnInit {
   numero: string = ""
   // public readonly serviceApi = environment.apiNS + '/nfse';
 
+  public empresa: Empresa = {} as Empresa
   public nfse: Nfse = {} as Nfse
-  public rps: Rps = {} as Rps
+  public nfsePost: NfsePost = {} as NfsePost
 
 
   // public readonly fields: Array<PoDynamicFormField> = [
@@ -92,36 +96,40 @@ export class NfseFormComponent implements OnDestroy, OnInit {
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODU0NTIzMzMsInRlbmFudF9pZCI6IldhZ25lciBNb2JpbGUgQ29zdGEjOTY2OCJ9.zBC9QpfHhDJmFWI9yUxeQNv819piFqN8v6utLOSJphI');
     // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.auth.getToken());
     this.paramsSub = this.route.params.subscribe(params => {
-      if (params['id']) {
-        this.loadData(params['id']);
+      if (params['cpf_cnpj']) {
+        this.loadData(params['cpf_cnpj']);
         this.action = actionUpdate;
-
-        this.nfse = {} as Nfse
-        this.nfse.declaracao_prestacao_servico = {} as Declaracao_prestacao_servico
-        this.nfse.declaracao_prestacao_servico.rps = {} as Rps
-        this.nfse.declaracao_prestacao_servico.rps.identificacao_rps = {} as Identificacao_rps
-        this.nfse.mensagens = {} as Mensagens
-
-        // console.log(this.nfse);
-
       }
     });
+    this.loadData(this.empresa)
+    this.nfse = {} as Nfse
+    this.nfse.declaracao_prestacao_servico = {} as Declaracao_prestacao_servico
+    this.nfse.declaracao_prestacao_servico.rps = {} as Rps
+    this.nfse.declaracao_prestacao_servico.rps.identificacao_rps = {} as Identificacao_rps
+    this.nfse.mensagens = {} as Mensagens
+
+    this.nfsePost = {} as NfsePost
+
+
   }
 
   cancel() {
     this.router.navigateByUrl('/nfse');
   }
 
-  save() {
-    const record = { ...this.nfse };
-    // console.log(record);
+  async save() {
+    const record = { ...this.empresa };
 
 
-    // this.gridSub = this.isUpdateOperation
-    //   ? this.httpClient.put(`${this.url}?id=eq.${record.id}`, record, { headers: this.headers })
-    //     .subscribe(() => this.navigateToList('Registro atualizado com sucesso'))
-    //   : this.httpClient.post(this.url, record, { headers: this.headers })
-    //     .subscribe(() => this.navigateToList('Registro cadastrado com sucesso'));
+    let body = {
+      ambiente: this.nfsePost.ambiente
+    }
+
+    this.gridSub = this.isUpdateOperation
+      ? this.httpClient.put(`${this.url}/${record.cpf_cnpj}`, body, { headers: this.headers })
+        .subscribe(() => this.navigateToList('Registro atualizado com sucesso'))
+      : this.httpClient.post(`${this.url}/${record.cpf_cnpj}`, body, { headers: this.headers })
+        .subscribe(() => this.navigateToList('Registro cadastrado com sucesso'));
   }
 
   get isUpdateOperation() {
@@ -132,10 +140,13 @@ export class NfseFormComponent implements OnDestroy, OnInit {
     return this.isUpdateOperation ? 'Atualizar NFS-e' : 'Emitir NFS-e';
   }
 
-  private loadData(id) {
-    this.gridSub = this.httpClient.get(`${this.url}/${id}`, { headers: this.headers })
-      .subscribe((response: Nfse) => {
-        this.nfse = response
+  private loadData(response) {
+    this.gridSub = this.httpClient.get(`${this.urlToken}`, { headers: this.headers })
+      .subscribe((response: Empresa) => {
+        this.empresa = response.data
+        console.log("loadData CNPJ DO LOGIN");
+        console.log(this.empresa[0].cpf_cnpj);
+
       })
 
   }
