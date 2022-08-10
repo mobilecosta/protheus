@@ -11,7 +11,7 @@ import { PoPageDynamicEditActions, PoPageDynamicEditModule } from '@po-ui/ng-tem
 
 import { AuthService } from 'src/app/auth/auth.service';
 import { Nfse, Declaracao_prestacao_servico, Rps, Identificacao_rps, Mensagens } from '../../shared/nfse';
-import { NfsePost, RpsNfesPost, Prestador, Tomador, Intermediario, ConstrucaoCivil, EnderecoTomador } from '../../shared/nfse-post';
+import { NfsePost, RpsNfesPost, Prestador, Tomador, Intermediario, ConstrucaoCivil, EnderecoTomador, Servicos } from '../../shared/nfse-post';
 
 const actionInsert = 'insert';
 const actionUpdate = 'update';
@@ -111,6 +111,7 @@ export class NfseFormComponent implements OnDestroy, OnInit {
     this.nfsePost.rps.tomador.endereco = {} as EnderecoTomador
     this.nfsePost.rps.intermediario = {} as Intermediario
     this.nfsePost.rps.construcao_civil = {} as ConstrucaoCivil
+    this.nfsePost.rps.servicos = {} as Servicos
 
 
 
