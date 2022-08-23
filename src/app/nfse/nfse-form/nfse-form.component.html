@@ -1,60 +1,6 @@
 <po-page-edit (p-save)="save()" (p-cancel)="cancel()" p-title="Atualizar NFS-e">
   <form #formCliente="ngForm">
-    <po-divider class="po-sm-12" p-label="Dados da empresa"></po-divider>
-
-    <po-divider class="po-sm-12" p-label="Ambiente"></po-divider>
-
-    <po-input
-      class="po-md-5"
-      name="created_at"
-      [(ngModel)]="nfsePost.ambiente"
-      p-label="Ambiente"
-      [p-disabled]="false"
-    >
-    </po-input>
-    <po-divider class="po-sm-12" p-label="RPS"></po-divider>
-    <po-input
-      class="po-md-5"
-      name="created_at"
-      [(ngModel)]="nfsePost.rps.referencia"
-      p-label="Referencia"
-      [p-disabled]="false"
-    >
-    </po-input>
-    <po-input
-      class="po-md-5"
-      name="created_at"
-      [(ngModel)]="nfsePost.rps.data_emissao"
-      p-label="Data emissão"
-      [p-disabled]="false"
-    >
-    </po-input>
-    <po-input
-      class="po-md-5"
-      name="created_at"
-      [(ngModel)]="nfsePost.rps.competencia"
-      p-label="Competencia"
-      [p-disabled]="false"
-    >
-    </po-input>
-    <po-input
-      class="po-md-5"
-      name="created_at"
-      [(ngModel)]="nfsePost.rps.natureza_tributacao"
-      p-label="CPF / CNPJ"
-      [p-disabled]="false"
-    >
-    </po-input>
-    <po-divider class="po-sm-12" p-label="Prestador"></po-divider>
-    <po-input
-      class="po-md-5"
-      name="created_at"
-      [(ngModel)]="nfsePost.rps.prestador.cpf_cnpj"
-      p-label="CPF / CNPJ"
-      [p-disabled]="false"
-    >
-    </po-input>
-    <po-divider class="po-sm-12" p-label="Tomador"></po-divider>
+    <po-divider class="po-sm-12" p-label="Tomador / Contratante"></po-divider>
     <po-input
       class="po-md-5"
       name="created_at"
@@ -177,8 +123,216 @@
       [p-disabled]="false"
     >
     </po-input>
+    <po-divider
+      class="po-sm-12"
+      p-label="Recibo Provisório de Serviços (RPS)"
+    ></po-divider>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.referencia"
+      p-label="Referencia"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.data_emissao"
+      p-label="Data emissão"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.competencia"
+      p-label="Competencia"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.natureza_tributacao"
+      p-label="Natureza Tributação"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-divider class="po-sm-12" p-label="Prestador De Serviços"></po-divider>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.prestador.cpf_cnpj"
+      p-label="CPF / CNPJ"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-divider class="po-sm-12" p-label="Ambiente"></po-divider>
+
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.ambiente"
+      p-label="Ambiente"
+      [p-disabled]="false"
+    >
+    </po-input>
     <po-divider class="po-sm-12" p-label="Intermediario"></po-divider>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.intermediario.cpf_cnpj"
+      p-label="Ambiente"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.intermediario.nome_razao_social"
+      p-label="Ambiente"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.intermediario.inscricao_municipal"
+      p-label="Ambiente"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-divider class="po-sm-12" p-label="Construção Civil"></po-divider>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.construcao_civil.codigo_obra"
+      p-label="Código da Obra"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.construcao_civil.art"
+      p-label="Artigo"
+      [p-disabled]="false"
+    >
+    </po-input>
+
+    <po-divider class="po-sm-12" p-label="Serviços"></po-divider>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.servicos.iss_retido"
+      p-label="ISS Retido true ou false"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.servicos.responsavel_retencao"
+      p-label="responsavel_retencao"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.servicos.item_lista_servico"
+      p-label="item_lista_servico"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.servicos.codigo_cnae"
+      p-label="codigo_cnae"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.servicos.codigo_tributacao_municipio"
+      p-label="codigo_tributacao_municipio"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.servicos.discriminacao"
+      p-label="Discriminacao"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.servicos.codigo_municipio"
+      p-label="codigo_municipio"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.servicos.codigo_pais"
+      p-label="codigo_pais"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.servicos.tipo_tributacao"
+      p-label="tipo_tributacao"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.servicos.exigibilidade_iss"
+      p-label="exigibilidade_iss"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.servicos.codigo_municipio_incidencia"
+      p-label="codigo_municipio_incidencia"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.servicos.numero_processo"
+      p-label="Discriminacao"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.servicos.unidade"
+      p-label="unidade"
+      [p-disabled]="false"
+    >
+    </po-input>
+    <po-input
+      class="po-md-5"
+      name="created_at"
+      [(ngModel)]="nfsePost.rps.servicos.quantidade"
+      p-label="quantidade"
+      [p-disabled]="false"
+    >
+    </po-input>
   </form>
-  <po-divider class="po-sm-12" p-label="Construção Civil"></po-divider>
-  <po-divider class="po-sm-12" p-label="Serviços"></po-divider>
 </po-page-edit>
