@@ -35,10 +35,10 @@ export class NfseFormComponent implements OnDestroy, OnInit {
   private gridSub: Subscription;
   private paramsSub: Subscription;
   private headers: HttpHeaders;
-  numero: string =
-    // public readonly serviceApi = environment.apiNS + '/nfse';
+  // numero: string =
+  // public readonly serviceApi = environment.apiNS + '/nfse';
 
-    public nfse: Nfse = {} as Nfse
+  public nfse: Nfse = {} as Nfse
   public nfsePost: NfsePost = {} as NfsePost
 
 
@@ -224,7 +224,7 @@ export class NfseFormComponent implements OnDestroy, OnInit {
     this.gridSub = this.httpClient.get(`${this.url}/${response.id}`, { headers: this.headers })
       .subscribe((response: Nfse) => {
         this.nfse = response
-        console.log(loadData CNPJ DO LOGIN);
+        console.log("loadData CNPJ DO LOGIN");
         console.log(this.nfse);
 
       })
