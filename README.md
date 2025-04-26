@@ -25,9 +25,7 @@ Angular: https://angular.io/
 PO-UI: https://po-ui.io/guides/getting-started
 TypeScript: https://www.typescriptlang.org/
 
-
-Deploy em
-https://protheus-dev.herokuapp.com/login
+## Deploy em
 https://protheus.vercel.app/
 
 ## Ambiente Protheus
