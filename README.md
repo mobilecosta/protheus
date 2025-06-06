@@ -32,3 +32,7 @@ https://protheus.vercel.app/
 http://ec2-3-93-201-109.compute-1.amazonaws.com:4321/ - Aplicação
 
 http://ec2-3-93-201-109.compute-1.amazonaws.com:8181/rest - Rest
+
+## Documentação SmartX
+
+https://tdn.totvs.com.br/display/FrameBH/SmartX
