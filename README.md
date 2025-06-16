@@ -29,9 +29,9 @@ TypeScript: https://www.typescriptlang.org/
 https://protheus.vercel.app/
 
 ## Ambiente Protheus
-[http://ec2-3-93-201-109.compute-1.amazonaws.com](http://ec2-34-226-190-48.compute-1.amazonaws.com/):4321/ - Aplicação
+http://ec2-34-226-190-48.compute-1.amazonaws.com:4321 - Aplicação
 
-[http://ec2-3-93-201-109.compute-1.amazonaws.com](http://ec2-34-226-190-48.compute-1.amazonaws.com/):8181/rest - Rest
+http://ec2-34-226-190-48.compute-1.amazonaws.com:8181/rest - Rest
 
 ## Documentação SmartX
 
