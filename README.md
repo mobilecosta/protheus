@@ -40,3 +40,7 @@ http://ec2-34-226-190-48.compute-1.amazonaws.com:8080/rest
 ## Documentação SmartX
 
 https://tdn.totvs.com.br/display/FrameBH/SmartX
+
+## Reforma Tributaria
+
+https://www.youtube.com/watch?v=msMdG2FEe1U&t=178s
