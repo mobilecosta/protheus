@@ -44,3 +44,14 @@ https://tdn.totvs.com.br/display/FrameBH/SmartX
 ## Reforma Tributaria
 
 https://www.youtube.com/watch?v=msMdG2FEe1U&t=178s
+
+Para obter a solução, acesse os links correspondentes à sua release:
+Pacote Release 12.1.2410
+Download
+Pacote Release 12.1.2310
+Download
+Aproveitamos para compartilhar dois conteúdos importantes para apoiar sua jornada com a solução:
+Ficha Técnica do Produto – com uma visão geral das principais funcionalidades:
+https://produtos.totvs.com/ficha-tecnica/tudo-sobre-o-totvs-inteligencia-tributaria/
+Documento de Referência da Solução – com todas as orientações necessárias para a correta utilização:
+https://tdn.totvs.com/pages/releaseview.action?pageId=919061294
