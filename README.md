@@ -55,3 +55,7 @@ Ficha Técnica do Produto – com uma visão geral das principais funcionalidade
 https://produtos.totvs.com/ficha-tecnica/tudo-sobre-o-totvs-inteligencia-tributaria/
 Documento de Referência da Solução – com todas as orientações necessárias para a correta utilização:
 https://tdn.totvs.com/pages/releaseview.action?pageId=919061294
+
+
+## Tiras Duvidas
+https://www.youtube.com/watch?v=iVYCbJ12zzs
