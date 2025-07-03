@@ -57,3 +57,7 @@ https://tdn.totvs.com/pages/releaseview.action?pageId=919061294
 
 ## Tiras Duvidas
 https://www.youtube.com/watch?v=iVYCbJ12zzs
+
+
+## Angular
+https://www.youtube.com/watch?v=J06W3haEino
