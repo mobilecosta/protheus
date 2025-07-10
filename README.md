@@ -33,6 +33,9 @@ http://ec2-34-226-190-48.compute-1.amazonaws.com:1240/webapp
 
 http://ec2-34-226-190-48.compute-1.amazonaws.com:8080/rest
 
+## SmartView
+https://tdn.totvs.com/display/public/framework/Smart+View+no+Protheus
+
 ## Documentação SmartX
 
 https://tdn.totvs.com.br/display/FrameBH/SmartX
