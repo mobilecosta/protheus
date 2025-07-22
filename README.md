@@ -29,13 +29,13 @@ TypeScript: https://www.typescriptlang.org/
 https://protheus.vercel.app/
 
 ## Ambiente Protheus
-http://ec2-34-226-190-48.compute-1.amazonaws.com:1240/webapp
+http://ec2-100-26-31-212.compute-1.amazonaws.com:1240/webapp/
 
-http://ec2-54-90-246-229.compute-1.amazonaws.com:1240/webapp
+http://ec2-100-26-31-212.compute-1.amazonaws.com:1240/webmonitor
 
-http://ec2-34-226-190-48.compute-1.amazonaws.com:8080/rest
+http://ec2-100-26-31-212.compute-1.amazonaws.com:8080/rest
 
-http://ec2-54-90-246-229.compute-1.amazonaws.com:8080/rest
+http://protheusawsmobile.ddns.net/
 
 ## SmartView
 https://tdn.totvs.com/display/public/framework/Smart+View+no+Protheus
