@@ -35,6 +35,8 @@ http://protheusawsmobile.ddns.net:1240/webmonitor
 
 http://protheusawsmobile.ddns.net:8080/rest
 
+http://3.89.222.119:1240/webapp/
+
 ## SmartView
 https://tdn.totvs.com/display/public/framework/Smart+View+no+Protheus
 
