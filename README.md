@@ -74,6 +74,9 @@ https://tdn.totvs.com/pages/releaseview.action?pageId=788614355
 ## Tiras Duvidas
 https://www.youtube.com/watch?v=iVYCbJ12zzs
 
+## Ferramentas
+https://tdn-homolog.totvs.com/display/tec/DBTools
+
 
 ## Angular
 https://www.youtube.com/watch?v=J06W3haEino
