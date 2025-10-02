@@ -37,6 +37,8 @@ http://protheusawsmobile.ddns.net:8080/rest
 
 Ultimo IP: 52.55.243.101
 
+https://my.noip.com/
+
 ## SmartView
 https://tdn.totvs.com/display/public/framework/Smart+View+no+Protheus
 
