@@ -55,7 +55,7 @@
     "typescript": "^4.1.6"
   },
   "engines": {
-    "node": "22",
+    "node": "22.14.0",
     "npm": "7.5.61"
   },
   "browser": {
