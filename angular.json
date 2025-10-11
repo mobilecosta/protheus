@@ -142,7 +142,6 @@
       }
     }
   },
-  "defaultProject": "protheus",
   "cli": {
     "analytics": "e8aa9a88-edda-4eb7-b04f-9ce016eca024"
   }
