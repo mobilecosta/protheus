@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~19.0.0",
     "@angular/router": "~19.0.0",
     "@po-ui/ng-components": "^19.4.0",
+    "@po-ui/ng-storage": "^19.30.0",
     "@po-ui/ng-templates": "^19.4.0",
     "@totvs/po-theme": "^19.4.0",
     "express": "^4.17.1",
