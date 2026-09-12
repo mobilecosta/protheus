@@ -93,3 +93,6 @@ https://www.youtube.com/watch?v=J06W3haEino
 https://www.youtube.com/watch?v=TMCBPp_2W0k
 
 https://www.codemag.com/article/1711021/Logging-in-Angular-Applications
+
+## Solução Relatórios
+http://www.bisexpress.com.br
