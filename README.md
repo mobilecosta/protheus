@@ -43,6 +43,8 @@ Ultimo IP: 52.55.243.101
 
 https://my.noip.com/
 
+## WebManager - https://lnkd.in/p/eXr-Q4U6
+
 ## SmartView
 https://tdn.totvs.com/display/public/framework/Smart+View+no+Protheus
 
