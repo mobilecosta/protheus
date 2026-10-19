@@ -28,6 +28,9 @@ TypeScript: https://www.typescriptlang.org/
 ## Deploy em
 https://protheus.vercel.app/
 
+## Docker
+26.10 -> https://github.com/emebatista/docker-protheus-2610 
+
 ## Ambiente Protheus
 https://docker-protheus.engpro.totvs.com.br/
 
